@@ -4,7 +4,7 @@ import ResumeImg from "../assets/Project1.png";
 import BreedImg from "../assets/Project2.png";
 import AutomationImg from "../assets/Project3.png";
 import DRImg from "../assets/Project4.png";
-
+import ProIMG from "../assets/projectpage.png";
 const projects = [
   {
     tag: "Web Development",
@@ -68,12 +68,24 @@ export default function ProjectsPage() {
   return (
     <main className="pt-24 bg-[#020409] text-white min-h-screen">
       {/* ========= HERO ========= */}
-      <section className="relative overflow-hidden">
-        {/* soft gradient background */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,255,255,0.16),_transparent_65%)]" />
+      <section className="relative min-h-[72vh] md:min-h-[92vh] overflow-hidden" aria-label="Projects hero">
+        {/* background image (user provided) as animated element */}
+        <motion.img
+          className="absolute inset-0 z-0 w-full h-full object-cover object-center brightness-[0.35] will-change-transform"
+          src={ProIMG}
+          alt="projects background"
+          initial={{ scale: 1 }}
+          animate={{ scale: 1.18, x: [0, 12, 0], y: [0, -6, 0] }}
+          transition={{ repeat: Infinity, repeatType: "reverse", duration: 6, ease: "easeInOut" }}
+          draggable="false"
+          loading="eager"
+        />
+
+        {/* soft gradient background overlays */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,255,255,0.12),_transparent_65%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black" />
 
-        <div className="relative max-w-6xl mx-auto px-6 py-20 md:py-24">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-28 md:py-32">
           <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-[#0ff] mb-4">
             Projects
           </p>
@@ -122,6 +134,7 @@ export default function ProjectsPage() {
                   <img
                     src={p.img}
                     alt={p.title}
+                    loading="lazy"
                     className="w-full h-full object-cover object-center 
                                hover:scale-110 transition-transform duration-[900ms]"
                   />

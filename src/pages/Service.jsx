@@ -18,89 +18,110 @@ export default function ServicePage() {
   useEffect(() => {
     if (!heroRef.current) return;
 
-    const splitTitle = new SplitType(".service-title", { types: "chars" });
-    const splitSub = new SplitType(".service-sub", { types: "words" });
+    let splitTitle;
+    let splitSub;
+    try {
+      const titleEl = heroRef.current.querySelector(".service-title");
+      const subEl = heroRef.current.querySelector(".service-sub");
+      if (titleEl) splitTitle = new SplitType(titleEl, { types: "chars" });
+      if (subEl) splitSub = new SplitType(subEl, { types: "words" });
 
-    // Heading chars
-    gsap.from(splitTitle.chars, {
-      y: 60,
-      opacity: 0,
-      rotationX: -90,
-      stagger: 0.035,
-      duration: 0.8,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top 70%",
-        toggleActions: "play reverse play reverse", // aao -> jao
-      },
-    });
+      if (splitTitle && splitTitle.chars) {
+        gsap.from(splitTitle.chars, {
+          y: 60,
+          opacity: 0,
+          rotationX: -90,
+          stagger: 0.035,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top 70%",
+            toggleActions: "play reverse play reverse",
+          },
+        });
+      }
 
-    // Sub text words
-    gsap.from(splitSub.words, {
-      opacity: 0,
-      y: 25,
-      stagger: 0.07,
-      duration: 0.6,
-      delay: 0.15,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top 80%",
-        toggleActions: "play reverse play reverse",
-      },
-    });
+      if (splitSub && splitSub.words) {
+        gsap.from(splitSub.words, {
+          opacity: 0,
+          y: 25,
+          stagger: 0.07,
+          duration: 0.6,
+          delay: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top 80%",
+            toggleActions: "play reverse play reverse",
+          },
+        });
+      }
+    } catch (e) {
+      // Fail gracefully if SplitType/DOM not ready
+      // eslint-disable-next-line no-console
+      console.warn("ServicePage: SplitType animation skipped", e);
+    }
 
     return () => {
-      splitTitle.revert();
-      splitSub.revert();
+      if (splitTitle && typeof splitTitle.revert === "function") splitTitle.revert();
+      if (splitSub && typeof splitSub.revert === "function") splitSub.revert();
+      // cleanup ScrollTrigger instances created by these animations
+      try {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      } catch (e) {
+        // ignore
+      }
     };
   }, []);
 
   // ======== CARD BATCH ANIMATION ========
   useEffect(() => {
-    const cards = gsap.utils.toArray(".service-card");
-    cards.forEach((card) => {
-      gsap.fromTo(
-        card,
-        { opacity: 0, y: 60 },
-        {
+    const cards = document.querySelectorAll(".service-card, .agency-card");
+    if (!cards || !cards.length) return;
+
+    ScrollTrigger.batch(cards, {
+      start: "top 85%",
+      onEnter: (batch) =>
+        gsap.to(batch, {
           opacity: 1,
           y: 0,
-          duration: 0.7,
+          duration: 0.6,
+          stagger: 0.12,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-            end: "bottom 40%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
+        }),
+      onLeave: (batch) =>
+        gsap.to(batch, { opacity: 0, y: 60, duration: 0.45 }),
+      onEnterBack: (batch) =>
+        gsap.to(batch, { opacity: 1, y: 0, duration: 0.6, stagger: 0.12 }),
+      onLeaveBack: (batch) =>
+        gsap.to(batch, { opacity: 0, y: -40, duration: 0.4 }),
     });
+
+    return () => {
+      try {
+        ScrollTrigger.killAll();
+      } catch (e) {}
+    };
   }, []);
 
   // ======== BADGE FADE ========
   useEffect(() => {
-    const badges = gsap.utils.toArray(".service-badge");
-    badges.forEach((badge) => {
-      gsap.fromTo(
-        badge,
-        { opacity: 0, scale: 0.8 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.4,
-          ease: "back.out(1.4)",
-          scrollTrigger: {
-            trigger: badge,
-            start: "top 90%",
-            end: "bottom 70%",
-            toggleActions: "play reverse play reverse",
-          },
-        }
-      );
+    const badges = document.querySelectorAll(".service-badge");
+    if (!badges || !badges.length) return;
+
+    ScrollTrigger.batch(badges, {
+      start: "top 92%",
+      onEnter: (batch) =>
+        gsap.to(batch, { opacity: 1, scale: 1, duration: 0.45, stagger: 0.06, ease: "back.out(1.4)" }),
+      onLeave: (batch) => gsap.to(batch, { opacity: 0, scale: 0.9, duration: 0.3 }),
     });
+
+    return () => {
+      try {
+        ScrollTrigger.killAll();
+      } catch (e) {}
+    };
   }, []);
 
   return (
@@ -108,7 +129,7 @@ export default function ServicePage() {
       {/* ================= HERO ================= */}
       <section
         ref={heroRef}
-        className="relative min-h-[70vh] flex items-center justify-center text-center overflow-hidden"
+        className="relative min-h-[80vh] md:min-h-screen flex items-center justify-center text-center overflow-hidden"
       >
         {/* Background image zoom */}
         <motion.img
@@ -129,7 +150,7 @@ export default function ServicePage() {
 
         <div className="relative z-10 px-6 max-w-4xl">
           <h1 className="service-title text-5xl md:text-7xl font-bold leading-tight">
-            Engineering • Automation • Digital
+            Engineering • <span className="whitespace-nowrap">Automation</span> • Digital
           </h1>
 
           <p className="service-sub mt-5 text-gray-300 text-lg max-w-3xl mx-auto">
@@ -213,6 +234,64 @@ export default function ServicePage() {
                 </div>
               </div>
             ))}
+          </div>
+          {/* Agency section (mirrors Services component) */}
+          <div className="mt-12 relative">
+            <div className="agency-card rounded-3xl overflow-hidden
+                       border border-[#0ff4]/30 bg-[#061018]/60 backdrop-blur-md
+                       transition duration-300">
+              <div className="p-6 md:flex md:items-center md:justify-between">
+                <div className="md:flex-1">
+                  <div className="text-[#0ff] text-xs tracking-[0.2em] uppercase">
+                    Agency
+                  </div>
+
+                  <h3 className="mt-3 text-2xl md:text-3xl font-bold">
+                    Full-service Robotics & Tech Agency
+                  </h3>
+
+                  <p className="mt-3 text-gray-300 leading-relaxed max-w-3xl">
+                    We craft product strategies, UX-focused dashboards, identity and go-to-market plans for robotics and automation companies — from prototype to launch.
+                  </p>
+
+                  <ul className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-300">
+                    <li className="flex items-start gap-3">
+                      <span className="text-[#0ff] mt-1">●</span>
+                      <span>Product strategy & roadmap tailored for hardware+software teams.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-[#0ff] mt-1">●</span>
+                      <span>Design and build of operator dashboards and admin portals.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-[#0ff] mt-1">●</span>
+                      <span>Branding, launch campaigns and partner integrations.</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <span className="text-[#0ff] mt-1">●</span>
+                      <span>Retention & growth — telemetry-driven product improvements.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="mt-6 md:mt-0 md:ml-8 flex-shrink-0">
+                  <a
+                    href="/Agency"
+                    className="inline-flex items-center gap-3
+                               bg-gradient-to-r from-[#06f] to-[#0ff] text-black
+                               px-5 py-3 rounded-lg font-semibold shadow-lg
+                               transform transition-all duration-300 hover:scale-105"
+                  >
+                    Explore Agency
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+           
           </div>
         </div>
       </section>

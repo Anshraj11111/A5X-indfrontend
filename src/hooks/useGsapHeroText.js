@@ -13,7 +13,8 @@ export default function useGsapHeroText() {
 
     const ctx = gsap.context(() => {
       // SPLIT ALL TEXT
-      const title = new SplitType(".hero-title", { types: "chars" });
+      // Only split the first line (non-gradient) to avoid breaking bg-clip text
+      const title = new SplitType(".hero-title span:first-child", { types: "chars" });
       const subtitle = new SplitType(".hero-subtext", { types: "words" });
 
       // TITLE ANIMATION (letters stagger)
@@ -40,24 +41,8 @@ export default function useGsapHeroText() {
         ease: "power2.out",
       });
 
-      // BUTTON
-      gsap.from(".hero-btn", {
-        opacity: 0,
-        scale: 0.8,
-        duration: 0.7,
-        delay: 0.6,
-        ease: "back.out(1.6)",
-      });
-
-      // STATS
-      gsap.from(".hero-stat", {
-        opacity: 0,
-        y: 20,
-        stagger: 0.15,
-        duration: 0.2,
-        delay: 0.2,
-        ease: "power2.out",
-      });
+      // Buttons and stats use CSS for appearance to avoid flash/hide issues.
+      // Keep animations for title/subtitle only to prevent interfering with CTA visibility.
 
     }, ref);
 

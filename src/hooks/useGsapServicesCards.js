@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function useGsapServicesCards(containerClass = ".service-card") {
+export default function useGsapServicesCards(containerClass = ".service-card, .agency-card") {
   useLayoutEffect(() => {
     const cards = document.querySelectorAll(containerClass);
 

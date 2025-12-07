@@ -12,6 +12,7 @@ import TeamPage from "./pages/Team";
 import Contact from "./pages/Contact";
 import Project from "./pages/Projects";
 import Gallery from "./pages/Gallery";
+import AgencyPage from "./pages/Agency";
 
 // Auth
 import AdminLogin from "./pages/Admin/AdminLogin";
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/projects" element={<Project />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/agency" element={<AgencyPage />} />
 
         {/* ================= AUTH ================= */}
         <Route path="/admin/login" element={<AdminLogin />} />

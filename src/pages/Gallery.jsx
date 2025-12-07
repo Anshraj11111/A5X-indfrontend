@@ -10,6 +10,9 @@ export default function Gallery() {
       .catch(err => console.log("Gallery fetch error:", err));
   }, []);
 
+  const apiBase = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+  const serverOrigin = apiBase.replace(/\/api$/, "");
+
   return (
     <main className="pt-24 px-6 bg-black min-h-screen text-white">
       <h1 className="text-center text-4xl font-bold text-[#0ff] mb-10">
@@ -23,7 +26,7 @@ export default function Gallery() {
             className="bg-[#0a0f14] rounded-xl overflow-hidden border border-[#0ff]/10 shadow-md"
           >
             <img
-              src={`http://localhost:5000${item.url}`}
+              src={item.url && item.url.startsWith("http") ? item.url : `${serverOrigin}${item.url}`}
               alt={item.title}
               className="w-full h-64 object-cover rounded-lg"
             />

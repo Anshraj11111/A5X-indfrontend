@@ -23,27 +23,32 @@ export default function RoboticsPage() {
       {/* ================= HERO ================= */}
       <section
         ref={heroRef}
-        className="relative min-h-[80vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[70vh] md:min-h-[92vh] flex items-center justify-center overflow-hidden"
       >
         <motion.img
           src="https://img.freepik.com/premium-photo/robot-with-black-background-dark-background_916191-348637.jpg?auto=format&w=1920&q=80"
-          initial={{ scale: 1.25 }}
-          animate={{ scale: 1.03 }}
+          initial={{ scale: 1.15, y: 0, rotate: 0 }}
+          animate={{
+            scale: [1.15, 1.06, 1.15],
+            y: [0, -10, 0],
+            rotate: [0, 0.45, 0],
+          }}
           transition={{
-            duration: 8,
+            duration: 6,
             repeat: Infinity,
             repeatType: "reverse",
             ease: "easeInOut",
           }}
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.45]"
+          className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.38] will-change-transform"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/95"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/90" />
 
         <div className="relative z-10 text-center px-6 max-w-4xl">
           <h1 className="robotics-title text-5xl md:text-7xl font-bold leading-tight">
             Robotics Designed for Real-World
           </h1>
+
           <p className="robotics-sub mt-5 text-gray-300 text-lg md:text-xl max-w-3xl mx-auto">
             From PID line followers to industrial robotic arms — we engineer bots
             that compete, automate and deliver.

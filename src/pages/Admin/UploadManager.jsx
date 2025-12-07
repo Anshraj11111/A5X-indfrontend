@@ -25,11 +25,19 @@ export default function UploadManager() {
       form.append("file", file);
 
       // STEP 1 — upload file
-      const uploadRes = await client.post("/api/uploads", form);
+      // client baseURL already points to /api, so call the uploads route relative to that
+      const uploadRes = await client.post("/uploads", form);
+
+      // Ensure the image URL is absolute so the browser can load it (avoid frontend 404)
+      // Example: server returns "/uploads/abc.jpg" — prepend server origin
+      const apiBase = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      const serverOrigin = apiBase.replace(/\/api$/, "");
+      const returnedUrl = uploadRes.data?.url || uploadRes.data?.path || "";
+      const publicUrl = returnedUrl.startsWith("http") ? returnedUrl : `${serverOrigin}${returnedUrl}`;
 
       // STEP 2 — save in gallery
-      await client.post("/api/gallery", {
-        url: uploadRes.data.url,        // <-- "/uploads/xyz"
+      await client.post("/gallery", {
+        url: publicUrl,
         title,
         description: desc,
         fileType: "image",
