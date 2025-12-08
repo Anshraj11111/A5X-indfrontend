@@ -14,22 +14,28 @@ export default function AdminLogin() {
   });
 
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
-      const res = await client.post("/auth/login", data);
+       // ✅ CORRECT API ROUTE
+      const res = await client.post("/api/auth/login", data);
 
-      // Store token & user
+      // ✅ Store token & user
       login(res.data.token, res.data.user);
 
-      // Redirect
+      // ✅ Redirect after login
       navigate("/admin/dashboard");
+
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }
+
+    setLoading(false);
   }
 
   return (
@@ -43,51 +49,61 @@ export default function AdminLogin() {
           Login with approved admin credentials
         </p>
 
-        {/* EMAIL */}
+        {/* ✅ EMAIL */}
         <div className="mt-6">
           <label className="text-xs text-gray-300">Email</label>
           <input
             type="email"
+            required
             placeholder="Enter admin email"
             className="w-full mt-1 px-3 py-2 rounded-lg bg-[#0f1a23] border border-gray-700 text-sm outline-none focus:border-[#0ff]"
             onChange={(e) => setData({ ...data, email: e.target.value })}
           />
         </div>
 
-        {/* PASSWORD */}
+        {/* ✅ PASSWORD */}
         <div className="mt-4">
           <label className="text-xs text-gray-300">Password</label>
           <input
             type="password"
+            required
             placeholder="Enter admin password"
             className="w-full mt-1 px-3 py-2 rounded-lg bg-[#0f1a23] border border-gray-700 text-sm outline-none focus:border-[#0ff]"
             onChange={(e) => setData({ ...data, password: e.target.value })}
           />
         </div>
 
-        {/* ADMIN CODE */}
+        {/* ✅ ADMIN CODE */}
         <div className="mt-4">
           <label className="text-xs text-gray-300">Admin Code</label>
           <input
+            required
             placeholder="Your unique admin code"
             className="w-full mt-1 px-3 py-2 rounded-lg bg-[#0f1a23] border border-gray-700 text-sm outline-none focus:border-[#0ff]"
             onChange={(e) => setData({ ...data, adminCode: e.target.value })}
           />
         </div>
 
+        {/* ✅ BUTTON */}
         <button
-          className="mt-6 w-full py-2.5 rounded-lg bg-[#0ff] text-black font-semibold hover:bg-[#0ee2e2] transition-all"
+          disabled={loading}
+          className="mt-6 w-full py-2.5 rounded-lg bg-[#0ff] text-black font-semibold hover:bg-[#0ee2e2] transition-all disabled:opacity-60"
         >
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
 
+        {/* ✅ ERROR */}
         {error && (
           <p className="mt-2 text-center text-red-400 text-xs">{error}</p>
         )}
 
+        {/* ✅ SIGNUP LINK */}
         <p className="text-gray-400 text-xs mt-6 text-center">
           Not registered?{" "}
-          <Link to="/admin/signup" className="text-[#0ff] hover:text-white underline">
+          <Link
+            to="/admin/signup"
+            className="text-[#0ff] hover:text-white underline"
+          >
             Create Account
           </Link>
         </p>

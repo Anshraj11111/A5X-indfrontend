@@ -79,11 +79,12 @@ function Sidebar({ handleLogout, user }) {
   return (
     <div className="w-64 border-r border-[#0ff]/10 bg-[#0C131A] flex flex-col">
 
-      <div className="p-8 text-center">
-        <h2 className="text-2xl font-semibold text-[#0ff] flex gap-2 justify-center">
-          ⚙️ Admin
-        </h2>
-        <p className="text-gray-400 text-sm mt-1">{user?.email}</p>
+      <div className="p-6 text-center">
+        <div className="mx-auto w-14 h-14 rounded-full bg-[#07121a] flex items-center justify-center text-xl font-bold text-[#0ff]">
+          {getInitials(user)}
+        </div>
+        <h3 className="mt-3 text-lg font-semibold text-white">{getDisplayName(user)}</h3>
+        <p className="text-gray-400 text-xs mt-1">Admin</p>
       </div>
 
       {/* NAV LINKS */}
@@ -107,6 +108,21 @@ function Sidebar({ handleLogout, user }) {
       </div>
     </div>
   );
+}
+
+// helper: derive display name
+function getDisplayName(user) {
+  if (!user) return "Admin";
+  return user.name || user.fullName || user.firstName || (user.email ? user.email.split("@")[0] : "Admin");
+}
+
+// helper: initials for avatar
+function getInitials(user) {
+  const name = getDisplayName(user);
+  if (!name) return "A";
+  const parts = name.split(" ").filter(Boolean);
+  if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+  return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
 }
 
 /* 🧭 SIDEBAR SINGLE ITEM */

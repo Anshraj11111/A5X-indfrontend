@@ -7,9 +7,12 @@ export default function AdminTeamList() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(null);
 
+  // ✅ FETCH TEAM
   const fetchTeam = async () => {
     try {
-      const res = await client.get("/team");
+     
+      const res = await client.get("/api/team");
+      
       setTeam(res.data);
     } catch (err) {
       alert("Failed to fetch team members");
@@ -17,12 +20,15 @@ export default function AdminTeamList() {
     setLoading(false);
   };
 
+  // ✅ DELETE TEAM MEMBER
   const deleteMember = async (id) => {
     if (!window.confirm("❗ Delete this member permanently?")) return;
 
     try {
-      await client.delete(`/team/${id}`);
-      setTeam(prev => prev.filter(m => m._id !== id));
+      
+      await client.delete(`/api/team/${id}`);
+     
+      setTeam((prev) => prev.filter((m) => m._id !== id));
     } catch (err) {
       alert("Delete Failed");
     }
@@ -37,19 +43,19 @@ export default function AdminTeamList() {
 
       <h1 className="text-3xl font-bold mb-6">Team Members</h1>
 
-      {/* LOADING */}
+      {/* ✅ LOADING */}
       {loading && (
         <p className="text-gray-400 text-center">Loading...</p>
       )}
 
-      {/* GRID */}
+      {/* ✅ TEAM GRID */}
       <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-        {team.map(member => (
+        {team.map((member) => (
           <div
             key={member._id}
             className="bg-[#0a0f14] border border-[#0ff]/20 rounded-2xl shadow-lg overflow-hidden"
           >
-            {/* IMAGE */}
+            {/* ✅ IMAGE */}
             <img
               src={member.photo || "/default-avatar.png"}
               alt={member.name}
@@ -58,7 +64,7 @@ export default function AdminTeamList() {
 
             <div className="p-4">
               <h2 className="text-lg font-semibold">{member.name}</h2>
-              
+
               {member.title && (
                 <p className="text-[#0ff] text-xs uppercase mt-1 tracking-wide">
                   {member.title}
@@ -70,8 +76,26 @@ export default function AdminTeamList() {
               </p>
 
               <div className="flex gap-3 mt-3 text-xs">
-                {member.linkedin && <a href={member.linkedin} target="_blank" className="text-[#0ff] underline">LinkedIn</a>}
-                {member.instagram && <a href={member.instagram} target="_blank" className="text-[#0ff] underline">Instagram</a>}
+                {member.linkedin && (
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#0ff] underline"
+                  >
+                    LinkedIn
+                  </a>
+                )}
+                {member.instagram && (
+                  <a
+                    href={member.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[#0ff] underline"
+                  >
+                    Instagram
+                  </a>
+                )}
               </div>
 
               <div className="flex gap-3 mt-6">
@@ -93,13 +117,13 @@ export default function AdminTeamList() {
         ))}
       </div>
 
-      {/* MODAL */}
+      {/* ✅ EDIT MODAL */}
       {editing && (
         <EditMemberModal
           member={editing}
           onClose={() => setEditing(null)}
           onUpdate={(data) =>
-            setTeam(prev =>
+            setTeam((prev) =>
               prev.map((m) => (m._id === data._id ? data : m))
             )
           }
