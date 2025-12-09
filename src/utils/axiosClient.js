@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
-  withCredentials: true,
+  baseURL: import.meta.env.VITE_API_URL, // ✅ ONLY THIS
+  withCredentials: false, // ✅ IMPORTANT: CORS issue avoid
 });
 
 client.interceptors.request.use((config) => {
