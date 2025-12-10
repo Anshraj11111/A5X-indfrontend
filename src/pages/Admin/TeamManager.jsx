@@ -15,36 +15,56 @@ export default function TeamManager() {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
- async function handleSubmit(e) {
-  e.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    setMsg("");
 
-  const formData = new FormData();
-  
-  // Required fields
-  formData.append("name", data.name);
-  formData.append("designation", data.designation);
-  formData.append("bio", data.bio);
+    try {
+      const formData = new FormData();
 
-  // Optional Socials
-  if (data.linkedin?.trim()) formData.append("linkedin", data.linkedin);
-  if (data.instagram?.trim()) formData.append("instagram", data.instagram);
+      // ✅ Required fields
+      formData.append("name", data.name);
+      formData.append("designation", data.designation);
+      formData.append("bio", data.bio);
 
-  // Homepage toggle
-  formData.append("showOnHome", data.showOnHome);
+      // ✅ Optional Socials
+      if (data.linkedin?.trim()) formData.append("linkedin", data.linkedin);
+      if (data.instagram?.trim()) formData.append("instagram", data.instagram);
 
-  // image
-  if (file) formData.append("photo", file);
+      // ✅ Homepage toggle
+      formData.append("showOnHome", data.showOnHome);
 
-  try {
-    await client.post("/team", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    setMsg("Member Added ✔");
-  } catch (err) {
-    setMsg(err.response?.data?.message || "Error");
+      // ✅ PHOTO — must match backend upload.single("photo")
+      if (file) {
+        formData.append("photo", file);
+      }
+
+      await client.post("/team", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+    
+      setMsg("✅ Member Added Successfully!");
+      setData({
+        name: "",
+        designation: "",
+        bio: "",
+        linkedin: "",
+        instagram: "",
+        showOnHome: false,
+      });
+      setFile(null);
+
+    } catch (err) {
+      console.error(err);
+      setMsg(err.response?.data?.message || "❌ Error while adding member");
+    }
+
+    setLoading(false);
   }
-}
-
 
   return (
     <div className="min-h-screen bg-[#020409] text-white flex justify-center items-start pt-28 px-6">
@@ -58,44 +78,52 @@ export default function TeamManager() {
         </p>
 
         <form className="grid gap-6 mt-10" onSubmit={handleSubmit}>
-          {/* Full Name */}
+
+          {/* ✅ Full Name */}
           <div>
             <label className="text-xs text-gray-300">Full Name</label>
             <input
               className="input-field"
               placeholder="Ansh Raj"
+              value={data.name}
+              required
               onChange={(e) => setData({ ...data, name: e.target.value })}
             />
           </div>
 
-          {/* Designation */}
+          {/* ✅ Designation */}
           <div>
             <label className="text-xs text-gray-300">Designation</label>
             <input
               className="input-field"
               placeholder="Founder | AI Lead"
+              value={data.designation}
+              required
               onChange={(e) => setData({ ...data, designation: e.target.value })}
             />
           </div>
 
-          {/* Bio */}
+          {/* ✅ Bio */}
           <div>
             <label className="text-xs text-gray-300">Short Bio</label>
             <textarea
               className="input-field resize-none"
               rows="3"
               placeholder="Describe specialization, role…"
+              value={data.bio}
+              required
               onChange={(e) => setData({ ...data, bio: e.target.value })}
             />
           </div>
 
-          {/* Social Row */}
+          {/* ✅ Social Row */}
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="text-xs text-gray-300">LinkedIn</label>
               <input
                 className="input-field"
                 placeholder="https://linkedin.com/in/.."
+                value={data.linkedin}
                 onChange={(e) => setData({ ...data, linkedin: e.target.value })}
               />
             </div>
@@ -105,29 +133,32 @@ export default function TeamManager() {
               <input
                 className="input-field"
                 placeholder="https://instagram.com/.."
+                value={data.instagram}
                 onChange={(e) => setData({ ...data, instagram: e.target.value })}
               />
             </div>
           </div>
 
-          {/* Photo */}
+          {/* ✅ Photo */}
           <div>
             <label className="text-xs text-gray-300">Profile Photo</label>
             <input
               type="file"
               className="input-field cursor-pointer"
+              required
               onChange={(e) => setFile(e.target.files[0])}
             />
             <p className="text-[10px] text-gray-500 mt-1">
-              Use square resolution (1:1) 500–1000px recommended
+              Use square resolution (1:1) recommended
             </p>
           </div>
 
-          {/* Checkbox */}
+          {/* ✅ Checkbox */}
           <label className="flex items-center gap-3 bg-[#0f1a23] border border-gray-700 px-4 py-3 rounded-lg cursor-pointer hover:border-[#0ff] transition">
             <input
               type="checkbox"
               className="accent-[#0ff]"
+              checked={data.showOnHome}
               onChange={(e) =>
                 setData({ ...data, showOnHome: e.target.checked })
               }
@@ -135,7 +166,7 @@ export default function TeamManager() {
             <span className="text-sm">Show on Homepage Highlight?</span>
           </label>
 
-          {/* Submit */}
+          {/* ✅ Submit */}
           <button
             disabled={loading}
             className="py-3 bg-[#0ff] text-black rounded-xl font-bold hover:bg-[#06e3e3] shadow-[0_0_15px_#0ff7] active:scale-95 transition disabled:opacity-50"

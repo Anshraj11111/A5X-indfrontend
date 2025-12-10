@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL + "/api", // ✅ YAHI API ADD HOGA
-  withCredentials: true,
+  baseURL: import.meta.env.VITE_API_URL + "/api", // ✅ only /api once
+  withCredentials: false, // ✅ MUST be false (your backend CORS requires this)
 });
 
 client.interceptors.request.use((config) => {

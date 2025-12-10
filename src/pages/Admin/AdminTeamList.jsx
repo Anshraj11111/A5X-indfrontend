@@ -10,9 +10,7 @@ export default function AdminTeamList() {
   // ✅ FETCH TEAM
   const fetchTeam = async () => {
     try {
-     
       const res = await client.get("/team");
-      
       setTeam(res.data);
     } catch (err) {
       alert("Failed to fetch team members");
@@ -25,11 +23,13 @@ export default function AdminTeamList() {
     if (!window.confirm("❗ Delete this member permanently?")) return;
 
     try {
-      
-      await client.delete(`/api/team/${id}`);
-     
+      // ❌ Wrong → /api/team  
+      // ✅ Correct:
+      await client.delete(`/team/${id}`);
+
       setTeam((prev) => prev.filter((m) => m._id !== id));
     } catch (err) {
+      console.log(err);
       alert("Delete Failed");
     }
   };
@@ -38,26 +38,30 @@ export default function AdminTeamList() {
     fetchTeam();
   }, []);
 
+  // Backend base URL (for images)
+  const BASE_URL = import.meta.env.VITE_API_URL.replace("/api", "");
+
   return (
     <div className="min-h-screen pt-24 pb-16 px-6 bg-[#020409] text-white">
-
       <h1 className="text-3xl font-bold mb-6">Team Members</h1>
 
-      {/* ✅ LOADING */}
       {loading && (
         <p className="text-gray-400 text-center">Loading...</p>
       )}
 
-      {/* ✅ TEAM GRID */}
       <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
         {team.map((member) => (
           <div
             key={member._id}
             className="bg-[#0a0f14] border border-[#0ff]/20 rounded-2xl shadow-lg overflow-hidden"
           >
-            {/* ✅ IMAGE */}
+            {/* IMAGE FIX */}
             <img
-              src={member.photo || "/default-avatar.png"}
+              src={
+                member.photo
+                  ? BASE_URL + member.photo
+                  : "/default-avatar.png"
+              }
               alt={member.name}
               className="h-60 w-full object-cover object-center"
             />
@@ -105,6 +109,7 @@ export default function AdminTeamList() {
                 >
                   Edit
                 </button>
+
                 <button
                   onClick={() => deleteMember(member._id)}
                   className="flex-1 py-2 rounded-lg text-red-400 border border-red-500"
@@ -117,7 +122,6 @@ export default function AdminTeamList() {
         ))}
       </div>
 
-      {/* ✅ EDIT MODAL */}
       {editing && (
         <EditMemberModal
           member={editing}
