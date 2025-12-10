@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL, // ✅ NO localhost in production
+  baseURL: import.meta.env.VITE_API_URL + "/api", // ✅ YAHI API ADD HOGA
   withCredentials: true,
 });
 

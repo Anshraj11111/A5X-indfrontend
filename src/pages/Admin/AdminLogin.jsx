@@ -23,7 +23,7 @@ export default function AdminLogin() {
 
     try {
        // ✅ CORRECT API ROUTE
-      const res = await client.post("/api/auth/login", data);
+      const res = await client.post("/auth/login", data);
 
       // ✅ Store token & user
       login(res.data.token, res.data.user);

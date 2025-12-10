@@ -11,7 +11,7 @@ export default function AdminTeamList() {
   const fetchTeam = async () => {
     try {
      
-      const res = await client.get("/api/team");
+      const res = await client.get("/team");
       
       setTeam(res.data);
     } catch (err) {

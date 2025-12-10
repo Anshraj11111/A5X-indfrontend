@@ -25,7 +25,7 @@ export default function AdminSignup() {
 
     try {
       // send signup, receive token + user
-      const res = await client.post("/api/auth/signup", form);
+      const res = await client.post("/auth/signup", form);
 
       const { token, user } = res.data || {};
 

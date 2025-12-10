@@ -8,7 +8,7 @@ export default function AdminGallery() {
   // ✅ Load gallery
   async function load() {
     try {
-      const res = await client.get("/api/gallery");
+      const res = await client.get("/gallery");
       setList(res.data);
     } catch (err) {
       alert("Failed to load gallery");
