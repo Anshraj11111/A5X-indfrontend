@@ -1,9 +1,8 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import logo from "../assets/A5Xlogo.jpg";
-import { AuthContext } from "../context/AuthContext";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -21,7 +20,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const { user, logout } = useContext(AuthContext);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
@@ -42,7 +40,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between">
 
-        {/* ✅ LOGO */}
+        {/* LOGO */}
         <Link to="/" className="flex items-center gap-3 z-[10000]">
           <img src={logo} className="w-10 h-10 rounded-lg object-cover" />
           <div>
@@ -53,7 +51,7 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* ✅ DESKTOP NAV */}
+        {/* DESKTOP NAV */}
         <div className="hidden lg:flex items-center gap-2">
           {navItems.map((n) => (
             <NavLink
@@ -61,9 +59,10 @@ export default function Navbar() {
               to={n.to}
               className={({ isActive }) =>
                 `px-4 py-2 text-sm font-semibold rounded-lg transition
-                 ${isActive
-                  ? "text-[#00ffff]"
-                  : "text-gray-300 hover:text-white hover:bg-white/10"
+                 ${
+                   isActive
+                     ? "text-[#00ffff]"
+                     : "text-gray-300 hover:text-white hover:bg-white/10"
                  }`
               }
             >
@@ -72,7 +71,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* ✅ MOBILE MENU BUTTON */}
+        {/* MOBILE MENU BUTTON */}
         <button
           onClick={() => setOpen(true)}
           className="lg:hidden text-white text-3xl p-2 rounded-lg bg-[#00ffff]/20 z-[10000]"
@@ -81,11 +80,10 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* ✅✅✅ MOBILE FULL SCREEN DRAWER - HIGH CONTRAST */}
+      {/* MOBILE DRAWER */}
       <AnimatePresence>
         {open && (
           <>
-            {/* Dark Backdrop */}
             <motion.div
               className="fixed inset-0 bg-black/90 z-[9998]"
               onClick={() => setOpen(false)}
@@ -94,7 +92,6 @@ export default function Navbar() {
               exit={{ opacity: 0 }}
             />
 
-            {/* Slide Menu */}
             <motion.div
               className="fixed top-0 right-0 w-full h-full 
                          bg-[#050b11] z-[9999]
@@ -111,7 +108,6 @@ export default function Navbar() {
                 <HiOutlineX />
               </button>
 
-              {/* ✅ NAV LINKS – MOBILE FIXED */}
               <div className="flex flex-col gap-6 text-2xl font-extrabold tracking-wide">
                 {navItems.map(({ to, label }) => (
                   <NavLink
