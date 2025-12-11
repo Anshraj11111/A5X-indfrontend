@@ -70,35 +70,6 @@ export default function Navbar() {
               {n.label}
             </NavLink>
           ))}
-
-          {!user && (
-            <Link
-              to="/admin/login"
-              className="ml-5 px-5 py-2 rounded-full text-sm font-bold 
-                       border border-[#00ffff] text-[#00ffff]
-                       hover:bg-[#00ffff] hover:text-black transition"
-            >
-              Admin
-            </Link>
-          )}
-
-          {user && (
-            <>
-              <Link
-                to="/admin/dashboard"
-                className="ml-3 px-4 py-2 rounded-lg text-sm font-bold 
-                         bg-[#00ffff] text-black hover:bg-[#16ffff]"
-              >
-                Dashboard
-              </Link>
-              <button
-                onClick={logout}
-                className="ml-2 px-4 py-2 text-sm font-semibold text-red-400 hover:text-red-500"
-              >
-                Logout
-              </button>
-            </>
-          )}
         </div>
 
         {/* ✅ MOBILE MENU BUTTON */}
@@ -152,35 +123,6 @@ export default function Navbar() {
                   </NavLink>
                 ))}
               </div>
-
-              {!user && (
-                <Link
-                  to="/admin/login"
-                  className="mt-12 bg-[#00ffff] text-black py-3 rounded-xl 
-                             text-lg font-bold text-center shadow-lg"
-                >
-                  Admin Login
-                </Link>
-              )}
-
-              {user && (
-                <>
-                  <Link
-                    to="/admin/dashboard"
-                    className="mt-12 bg-[#00ffff] text-black py-3 rounded-xl 
-                               text-lg font-bold text-center"
-                  >
-                    Dashboard
-                  </Link>
-                  <button
-                    onClick={logout}
-                    className="mt-4 py-3 border border-red-500 rounded-xl 
-                               text-red-400 font-bold"
-                  >
-                    Logout
-                  </button>
-                </>
-              )}
 
               <div className="mt-auto py-10 text-center text-gray-400 text-sm">
                 A5X Robotics © {new Date().getFullYear()}
