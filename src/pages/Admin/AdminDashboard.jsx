@@ -90,7 +90,7 @@ function Sidebar({ handleLogout, user, sidebarOpen, setSidebarOpen }) {
     >
       {/* USER */}
       <div className="p-6 text-center mt-20 lg:mt-6">
-        <div className="mx-auto w-14 h-14 rounded-full bg-[#07121a] flex items-center justify-center text-xl font-bold text-[#0ff]">
+        <div className="mx-auto w-14 h-14 rounded-full bg-[#fff] flex items-center justify-center text-xl font-bold text-[black]">
           {getInitials(user)}
         </div>
         <h3 className="mt-3 text-lg font-semibold">{getDisplayName(user)}</h3>
