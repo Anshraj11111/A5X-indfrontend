@@ -59,16 +59,26 @@ export default function Navbar() {
               to={n.to}
               className={({ isActive }) =>
                 `px-4 py-2 text-sm font-semibold rounded-lg transition
-                 ${
-                   isActive
-                     ? "text-[#00ffff]"
-                     : "text-gray-300 hover:text-white hover:bg-white/10"
-                 }`
+                ${
+                  isActive
+                    ? "text-[#00ffff]"
+                    : "text-gray-300 hover:text-white hover:bg-white/10"
+                }`
               }
             >
               {n.label}
             </NavLink>
           ))}
+
+          {/* ✅ ADMIN BUTTON */}
+          <NavLink
+            to="/admin/login"
+            className="ml-4 px-5 py-2 text-sm font-bold rounded-full
+                       border border-[#00ffff] text-[#00ffff]
+                       hover:bg-[#00ffff] hover:text-black transition"
+          >
+            Admin
+          </NavLink>
         </div>
 
         {/* MOBILE MENU BUTTON */}
@@ -118,6 +128,16 @@ export default function Navbar() {
                     {label}
                   </NavLink>
                 ))}
+
+                {/* ✅ ADMIN BUTTON – MOBILE */}
+                <NavLink
+                  to="/admin/login"
+                  className="mt-6 text-[#00ffff] border border-[#00ffff]
+                             px-6 py-3 rounded-full text-center
+                             hover:bg-[#00ffff] hover:text-black transition"
+                >
+                  Admin
+                </NavLink>
               </div>
 
               <div className="mt-auto py-10 text-center text-gray-400 text-sm">

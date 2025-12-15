@@ -1,11 +1,13 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { motion } from "framer-motion";
+import { HiMenu } from "react-icons/hi";
 
 export default function AdminDashboard() {
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -13,19 +15,43 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen flex bg-[#0A0F14] text-white">
+    <div className="min-h-screen bg-[#0A0F14] text-white pt-24 flex">
 
-      {/* 🧊 LEFT SIDEBAR */}
-      <Sidebar handleLogout={handleLogout} user={user} />
+      {/* MOBILE SIDEBAR OVERLAY */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
-      {/* 📦 MAIN CONTENT */}
-      <div className="flex-1 p-10">
+      {/* SIDEBAR */}
+      <Sidebar
+        user={user}
+        handleLogout={handleLogout}
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+      />
 
-        {/* PAGE HEADER */}
+      {/* MAIN CONTENT */}
+      <div className="flex-1 px-6 lg:px-10 pb-10">
+
+        {/* MOBILE HEADER */}
+        <div className="lg:hidden flex items-center gap-4 mb-6">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="text-2xl text-[#0ff]"
+          >
+            <HiMenu />
+          </button>
+          <h1 className="text-xl font-semibold">Dashboard</h1>
+        </div>
+
+        {/* DESKTOP HEADER */}
         <motion.h1
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl font-semibold"
+          className="hidden lg:block text-4xl font-semibold"
         >
           Dashboard
         </motion.h1>
@@ -34,35 +60,12 @@ export default function AdminDashboard() {
           Manage website data — Team, Gallery, Content, Uploads.
         </p>
 
-        {/* GRID CARDS */}
+        {/* CARDS */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-7 mt-10">
-
-          <AdminCard
-            title="👥 Team Manager"
-            desc="Create new team members"
-            to="/admin/team"
-          />
-
-          <AdminCard
-            title="🧾 Team List"
-            desc="Edit or delete members"
-            to="/admin/team-list"
-          />
-
-          <AdminCard
-            title="📁 Upload Center"
-            desc="Upload media files"
-            to="/admin/uploads"
-          />
-
-          <AdminCard
-            title="🖼️ Gallery Manager"
-            desc="View & delete gallery items"
-            to="/admin/gallery"
-          />
-
-          
-
+          <AdminCard title="👥 Team Manager" desc="Create new team members" to="/admin/team" />
+          <AdminCard title="🧾 Team List" desc="Edit or delete members" to="/admin/team-list" />
+          <AdminCard title="📁 Upload Center" desc="Upload media files" to="/admin/uploads" />
+          <AdminCard title="🖼️ Gallery Manager" desc="View & delete gallery items" to="/admin/gallery" />
         </div>
 
         <footer className="mt-20 text-gray-500 text-sm text-center">
@@ -73,31 +76,37 @@ export default function AdminDashboard() {
   );
 }
 
-/* 🧊 SIDEBAR
-----------------------------------------*/
-function Sidebar({ handleLogout, user }) {
+/* ===================== SIDEBAR ===================== */
+function Sidebar({ handleLogout, user, sidebarOpen, setSidebarOpen }) {
   return (
-    <div className="w-64 border-r border-[#0ff]/10 bg-[#0C131A] flex flex-col">
-
-      <div className="p-6 text-center">
+    <div
+      className={`
+        fixed lg:static top-0 left-0 h-full w-64
+        bg-[#0C131A] border-r border-[#0ff]/10
+        z-50 transform transition-transform
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+        lg:translate-x-0
+      `}
+    >
+      {/* USER */}
+      <div className="p-6 text-center mt-20 lg:mt-6">
         <div className="mx-auto w-14 h-14 rounded-full bg-[#07121a] flex items-center justify-center text-xl font-bold text-[#0ff]">
           {getInitials(user)}
         </div>
-        <h3 className="mt-3 text-lg font-semibold text-white">{getDisplayName(user)}</h3>
-        <p className="text-gray-400 text-xs mt-1">Admin</p>
+        <h3 className="mt-3 text-lg font-semibold">{getDisplayName(user)}</h3>
+        <p className="text-gray-400 text-xs">Admin</p>
       </div>
 
-      {/* NAV LINKS */}
-      <nav className="flex flex-col gap-1 px-5">
+      {/* LINKS */}
+      <nav className="flex flex-col gap-1 px-5 mt-6">
         <SidebarItem to="/admin/dashboard" label="Dashboard" />
         <SidebarItem to="/admin/team" label="Team Manager" />
         <SidebarItem to="/admin/team-list" label="Team List" />
         <SidebarItem to="/admin/uploads" label="Upload Center" />
         <SidebarItem to="/admin/gallery" label="Gallery Manager" />
-        
       </nav>
 
-      {/* LOGOUT BUTTON */}
+      {/* LOGOUT */}
       <div className="mt-auto p-6">
         <button
           onClick={handleLogout}
@@ -110,39 +119,36 @@ function Sidebar({ handleLogout, user }) {
   );
 }
 
-// helper: derive display name
+/* ===================== HELPERS ===================== */
 function getDisplayName(user) {
   if (!user) return "Admin";
-  return user.name || user.fullName || user.firstName || (user.email ? user.email.split("@")[0] : "Admin");
+  return user.name || user.fullName || user.email?.split("@")[0] || "Admin";
 }
 
-// helper: initials for avatar
 function getInitials(user) {
   const name = getDisplayName(user);
-  if (!name) return "A";
-  const parts = name.split(" ").filter(Boolean);
-  if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
-  return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+  const parts = name.split(" ");
+  return parts.length === 1
+    ? parts[0][0].toUpperCase()
+    : (parts[0][0] + parts[1][0]).toUpperCase();
 }
 
-/* 🧭 SIDEBAR SINGLE ITEM */
 function SidebarItem({ to, label }) {
   return (
     <Link to={to}>
-      <div className="px-4 py-2 rounded-md text-gray-300 hover:text-[#0ff] hover:bg-[#0ff]/10 cursor-pointer text-sm transition">
+      <div className="px-4 py-2 rounded-md text-gray-300 hover:text-[#0ff] hover:bg-[#0ff]/10 text-sm transition">
         {label}
       </div>
     </Link>
   );
 }
 
-/* 🧊 DASHBOARD CARD */
 function AdminCard({ title, desc, to }) {
   return (
     <Link to={to}>
       <motion.div
-        whileHover={{ scale: 1.02 }}
-        className="p-6 rounded-xl bg-[#0F1821] border border-[#0ff]/10 hover:border-[#0ff]/60 transition shadow-md cursor-pointer"
+        whileHover={{ scale: 1.03 }}
+        className="p-6 rounded-xl bg-[#0F1821] border border-[#0ff]/10 hover:border-[#0ff]/60 transition shadow-md"
       >
         <h2 className="text-lg font-semibold text-[#0ff]">{title}</h2>
         <p className="text-gray-300 mt-2 text-sm">{desc}</p>
