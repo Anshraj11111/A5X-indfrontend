@@ -103,15 +103,15 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <main className="bg-black text-white">
+    <main className="bg-black text-white pt-16 md:pt-0">
 
       {/* ================= HERO ================= */}
       <section
-        className="relative min-h-screen flex flex-col justify-center items-center text-center"
+        className="relative min-h-[55vh] md:min-h-screen pt-16 md:pt-0 flex items-start md:items-center justify-center text-center overflow-hidden"
         style={{
           backgroundImage: `url(${AboutHero})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "top center",
           backgroundRepeat: "no-repeat",
         }}
       >
@@ -120,18 +120,18 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-black/65 z-0" />
 
         {/* CONTENT ALWAYS ABOVE */}
-        <div className="relative z-10 px-6 max-w-5xl">
-          <h1 className="about-title text-[3.5rem] md:text-[6rem] font-black leading-tight">
-            We Engineer
-            <span className="block text-transparent bg-gradient-to-r from-[#0ff] via-[#00e4e4] to-[#0ff] bg-clip-text mt-2 inline-block">
+        <div className="relative z-10 px-4 sm:px-6 max-w-4xl mt-2 sm:mt-4">
+          <h1 className="about-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight md:leading-tight">
+            <span className="block">We Engineer</span>
+            <span className="block text-transparent bg-gradient-to-r from-[#0ff] via-[#00e4e4] to-[#0ff] bg-clip-text mt-2">
               The Future
             </span>
           </h1>
 
-          <p className="about-sub text-xl md:text-2xl text-gray-300 mt-6 leading-relaxed">
+          <p className="about-sub text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 mt-4 md:mt-6 leading-relaxed max-w-2xl mx-auto">
             Robotics • Industrial Automation • AI • Web Systems
-            <br />
-            <span className="text-[#0ff] font-semibold">
+            <br className="hidden sm:inline" />
+            <span className="text-[#0ff] font-semibold block mt-3">
               Real systems that win competitions and solve real-world problems.
             </span>
           </p>
@@ -142,7 +142,7 @@ export default function AboutPage() {
       <section className="py-28 reveal bg-black border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14">
           <div>
-            <h2 className="text-5xl font-bold">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
               We don’t do PPT projects —
               <span className="block text-transparent bg-gradient-to-r from-[#0ff] to-[#00e4e4] bg-clip-text mt-3">
                 We build working systems.
@@ -159,7 +159,7 @@ export default function AboutPage() {
           </div>
 
           <div className="rounded-2xl overflow-hidden border border-[#0ff]/30 shadow-xl">
-            <img src={AboutCrausel} className="object-cover w-full h-full" />
+            <img src={AboutCrausel} alt="A5X workshops" loading="lazy" className="object-cover w-full h-56 sm:h-72 md:h-96" />
           </div>
         </div>
       </section>
@@ -167,12 +167,12 @@ export default function AboutPage() {
       {/* ================ DELIVERY ================== */}
       <section className="py-28 reveal bg-[#080F14]">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-5xl font-bold">What We Deliver</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">What We Deliver</h2>
           <p className="text-gray-400 text-lg mt-4 max-w-xl mx-auto">
             Robotics • Embedded systems • Industrial automation • AI
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8 mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-10">
             {[
               {
                 icon: "🤖",
@@ -192,11 +192,11 @@ export default function AboutPage() {
             ].map((c) => (
               <div
                 key={c.title}
-                className="p-10 bg-[#0c151b] border border-[#0ff]/20 rounded-3xl hover:border-[#0ff] hover:shadow-[0_0_35px_#0ff4] transition"
+                className="p-6 sm:p-8 bg-[#0c151b] border border-[#0ff]/20 rounded-3xl hover:border-[#0ff] hover:shadow-[0_0_35px_#0ff4] transition flex flex-col items-start sm:items-center text-left sm:text-center"
               >
-                <div className="text-6xl">{c.icon}</div>
-                <h3 className="text-2xl font-bold mt-5">{c.title}</h3>
-                <p className="mt-4 text-gray-300">
+                <div className="text-4xl sm:text-5xl md:text-6xl">{c.icon}</div>
+                <h3 className="text-xl sm:text-2xl font-bold mt-4">{c.title}</h3>
+                <p className="mt-3 text-gray-300 text-sm sm:text-base">
                   {c.desc}
                 </p>
               </div>
@@ -210,7 +210,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
 
           <div>
-            <h2 className="text-5xl font-bold">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
               Built to win
               <span className="text-transparent bg-gradient-to-r from-[#0ff] to-[#00e4e4] bg-clip-text ml-3">
                 Competitions
@@ -234,28 +234,30 @@ export default function AboutPage() {
           </div>
 
           <div className="rounded-2xl overflow-hidden border border-[#0ff]/20 shadow-xl">
-            <img src={TrainerImg} className="object-cover w-full h-full" />
+            <img src={TrainerImg} alt="A5X trainer" loading="lazy" className="object-cover w-full h-64 sm:h-80 md:h-96" />
           </div>
 
         </div>
       </section>
 
       {/* ================ CTA ================== */}
-      <section className="py-20 reveal text-center bg-gradient-to-r from-[#001012] to-black">
-        <h3 className="text-4xl md:text-5xl font-bold">
+      <section className="py-16 reveal text-center bg-gradient-to-r from-[#001012] to-black px-4">
+        <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
           Ready to build something{" "}
           <span className="text-transparent bg-gradient-to-r from-[#0ff] to-[#00e4e4] bg-clip-text">
             Extraordinary?
           </span>
         </h3>
 
-        <p className="mt-5 text-gray-300 text-lg">
+        <p className="mt-4 text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
           Let’s create competition-grade systems together.
         </p>
 
-        <button className="mt-10 px-10 py-4 bg-[#0ff] text-black font-semibold rounded-full hover:scale-105 transition">
-          Start Your Project
-        </button>
+        <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+          <button className="w-full sm:w-auto px-6 py-3 bg-[#0ff] text-black font-semibold rounded-full hover:scale-105 transition">
+            Start Your Project
+          </button>
+        </div>
       </section>
 
     </main>

@@ -128,7 +128,7 @@ export default function WorkshopPage() {
       {/* ============== HERO ============== */}
       <section
         ref={heroRef}
-        className="relative min-h-screen -mt-[80px] flex items-center justify-center overflow-hidden text-center"
+        className="relative min-h-[70vh] md:min-h-screen pt-32 md:pt-0 flex items-start md:items-center justify-center overflow-hidden text-center"
       >
         {/* BG Image Zoom Animation (same as video) */}
         <motion.img
@@ -142,14 +142,14 @@ export default function WorkshopPage() {
         {/* overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/95" />
 
-        <div className="relative z-10 px-6 max-w-7xl">
-          <h1 className="workshop-title text-5xl md:text-7xl font-bold leading-tight text-center">
-            <span className="block whitespace-nowrap">Premium Robotics</span>
-            <span className="block">Workshops</span>
+        <div className="relative z-10 px-4 sm:px-6 max-w-7xl">
+          <h1 className="workshop-title text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-snug md:leading-tight text-center break-normal">
+            <span className="block whitespace-normal">Premium Robotics</span>
+            <span className="block whitespace-normal">Workshops</span>
           </h1>
 
-          <p className="workshop-sub mt-5 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            Real machines • Real sensors • Real competitions.<br/>
+          <p className="workshop-sub mt-5 text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-2">
+            Real machines • Real sensors • Real competitions.<br className="hidden sm:inline"/>
             Learn robotics the only way that works — hands-on.
           </p>
         </div>
@@ -157,7 +157,7 @@ export default function WorkshopPage() {
 
       {/* ============== WORKSHOP CARDS ============== */}
       <section className="py-20 bg-[#05080E] border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <h2 className="text-center text-4xl md:text-5xl font-semibold">
             Workshops We Offer
           </h2>
@@ -165,22 +165,22 @@ export default function WorkshopPage() {
             Every session is engineered like a competition lab — not a slide-show class.
           </p>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {workshops.map((w, i) => (
               <div
                 key={i}
-                className="ws-card rounded-3xl overflow-hidden border border-[#0ff2]/30 bg-[#05080F]/60 backdrop-blur-md hover:shadow-[0_0_40px_#00fff3] transition duration-300"
+                className="ws-card rounded-3xl overflow-hidden border border-[#0ff2]/30 bg-[#05080F]/60 backdrop-blur-md hover:shadow-[0_0_40px_#00fff3] transition duration-300 flex flex-col"
               >
-                <img src={w.img} className="w-full h-56 object-cover" />
+                <img src={w.img} alt={w.title} loading="lazy" className="w-full h-44 sm:h-56 md:h-64 object-cover" />
 
                 <div className="p-6">
                   <span className="text-[#0ff] uppercase tracking-[0.25em] text-xs">
                     {w.tag}
                   </span>
-                  <h3 className="text-xl md:text-2xl font-semibold mt-3">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold mt-3">
                     {w.title}
                   </h3>
-                  <p className="mt-3 text-gray-300 text-sm leading-relaxed">
+                  <p className="mt-3 text-gray-300 text-sm md:text-base leading-relaxed">
                     {w.desc}
                   </p>
                   {/* <button className="mt-5 text-[#0ff] hover:text-white hover:underline text-sm">
@@ -197,7 +197,7 @@ export default function WorkshopPage() {
       <section className="py-14 bg-[#060C12] border-t border-white/10">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h3 className="text-3xl font-semibold">Tools We Teach</h3>
-          <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm">
+          <div className="mt-8 flex flex-wrap justify-center gap-3 text-xs md:text-sm">
             {[
               "PID","ESP32","OpenCV","STM32","ROS",
               "LIDAR","Drone ESC","Tensorflow","Arduino","Computer Vision",
@@ -225,16 +225,18 @@ export default function WorkshopPage() {
             We provide complete equipment, instructors and robot kits.
           </p>
 
-          <div className="mt-10 flex justify-center gap-6">
+          <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4 px-4">
             <a
               href="/contact"
-              className="px-8 py-3 rounded-full bg-[#0ff] text-black font-semibold hover:bg-[#00e4e4]"
+              className="block w-full sm:w-auto text-center px-6 py-3 rounded-full bg-[#0ff] text-black font-semibold hover:bg-[#00e4e4]"
+              aria-label="Book a Workshop"
             >
               Book a Workshop
             </a>
             <a
               href="https://wa.me/91XXXXXXXXXX"
-              className="px-8 py-3 rounded-full border border-[#0ff] text-[#0ff] hover:bg-[#0ff1]"
+              className="block w-full sm:w-auto text-center px-6 py-3 rounded-full border border-[#0ff] text-[#0ff] hover:bg-[#0ff1]"
+              aria-label="Contact on WhatsApp"
             >
               Contact Us
             </a>

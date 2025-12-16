@@ -29,6 +29,22 @@ export default function Navbar() {
 
   useEffect(() => setOpen(false), [location]);
 
+  // Lock scroll when drawer is open and allow Escape to close it
+  useEffect(() => {
+    if (open) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+
+    const onKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+
+    if (open) window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <motion.nav
       initial={{ y: -40, opacity: 0 }}
@@ -81,12 +97,14 @@ export default function Navbar() {
           </NavLink>
         </div>
 
-        {/* MOBILE MENU BUTTON */}
+        {/* MOBILE MENU BUTTON (toggles open/close; shows X when open) */}
         <button
-          onClick={() => setOpen(true)}
-          className="lg:hidden text-white text-3xl p-2 rounded-lg bg-[#00ffff]/20 z-[10000]"
+          onClick={() => setOpen((s) => !s)}
+          aria-expanded={open}
+          aria-label={open ? "Close menu" : "Open menu"}
+          className="lg:hidden text-white text-2xl p-2 rounded-lg bg-[#00ffff]/20 z-[10001] w-10 h-10 flex items-center justify-center focus:outline-none"
         >
-          <HiOutlineMenuAlt3 />
+          {open ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
         </button>
       </div>
 
@@ -111,13 +129,6 @@ export default function Navbar() {
               exit={{ x: "100%" }}
               transition={{ duration: 0.3 }}
             >
-              <button
-                onClick={() => setOpen(false)}
-                className="absolute top-6 right-6 text-white text-4xl"
-              >
-                <HiOutlineX />
-              </button>
-
               <div className="flex flex-col gap-6 text-2xl font-extrabold tracking-wide">
                 {navItems.map(({ to, label }) => (
                   <NavLink

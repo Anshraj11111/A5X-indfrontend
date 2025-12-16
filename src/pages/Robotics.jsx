@@ -23,7 +23,7 @@ export default function RoboticsPage() {
       {/* ================= HERO ================= */}
       <section
         ref={heroRef}
-        className="relative min-h-[70vh] md:min-h-[92vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[55vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden"
       >
         <motion.img
           src="https://img.freepik.com/premium-photo/robot-with-black-background-dark-background_916191-348637.jpg?auto=format&w=1920&q=80"
@@ -44,14 +44,13 @@ export default function RoboticsPage() {
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/90" />
 
-        <div className="relative z-10 text-center px-6 max-w-4xl">
-          <h1 className="robotics-title text-5xl md:text-7xl font-bold leading-tight">
+        <div className="relative z-10 text-center px-4 sm:px-6 max-w-3xl mx-auto">
+          <h1 className="robotics-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-snug break-normal whitespace-normal tracking-tight">
             Robotics Designed for Real-World
           </h1>
 
-          <p className="robotics-sub mt-5 text-gray-300 text-lg md:text-xl max-w-3xl mx-auto">
-            From PID line followers to industrial robotic arms — we engineer bots
-            that compete, automate and deliver.
+          <p className="robotics-sub mt-4 text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+            From PID line followers to industrial robotic arms — we engineer bots that compete, automate and deliver.
           </p>
         </div>
       </section>
@@ -60,10 +59,10 @@ export default function RoboticsPage() {
       <section className="py-20 bg-[#05080F] border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6">
 
-          <h2 className="text-center text-3xl md:text-5xl font-semibold">
+          <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-semibold">
             Featured Robotics
           </h2>
-          <p className="mt-3 text-center text-gray-400 max-w-2xl mx-auto">
+          <p className="mt-3 text-center text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
             Built like competition machines — not prototypes.
           </p>
 
@@ -91,11 +90,11 @@ export default function RoboticsPage() {
                 key={p.title}
                 className="robotics-card rounded-3xl overflow-hidden border border-[#0ff3]/40
                            bg-[#061018]/70 backdrop-blur-lg
-                           hover:shadow-[0_0_40px_#0ff7] transition duration-300"
+                           hover:shadow-[0_0_40px_#0ff7] transition duration-300 flex flex-col"
               >
-                <img src={p.img} className="w-full h-60 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-xl md:text-2xl font-bold">{p.title}</h3>
+                <img src={p.img} className="w-full h-44 sm:h-56 md:h-60 object-cover" />
+                <div className="p-5 sm:p-6 flex-1">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold">{p.title}</h3>
                   <p className="mt-3 text-gray-300 text-sm leading-relaxed">{p.desc}</p>
                 </div>
               </div>
