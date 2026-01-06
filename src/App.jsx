@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Public Pages
 import Home from "./pages/Home";
@@ -32,6 +33,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 export default function App() {
   return (
     <BrowserRouter>
+      {/* 👇 Ye line MOST IMPORTANT hai */}
+      <ScrollToTop />
+
       <Navbar />
 
       <Routes>
