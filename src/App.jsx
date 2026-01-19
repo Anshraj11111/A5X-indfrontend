@@ -14,6 +14,8 @@ import Contact from "./pages/Contact";
 import Project from "./pages/Projects";
 import Gallery from "./pages/Gallery";
 import AgencyPage from "./pages/Agency";
+import SocialFloat from "./components/SocialFloat";
+
 
 // Auth
 import AdminLogin from "./pages/Admin/AdminLogin";
@@ -110,6 +112,9 @@ export default function App() {
           }
         />
       </Routes>
+
+      <SocialFloat />
+
 
       <Footer />
     </BrowserRouter>
