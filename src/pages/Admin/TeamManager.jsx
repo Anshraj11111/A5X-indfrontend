@@ -254,22 +254,31 @@ export default function TeamManager() {
   }
 
   return (
-    <div className="min-h-screen bg-[#020409] text-white flex justify-center items-start pt-28 px-6">
-      <div className="w-full max-w-2xl bg-[#0a0f14] mx-auto p-10 rounded-3xl border border-[#0ff]/20 shadow-[0_0_30px_#0ff3] backdrop-blur-md">
-
-        {/* ✅ Header Row + Dashboard Button */}
-        <div className="flex items-center justify-between mb-2">
+    <div className="min-h-screen bg-[#020409] text-white pt-28 px-6 pb-16">
+      {/* ✅ Outer Container */}
+      <div className="w-full max-w-2xl mx-auto bg-[#0a0f14] p-6 sm:p-10 rounded-3xl border border-[#0ff]/20 shadow-[0_0_30px_#0ff3] backdrop-blur-md">
+        
+        {/* ✅ Header Row (Responsive Fix) */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-3">
           <h1 className="text-3xl font-semibold">👥 Team Manager</h1>
 
           <button
             onClick={() => navigate("/admin/dashboard")}
-            className="px-5 py-2 rounded-xl bg-[#0ff] text-black font-bold hover:opacity-90 transition"
+            className="
+              w-full sm:w-auto
+              px-6 py-2.5
+              rounded-xl
+              bg-[#0ff] text-black font-bold
+              hover:opacity-90 transition
+              shadow-[0_0_15px_#0ff6]
+            "
           >
             Dashboard
           </button>
         </div>
 
-        <p className="text-gray-400 text-sm text-center">
+        {/* ✅ Subtitle (Aligned nicely) */}
+        <p className="text-gray-400 text-sm sm:text-left text-center">
           Add new team members to the website
         </p>
 

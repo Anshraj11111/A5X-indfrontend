@@ -181,14 +181,13 @@ export default function AdminTeamList() {
 
   return (
     <div className="min-h-screen pt-24 pb-16 px-6 bg-[#020409] text-white">
-
-      {/* ✅ Top Header + Dashboard Button */}
-      <div className="max-w-6xl mx-auto flex items-center justify-between mb-6">
+      {/* ✅ Header + Dashboard Button */}
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <h1 className="text-3xl font-bold">Team Members</h1>
 
         <button
           onClick={() => navigate("/admin/dashboard")}
-          className="px-5 py-2 rounded-xl bg-[#0ff] text-black font-bold hover:opacity-90 transition"
+          className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#0ff] text-black font-bold hover:opacity-90 transition shadow-[0_0_15px_#0ff6]"
         >
           Dashboard
         </button>
@@ -202,9 +201,11 @@ export default function AdminTeamList() {
             key={member._id}
             className="bg-[#0a0f14] border border-[#0ff]/20 rounded-2xl shadow-lg overflow-hidden"
           >
-            {/* IMAGE FIX */}
+            {/* ✅ IMAGE */}
             <img
-              src={member.photo ? BASE_URL + member.photo : "/default-avatar.png"}
+              src={
+                member.photo ? BASE_URL + member.photo : "/default-avatar.png"
+              }
               alt={member.name}
               className="h-60 w-full object-cover object-center"
             />
