@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import Project from "./pages/Projects";
 import Gallery from "./pages/Gallery";
 import AgencyPage from "./pages/Agency";
+import LabPage from "./pages/Lab";
 import SocialFloat from "./components/SocialFloat";
 
 
@@ -52,6 +53,7 @@ export default function App() {
         <Route path="/projects" element={<Project />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/agency" element={<AgencyPage />} />
+        <Route path="/lab" element={<LabPage />} />
 
         {/* ================= AUTH ================= */}
         <Route path="/admin/login" element={<AdminLogin />} />
