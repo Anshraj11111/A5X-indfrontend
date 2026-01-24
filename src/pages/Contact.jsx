@@ -79,10 +79,18 @@ export default function Contact() {
             />
           </div>
 
+          {/* ✅ Phone Number (Only 9 Digits Allowed) */}
           <input
             name="user_phone"
             placeholder="Phone Number"
             required
+            type="tel"
+            inputMode="numeric"
+            maxLength={9}
+            pattern="\d{9}"
+            onInput={(e) => {
+              e.target.value = e.target.value.replace(/\D/g, "").slice(0, 9);
+            }}
             className="bg-black border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-[#0ff]"
           />
 
