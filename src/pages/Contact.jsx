@@ -86,10 +86,10 @@ export default function Contact() {
             required
             type="tel"
             inputMode="numeric"
-            maxLength={9}
-            pattern="\d{9}"
+            maxLength={10}
+            pattern="\d{10}"
             onInput={(e) => {
-              e.target.value = e.target.value.replace(/\D/g, "").slice(0, 9);
+              e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
             }}
             className="bg-black border border-white/10 rounded-lg px-4 py-3 outline-none focus:border-[#0ff]"
           />
