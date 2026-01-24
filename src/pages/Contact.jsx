@@ -1,49 +1,67 @@
 import { useRef, useState } from "react";
-import emailjs from "emailjs-com";
+import axios from "axios";
 
 export default function Contact() {
   const formRef = useRef(null);
+
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
     setSending(true);
+    setDone(false);
 
-    emailjs
-      .sendForm(
-        "service_s8btk3p",       // <-- change
-        "template_j9d3edi",      // <-- change
-        formRef.current,
-        "d1wa1vtbzpzowdtCg"       // <-- change
-      )
-      .then(
-        (res) => {
-          setSending(false);
-          setDone(true);
-          formRef.current.reset();
-        },
-        (err) => {
-          setSending(false);
-          alert("❗ Something went wrong. Try again.");
-        }
+    try {
+      const formData = new FormData(formRef.current);
+
+      // ✅ SAME FIELD NAMES (as your EmailJS form)
+      const payload = {
+        user_name: formData.get("user_name"),
+        user_email: formData.get("user_email"),
+        user_phone: formData.get("user_phone"),
+        organization: formData.get("organization"),
+        project_type: formData.get("project_type"),
+        budget: formData.get("budget"),
+        message: formData.get("message"),
+      };
+
+      const res = await axios.post(
+        "http://localhost:5000/api/contact/send",
+        payload
       );
+
+      if (res.data.success) {
+        setDone(true);
+        formRef.current.reset();
+      } else {
+        alert("❗ Something went wrong. Try again.");
+      }
+    } catch (err) {
+      console.log(err);
+      alert("❗ Something went wrong. Try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
     <main className="pt-24 bg-black text-white min-h-screen">
       <section className="max-w-4xl mx-auto px-4 pb-16">
-
         <h1 className="text-4xl font-bold">
           Contact <span className="text-[#0ff]">A5X Robotics</span>
         </h1>
+
         <p className="mt-4 text-gray-300 text-sm leading-relaxed">
-          Tell us about your requirements.  
-          We reply within <b>24–48 hours</b>.
+          Tell us about your requirements. We reply within <b>24–48 hours</b>.
         </p>
 
-        <form ref={formRef} onSubmit={sendEmail} className="mt-10 grid gap-4 text-sm">
-
+        {/* ✅ SAME FORM + SAME FIELDS */}
+        <form
+          ref={formRef}
+          onSubmit={sendEmail}
+          className="mt-10 grid gap-4 text-sm"
+        >
           <div className="grid md:grid-cols-2 gap-4">
             <input
               name="user_name"
@@ -114,8 +132,6 @@ export default function Contact() {
             </p>
           )}
         </form>
-
-       
       </section>
     </main>
   );
