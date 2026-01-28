@@ -154,9 +154,11 @@ export default function Contact() {
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
 
-  // ✅ 1) Backend URL from .env (Vercel/Local)
-  // If env not found then fallback localhost
-  const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  // ✅ Single-file smart API selection
+  const isLocal = window.location.hostname === "localhost";
+  const API = isLocal
+    ? "http://localhost:5000"
+    : "https://a5x-indbackend.onrender.com";
 
   const sendEmail = async (e) => {
     e.preventDefault();
@@ -177,8 +179,7 @@ export default function Contact() {
       };
 
       const res = await axios.post(`${API}/api/contact/send`, payload, {
-        timeout: 30000,
-        headers: { "Content-Type": "application/json" },
+        timeout: 60000,
       });
 
       if (res.data.success) {
@@ -188,8 +189,8 @@ export default function Contact() {
         alert(res.data.message || "❗ Something went wrong. Try again.");
       }
     } catch (err) {
-      console.log("Contact Error:", err);
-      alert(err?.response?.data?.message || err.message || "❗ Something went wrong.");
+      console.log("CONTACT ERROR =>", err);
+      alert(err?.response?.data?.message || err?.message || "❗ Something went wrong.");
     } finally {
       setSending(false);
     }
@@ -224,7 +225,6 @@ export default function Contact() {
             />
           </div>
 
-          {/* ✅ Phone Number (10 digits) */}
           <input
             name="user_phone"
             placeholder="Phone Number"
