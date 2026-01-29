@@ -45,8 +45,8 @@ export default function RoboticsPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/90" />
 
         <div className="relative z-10 text-center px-4 sm:px-6 max-w-3xl mx-auto">
-          <h1 className="robotics-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-snug break-normal whitespace-normal tracking-tight">
-            Robotics Designed for Real-World
+          <h1 className="robotics-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+            Robotics Designed <br /> Real-World Application
           </h1>
 
           <p className="robotics-sub mt-4 text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
