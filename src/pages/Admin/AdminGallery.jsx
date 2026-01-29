@@ -102,24 +102,20 @@ export default function AdminGallery() {
     if (!window.confirm("❗ Delete this image permanently?")) return;
 
     try {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        alert("Admin login required");
-        return;
-      }
-
-      await client.delete(`/gallery/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      // ✅ Use correct token key: "a5x_token"
+      await client.delete(`/gallery/${id}`);
 
       // remove from UI
       setList((prev) => prev.filter((item) => item._id !== id));
+      alert("✅ Image deleted successfully!");
     } catch (err) {
       console.error("Delete failed:", err);
-      alert("Delete failed");
+      if (err.response?.status === 401) {
+        alert("❌ Not authorized - please login again");
+        navigate("/admin/login");
+      } else {
+        alert(err.response?.data?.message || "❌ Delete failed");
+      }
     }
   }
 

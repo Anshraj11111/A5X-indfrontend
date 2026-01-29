@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: import.meta.env.VITE_API_URL + "/api", // ✅ only /api once
-  withCredentials: false, // ✅ MUST be false (your backend CORS requires this)
+  baseURL: import.meta.env.VITE_API_URL + "/api",
 });
 
 client.interceptors.request.use((config) => {

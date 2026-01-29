@@ -116,20 +116,27 @@ import client from "../../utils/axiosClient";
 export default function UploadManager() {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const [msg, setMsg] = useState("");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
+  /* =====================
+     HANDLE FILE SELECT
+  ====================== */
   function handleFile(e) {
-    const f = e.target.files[0];
-    if (!f) return;
-    setFile(f);
-    setPreview(URL.createObjectURL(f));
+    const selected = e.target.files[0];
+    if (!selected) return;
+
+    setFile(selected);
+    setPreview(URL.createObjectURL(selected));
   }
 
+  /* =====================
+     HANDLE UPLOAD
+  ====================== */
   async function handleUpload(e) {
     e.preventDefault();
     setMsg("");
@@ -141,29 +148,15 @@ export default function UploadManager() {
     try {
       setLoading(true);
 
+      // ✅ SINGLE REQUEST (file + data together)
       const formData = new FormData();
-      formData.append("file", file); // ✅ must match upload.single("file")
+      formData.append("file", file);        // 🔴 MUST MATCH upload.single("file")
+      formData.append("title", title);
+      formData.append("description", desc);
 
-      // ✅ STEP 1 — Upload file
-      const uploadRes = await client.post("/uploads", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await client.post("/gallery", formData);
 
-      const imageUrl = uploadRes.data?.url;
-      if (!imageUrl) {
-        setLoading(false);
-        return setMsg("❌ Server did not return image URL");
-      }
-
-      // ✅ STEP 2 — Save in gallery
-      await client.post("/gallery", {
-        url: imageUrl,
-        title,
-        description: desc,
-        fileType: "image",
-      });
-
-      setMsg("✅ Workshop photo uploaded successfully!");
+      setMsg("✅ Image uploaded successfully");
       setFile(null);
       setPreview(null);
       setTitle("");
@@ -178,10 +171,11 @@ export default function UploadManager() {
 
   return (
     <main className="pt-24 min-h-screen bg-black text-white px-6">
-
-      {/* ✅ Header Row */}
+      {/* Header */}
       <div className="max-w-lg mx-auto flex items-center justify-between mb-4">
-        <h2 className="text-xl font-bold text-white">Upload Workshop Image</h2>
+        <h2 className="text-xl font-bold text-[#0ff]">
+          Upload Gallery Image
+        </h2>
 
         <button
           onClick={() => navigate("/admin/dashboard")}
@@ -191,44 +185,61 @@ export default function UploadManager() {
         </button>
       </div>
 
+      {/* Form */}
       <form
-        onSubmit={handleUpload} // ✅ MUST BE HERE
+        onSubmit={handleUpload}
         className="max-w-lg mx-auto p-6 bg-[#0a0f14] rounded-xl border border-[#0ff]/20"
       >
+        {/* Preview */}
         {preview && (
           <img
             src={preview}
             alt="Preview"
-            className="h-56 w-full object-cover rounded-lg mb-3"
+            className="h-56 w-full object-cover rounded-lg mb-4"
           />
         )}
 
-        <input type="file" onChange={handleFile} required />
-
+        {/* File */}
         <input
-          placeholder="Title"
+          type="file"
+          accept="image/*"
+          onChange={handleFile}
+          required
+          className="w-full"
+        />
+
+        {/* Title */}
+        <input
+          placeholder="Title (optional)"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="w-full mt-3 p-2 bg-[#09121a] border border-[#0ff]/30 rounded"
         />
 
+        {/* Description */}
         <textarea
-          placeholder="Description"
+          placeholder="Description (optional)"
           rows="3"
           value={desc}
           onChange={(e) => setDesc(e.target.value)}
           className="w-full mt-3 p-2 bg-[#09121a] border border-[#0ff]/30 rounded"
         />
 
+        {/* Submit */}
         <button
-          type="submit" // ✅ ABSOLUTELY REQUIRED
+          type="submit"
           disabled={loading}
           className="w-full mt-4 bg-[#0ff] text-black py-2 font-bold rounded disabled:opacity-60"
         >
-          {loading ? "Uploading..." : "Upload"}
+          {loading ? "Uploading..." : "Upload Image"}
         </button>
 
-        {msg && <p className="mt-2 text-center text-[#0ff]">{msg}</p>}
+        {/* Message */}
+        {msg && (
+          <p className="mt-3 text-center text-sm text-[#0ff]">
+            {msg}
+          </p>
+        )}
       </form>
     </main>
   );
