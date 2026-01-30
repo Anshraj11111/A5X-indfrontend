@@ -42,8 +42,8 @@ export default function Lab() {
 
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="rounded-2xl border border-cyan-300/20 bg-[#0B1E25]/70 p-4 text-center">
-              <h3 className="text-2xl font-extrabold text-cyan-300">₹50,000</h3>
-              <p className="text-xs text-[#B8C6CC]">Total Lab Cost</p>
+              <h3 className="text-2xl font-extrabold text-cyan-300">🔄</h3>
+              <p className="text-xs text-[#B8C6CC]">Pricing Coming Soon</p>
             </div>
 
             <div className="rounded-2xl border border-cyan-300/20 bg-[#0B1E25]/70 p-4 text-center">
@@ -132,12 +132,12 @@ export default function Lab() {
       <section className="py-14 bg-[#061016] border-y border-cyan-300/15">
         <div className="mx-auto w-full max-w-[1100px] px-5">
           <h2 className="text-2xl md:text-3xl font-extrabold mb-2">
-            2. MODULE-WISE COMPONENT BREAKUP (WITH PRICE)
+            2. MODULE-WISE COMPONENT BREAKUP
           </h2>
 
           <p className="text-[#B8C6CC] mb-6">
-            Below is the complete module-wise breakdown for ₹50,000 foundation
-            lab.
+            Complete module-wise breakdown coming soon. Contact us for detailed
+            lab specifications and customized pricing.
           </p>
 
           {/* Module Cards */}
@@ -145,84 +145,84 @@ export default function Lab() {
             {/* Module A */}
             <ModuleCard
               title="🟢 MODULE A: FOUNDATION ELECTRONICS (Class 5–6)"
-              subtitle="Subtotal: ₹4,400"
+              subtitle="Detailed breakdown coming soon"
               items={[
-                ["Breadboard", "15", "₹1,200"],
-                ["LED (Mixed colors)", "100", "₹500"],
-                ["Resistor Kit", "1 set", "₹400"],
-                ["Push Buttons", "20", "₹300"],
-                ["Buzzers", "10", "₹300"],
-                ["Jumper Wires (Mixed)", "200", "₹800"],
-                ["Battery Holders", "10", "₹600"],
-                ["LDR Sensors", "10", "₹300"],
+                ["Breadboard", "15", "Coming Soon"],
+                ["LED (Mixed colors)", "100", "Coming Soon"],
+                ["Resistor Kit", "1 set", "Coming Soon"],
+                ["Push Buttons", "20", "Coming Soon"],
+                ["Buzzers", "10", "Coming Soon"],
+                ["Jumper Wires (Mixed)", "200", "Coming Soon"],
+                ["Battery Holders", "10", "Coming Soon"],
+                ["LDR Sensors", "10", "Coming Soon"],
               ]}
             />
 
             {/* Module B */}
             <ModuleCard
               title="🟡 MODULE B: ROBOTICS & MOTION (Class 6–8)"
-              subtitle="Subtotal: ₹7,500"
+              subtitle="Detailed breakdown coming soon"
               items={[
-                ["DC Geared Motors", "10", "₹2,000"],
-                ["Robot Chassis with Wheels", "5 sets", "₹2,500"],
-                ["Motor Driver (L298N)", "6", "₹1,200"],
-                ["Servo Motors", "6", "₹1,800"],
+                ["DC Geared Motors", "10", "Coming Soon"],
+                ["Robot Chassis with Wheels", "5 sets", "Coming Soon"],
+                ["Motor Driver (L298N)", "6", "Coming Soon"],
+                ["Servo Motors", "6", "Coming Soon"],
               ]}
             />
 
             {/* Module C */}
             <ModuleCard
               title="🔵 MODULE C: EMBEDDED SYSTEMS (Class 7–8)"
-              subtitle="Subtotal: ₹5,400"
+              subtitle="Detailed breakdown coming soon"
               items={[
-                ["Arduino Uno", "12", "₹4,800"],
-                ["USB Programming Cables", "12", "₹600"],
+                ["Arduino Uno", "12", "Coming Soon"],
+                ["USB Programming Cables", "12", "Coming Soon"],
               ]}
             />
 
             {/* Module D */}
             <ModuleCard
               title="🟣 MODULE D: SENSORS & AUTOMATION (Class 7–10)"
-              subtitle="Subtotal: ₹4,200"
+              subtitle="Detailed breakdown coming soon"
               items={[
-                ["Ultrasonic Sensors", "6", "₹1,200"],
-                ["IR Sensors", "6", "₹900"],
-                ["DHT11 Sensors", "6", "₹900"],
-                ["Gas Sensors", "2", "₹700"],
-                ["Soil Moisture Sensors", "2", "₹500"],
+                ["Ultrasonic Sensors", "6", "Coming Soon"],
+                ["IR Sensors", "6", "Coming Soon"],
+                ["DHT11 Sensors", "6", "Coming Soon"],
+                ["Gas Sensors", "2", "Coming Soon"],
+                ["Soil Moisture Sensors", "2", "Coming Soon"],
               ]}
             />
 
             {/* Module E */}
             <ModuleCard
               title="🟠 MODULE E: IoT & SMART SYSTEMS (Class 9–10)"
-              subtitle="Subtotal: ₹5,200"
+              subtitle="Detailed breakdown coming soon"
               items={[
-                ["ESP8266 WiFi Module", "6", "₹1,800"],
-                ["Relay Module (4-Channel)", "4", "₹1,600"],
-                ["RTC Module", "2", "₹600"],
-                ["OLED Display", "2", "₹1,200"],
+                ["ESP8266 WiFi Module", "6", "Coming Soon"],
+                ["Relay Module (4-Channel)", "4", "Coming Soon"],
+                ["RTC Module", "2", "Coming Soon"],
+                ["OLED Display", "2", "Coming Soon"],
               ]}
             />
 
             {/* Module F */}
             <ModuleCard
               title="🔴 MODULE F: DISPLAY & OUTPUT"
-              subtitle="Subtotal: ₹1,000"
-              items={[["LCD 16×2 Display", "4", "₹1,000"]]}
+              subtitle="Detailed breakdown coming soon"
+              items={[["LCD 16×2 Display", "4", "Coming Soon"]]}
             />
 
             {/* Module G */}
             <ModuleCard
               title="⚫ MODULE G: TOOLS, POWER & INFRASTRUCTURE"
-              subtitle="Subtotal: ₹8,500"
+              subtitle="Detailed breakdown coming soon"
               items={[
-                ["Multimeter", "2", "₹1,600"],
-                ["Soldering Kit", "1", "₹1,200"],
-                ["Tool Kit", "1", "₹1,500"],
-                ["Power Adapters / SMPS", "4", "₹1,500"],
-                ["Extension Boards", "2", "₹1,200"],
-                ["Storage Boxes", "4", "₹1,500"],
+                ["Multimeter", "2", "Coming Soon"],
+                ["Soldering Kit", "1", "Coming Soon"],
+                ["Tool Kit", "1", "Coming Soon"],
+                ["Power Adapters / SMPS", "4", "Coming Soon"],
+                ["Extension Boards", "2", "Coming Soon"],
+                ["Storage Boxes", "4", "Coming Soon"],
               ]}
             />
 
@@ -246,7 +246,7 @@ export default function Lab() {
                   <tbody>
                     <tr className="border-t border-cyan-300/10">
                       <td className="p-3">Spare components & buffer stock</td>
-                      <td className="p-3 font-bold text-cyan-300">₹4,400</td>
+                      <td className="p-3 font-bold text-cyan-300">Coming Soon</td>
                     </tr>
                   </tbody>
                 </table>
@@ -273,14 +273,14 @@ export default function Lab() {
               </thead>
               <tbody>
                 {[
-                  ["Foundation Electronics", "₹4,400"],
-                  ["Robotics & Motion", "₹7,500"],
-                  ["Embedded Systems", "₹5,400"],
-                  ["Sensors & Automation", "₹4,200"],
-                  ["IoT & Smart Systems", "₹5,200"],
-                  ["Display & Output", "₹1,000"],
-                  ["Tools & Infrastructure", "₹8,500"],
-                  ["Spares & Buffer", "₹4,400"],
+                  ["Foundation Electronics", "Coming Soon"],
+                  ["Robotics & Motion", "Coming Soon"],
+                  ["Embedded Systems", "Coming Soon"],
+                  ["Sensors & Automation", "Coming Soon"],
+                  ["IoT & Smart Systems", "Coming Soon"],
+                  ["Display & Output", "Coming Soon"],
+                  ["Tools & Infrastructure", "Coming Soon"],
+                  ["Spares & Buffer", "Coming Soon"],
                 ].map((row, idx) => (
                   <tr
                     key={idx}
@@ -293,9 +293,9 @@ export default function Lab() {
 
                 <tr className="border-t border-cyan-300/20 bg-[#061016]">
                   <td className="p-4 font-extrabold text-white">
-                    ✅ TOTAL LAB COST
+                    ✅ CUSTOM PRICING
                   </td>
-                  <td className="p-4 font-extrabold text-cyan-300">₹50,000</td>
+                  <td className="p-4 font-extrabold text-cyan-300">Contact Us</td>
                 </tr>
               </tbody>
             </table>
@@ -339,9 +339,9 @@ export default function Lab() {
               </div>
 
               <p className="text-sm leading-relaxed text-[#B8C6CC]">
-                “This ₹50,000 foundation lab covers the complete robotics,
+                "This comprehensive foundation lab covers the complete robotics,
                 coding & IoT curriculum for Class 5 to 12 in the first year, with
-                a clear upgrade path for advanced learning.”
+                a clear upgrade path for advanced learning. Get a customized quote today!"
               </p>
 
               <div className="mt-4 flex flex-wrap gap-3">
