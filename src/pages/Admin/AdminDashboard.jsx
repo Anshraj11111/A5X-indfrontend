@@ -66,6 +66,7 @@ export default function AdminDashboard() {
           <AdminCard title="🧾 Team List" desc="Edit or delete members" to="/admin/team-list" />
           <AdminCard title="📁 Upload Center" desc="Upload media files" to="/admin/uploads" />
           <AdminCard title="🖼️ Gallery Manager" desc="View & delete gallery items" to="/admin/gallery" />
+          <AdminCard title="💬 Feedback Manager" desc="View and manage feedback" to="/admin/feedback" />
         </div>
 
         <footer className="mt-20 text-gray-500 text-sm text-center">
@@ -104,6 +105,7 @@ function Sidebar({ handleLogout, user, sidebarOpen, setSidebarOpen }) {
         <SidebarItem to="/admin/team-list" label="Team List" />
         <SidebarItem to="/admin/uploads" label="Upload Center" />
         <SidebarItem to="/admin/gallery" label="Gallery Manager" />
+        <SidebarItem to="/admin/feedback" label="Feedback Manager" />
       </nav>
 
       {/* LOGOUT */}

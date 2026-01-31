@@ -6,7 +6,7 @@ import RoboticsShowcase from "../components/RoboticsShowcase";
 import Workshops from "../components/Workshop";
 import TeamPreview from "../components/TeamSection";
 import ContactCTA from "../components/ContactCTA";
-
+import FeedbackSection from "../components/Feedback/FeedbackSection";
 import usePWAInstall from "../hooks/usePWAInstall";
 
 export default function Home() {
@@ -15,6 +15,7 @@ export default function Home() {
   const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
+    
     const userAgent = window.navigator.userAgent.toLowerCase();
     const ios =
       /iphone|ipad|ipod/.test(userAgent) &&
@@ -57,6 +58,12 @@ export default function Home() {
       <section className="py-20 bg-[#05080E] border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6">
           <RoboticsShowcase />
+        </div>
+      </section>
+
+      <section className="py-20 border-t border-white/10 bg-black">
+        <div className="max-w-7xl mx-auto px-6">
+          <FeedbackSection />
         </div>
       </section>
 

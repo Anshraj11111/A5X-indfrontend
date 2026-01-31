@@ -29,6 +29,7 @@ import AdminTeamList from "./pages/Admin/AdminTeamList";
 import ContentEditor from "./pages/ContentEditor";
 import UploadManager from "./pages/Admin/UploadManager";
 import AdminGallery from "./pages/Admin/AdminGallery";
+import AdminFeedback from "./pages/Admin/AdminFeedback";
 
 // Middleware
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -110,6 +111,15 @@ export default function App() {
           element={
             <ProtectedRoute>
               <AdminGallery />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/feedback"
+          element={
+            <ProtectedRoute>
+              <AdminFeedback />
             </ProtectedRoute>
           }
         />
