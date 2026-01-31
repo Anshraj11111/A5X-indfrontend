@@ -15,6 +15,7 @@ import Project from "./pages/Projects";
 import Gallery from "./pages/Gallery";
 import AgencyPage from "./pages/Agency";
 import LabPage from "./pages/Lab";
+import SeeMoreFeedback from "./pages/SeeMoreFeedback";
 import SocialFloat from "./components/SocialFloat";
 
 
@@ -55,7 +56,7 @@ export default function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/agency" element={<AgencyPage />} />
         <Route path="/lab" element={<LabPage />} />
-
+        <Route path="/feedback" element={<SeeMoreFeedback />} />
         {/* ================= AUTH ================= */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/signup" element={<AdminSignup />} />

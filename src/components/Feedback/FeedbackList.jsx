@@ -25,12 +25,7 @@ export default function FeedbackList() {
       </div>
 
       <div className="text-center mt-8">
-        <Link
-          to="/feedbacks"
-          className="text-cyan-400 hover:underline"
-        >
-          See more feedback →
-        </Link>
+        <Link to="/feedback">See more feedback →</Link>
       </div>
     </>
   );
