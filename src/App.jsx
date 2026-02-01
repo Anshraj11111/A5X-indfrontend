@@ -31,6 +31,7 @@ import ContentEditor from "./pages/ContentEditor";
 import UploadManager from "./pages/Admin/UploadManager";
 import AdminGallery from "./pages/Admin/AdminGallery";
 import AdminFeedback from "./pages/Admin/AdminFeedback";
+import AdminContacts from "./pages/Admin/AdminContacts";
 
 // Middleware
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -121,6 +122,15 @@ export default function App() {
           element={
             <ProtectedRoute>
               <AdminFeedback />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/contacts"
+          element={
+            <ProtectedRoute>
+              <AdminContacts />
             </ProtectedRoute>
           }
         />

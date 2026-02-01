@@ -62,7 +62,8 @@ export default function AdminDashboard() {
 
         {/* CARDS */}
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-7 mt-10">
-          <AdminCard title="👥 Team Manager" desc="Create new team members" to="/admin/team" />
+          <AdminCard title="� Contact Enquiries" desc="View all contact submissions" to="/admin/contacts" />
+          <AdminCard title="�👥 Team Manager" desc="Create new team members" to="/admin/team" />
           <AdminCard title="🧾 Team List" desc="Edit or delete members" to="/admin/team-list" />
           <AdminCard title="📁 Upload Center" desc="Upload media files" to="/admin/uploads" />
           <AdminCard title="🖼️ Gallery Manager" desc="View & delete gallery items" to="/admin/gallery" />
@@ -101,6 +102,7 @@ function Sidebar({ handleLogout, user, sidebarOpen, setSidebarOpen }) {
       {/* LINKS */}
       <nav className="flex flex-col gap-1 px-5 mt-6">
         <SidebarItem to="/admin/dashboard" label="Dashboard" />
+        <SidebarItem to="/admin/contacts" label="Contact Enquiries" />
         <SidebarItem to="/admin/team" label="Team Manager" />
         <SidebarItem to="/admin/team-list" label="Team List" />
         <SidebarItem to="/admin/uploads" label="Upload Center" />
