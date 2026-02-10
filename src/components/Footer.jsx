@@ -64,7 +64,7 @@ export default function Footer() {
             Socials
           </h4>
           <div className="mt-6 flex gap-6 text-xl">
-            <a href="https://www.instagram.com/a5x.ind" target="_blank" rel="noopener noreferrer" className="hover:text-[#0ff] transition" aria-label="Instagram">
+            <a href="https://www.instagram.com/a5x.in/" target="_blank" rel="noopener noreferrer" className="hover:text-[#0ff] transition" aria-label="Instagram">
               <FaInstagram />
             </a>
             <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#0ff] transition" aria-label="LinkedIn">
