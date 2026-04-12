@@ -15,7 +15,7 @@ export default function RoboticsPage() {
         <img
           src="https://img.freepik.com/premium-photo/robot-with-black-background-dark-background_916191-348637.jpg?auto=format&w=1920&q=80"
           alt="Robotics background"
-          className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.35]"
+          className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.35] bg-zoom-animation"
           loading="eager"
         />
 

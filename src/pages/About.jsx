@@ -93,13 +93,16 @@ export default function AboutPage() {
       {/* HERO */}
       <section
         className="relative min-h-[70vh] md:min-h-screen pt-20 md:pt-0 flex items-center justify-center text-center overflow-hidden"
-        style={{
-          backgroundImage: `url(${AboutHero})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
-        }}
       >
+        <div 
+          className="absolute inset-0 bg-zoom-animation"
+          style={{
+            backgroundImage: `url(${AboutHero})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
         <div className="absolute inset-0 bg-black/70 z-0" />
 
         <div className="relative z-10 px-4 sm:px-6 max-w-4xl">

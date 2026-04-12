@@ -60,7 +60,7 @@ export default function ServicePage() {
         <img
           src={backgroundImg}
           alt="Service background"
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.35]"
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.35] bg-zoom-animation"
         />
 
         <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/50 to-black/90" />

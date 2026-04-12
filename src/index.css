@@ -54,3 +54,21 @@ body {
   border: 1px solid #0ff;
   background: #0a1118;
 }
+
+/* Zoom In/Out Animation for Background Images */
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bg-zoom-animation {
+  animation: zoomInOut 20s ease-in-out infinite;
+  transform-origin: center center;
+}

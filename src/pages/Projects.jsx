@@ -70,7 +70,7 @@ export default function ProjectsPage() {
       {/* HERO */}
       <section className="relative min-h-[70vh] md:min-h-[85vh] overflow-hidden" aria-label="Projects hero">
         <img
-          className="absolute inset-0 z-0 w-full h-full object-cover object-center brightness-[0.35]"
+          className="absolute inset-0 z-0 w-full h-full object-cover object-center brightness-[0.35] bg-zoom-animation"
           src={ProIMG}
           alt="projects background"
           loading="eager"

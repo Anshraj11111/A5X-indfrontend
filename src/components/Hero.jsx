@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0">
         <img
           src={bgImage}
-          className="w-full h-full object-cover brightness-[0.35]"
+          className="w-full h-full object-cover brightness-[0.35] bg-zoom-animation"
           draggable="false"
           alt="Robotics background"
         />
