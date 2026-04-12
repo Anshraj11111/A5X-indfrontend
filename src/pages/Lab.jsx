@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaCheckCircle,
   FaTools,
@@ -7,7 +7,37 @@ import {
   FaRobot,
 } from "react-icons/fa";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function Lab() {
+  const [modules, setModules] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchModules = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch(`${API_URL}/api/lab/modules`);
+        
+        if (!response.ok) {
+          throw new Error("Failed to fetch lab modules");
+        }
+        
+        const data = await response.json();
+        setModules(data);
+      } catch (err) {
+        console.error("Error fetching modules:", err);
+        setError("Unable to load lab modules. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchModules();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#050A0E] text-white">
       {/* HERO */}
@@ -135,124 +165,43 @@ export default function Lab() {
             2. MODULE-WISE COMPONENT BREAKUP
           </h2>
 
-          <p className="text-[#B8C6CC] mb-6">
-            Complete module-wise breakdown coming soon. Contact us for detailed
-            lab specifications and customized pricing.
-          </p>
-
-          {/* Module Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Module A */}
-            <ModuleCard
-              title="🟢 MODULE A: FOUNDATION ELECTRONICS (Class 5–6)"
-              subtitle="Detailed breakdown coming soon"
-              items={[
-                ["Breadboard", "15", "Coming Soon"],
-                ["LED (Mixed colors)", "100", "Coming Soon"],
-                ["Resistor Kit", "1 set", "Coming Soon"],
-                ["Push Buttons", "20", "Coming Soon"],
-                ["Buzzers", "10", "Coming Soon"],
-                ["Jumper Wires (Mixed)", "200", "Coming Soon"],
-                ["Battery Holders", "10", "Coming Soon"],
-                ["LDR Sensors", "10", "Coming Soon"],
-              ]}
-            />
-
-            {/* Module B */}
-            <ModuleCard
-              title="🟡 MODULE B: ROBOTICS & MOTION (Class 6–8)"
-              subtitle="Detailed breakdown coming soon"
-              items={[
-                ["DC Geared Motors", "10", "Coming Soon"],
-                ["Robot Chassis with Wheels", "5 sets", "Coming Soon"],
-                ["Motor Driver (L298N)", "6", "Coming Soon"],
-                ["Servo Motors", "6", "Coming Soon"],
-              ]}
-            />
-
-            {/* Module C */}
-            <ModuleCard
-              title="🔵 MODULE C: EMBEDDED SYSTEMS (Class 7–8)"
-              subtitle="Detailed breakdown coming soon"
-              items={[
-                ["Arduino Uno", "12", "Coming Soon"],
-                ["USB Programming Cables", "12", "Coming Soon"],
-              ]}
-            />
-
-            {/* Module D */}
-            <ModuleCard
-              title="🟣 MODULE D: SENSORS & AUTOMATION (Class 7–10)"
-              subtitle="Detailed breakdown coming soon"
-              items={[
-                ["Ultrasonic Sensors", "6", "Coming Soon"],
-                ["IR Sensors", "6", "Coming Soon"],
-                ["DHT11 Sensors", "6", "Coming Soon"],
-                ["Gas Sensors", "2", "Coming Soon"],
-                ["Soil Moisture Sensors", "2", "Coming Soon"],
-              ]}
-            />
-
-            {/* Module E */}
-            <ModuleCard
-              title="🟠 MODULE E: IoT & SMART SYSTEMS (Class 9–10)"
-              subtitle="Detailed breakdown coming soon"
-              items={[
-                ["ESP8266 WiFi Module", "6", "Coming Soon"],
-                ["Relay Module (4-Channel)", "4", "Coming Soon"],
-                ["RTC Module", "2", "Coming Soon"],
-                ["OLED Display", "2", "Coming Soon"],
-              ]}
-            />
-
-            {/* Module F */}
-            <ModuleCard
-              title="🔴 MODULE F: DISPLAY & OUTPUT"
-              subtitle="Detailed breakdown coming soon"
-              items={[["LCD 16×2 Display", "4", "Coming Soon"]]}
-            />
-
-            {/* Module G */}
-            <ModuleCard
-              title="⚫ MODULE G: TOOLS, POWER & INFRASTRUCTURE"
-              subtitle="Detailed breakdown coming soon"
-              items={[
-                ["Multimeter", "2", "Coming Soon"],
-                ["Soldering Kit", "1", "Coming Soon"],
-                ["Tool Kit", "1", "Coming Soon"],
-                ["Power Adapters / SMPS", "4", "Coming Soon"],
-                ["Extension Boards", "2", "Coming Soon"],
-                ["Storage Boxes", "4", "Coming Soon"],
-              ]}
-            />
-
-            {/* Module H */}
-            <div className="rounded-2xl border border-cyan-300/20 bg-[#0B1E25]/80 p-5 shadow-xl">
-              <div className="flex items-center gap-3 mb-3 text-cyan-300">
-                <FaTools />
-                <h3 className="font-extrabold text-base md:text-lg">
-                  🔹 MODULE H: SPARES & CONTINGENCY
-                </h3>
-              </div>
-
-              <div className="overflow-hidden rounded-xl border border-cyan-300/15">
-                <table className="w-full text-left text-sm">
-                  <thead className="bg-[#061016] text-[#B8C6CC]">
-                    <tr>
-                      <th className="p-3">Item</th>
-                      <th className="p-3">Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-t border-cyan-300/10">
-                      <td className="p-3">Spare components & buffer stock</td>
-                      <td className="p-3 font-bold text-cyan-300">Coming Soon</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-300"></div>
+              <p className="mt-4 text-[#B8C6CC]">Loading lab modules...</p>
             </div>
-          </div>
+          ) : error ? (
+            <div className="text-center py-12">
+              <p className="text-red-400 mb-4">{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="rounded-2xl bg-gradient-to-r from-cyan-300 to-cyan-200 px-5 py-3 font-bold text-[#050A0E]"
+              >
+                Retry
+              </button>
+            </div>
+          ) : modules.length === 0 ? (
+            <p className="text-[#B8C6CC] mb-6">
+              Complete module-wise breakdown coming soon. Contact us for detailed
+              lab specifications and customized pricing.
+            </p>
+          ) : (
+            <>
+              <p className="text-[#B8C6CC] mb-6">
+                Explore our comprehensive lab modules designed for different grade levels.
+              </p>
+
+              {/* Module Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {modules.map((module) => (
+                  <ModuleCard
+                    key={module._id}
+                    module={module}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </section>
 
@@ -396,36 +345,60 @@ export default function Lab() {
 }
 
 /* ✅ Module Card Component */
-function ModuleCard({ title, subtitle, items }) {
+function ModuleCard({ module }) {
+  const { title, subtitle, emoji, classRange, price, components } = module;
+  
+  // Format the title to include emoji and class range if available
+  const displayTitle = `${emoji} ${title}${classRange ? ` (${classRange})` : ''}`;
+  
   return (
     <div className="rounded-2xl border border-cyan-300/20 bg-[#0B1E25]/80 p-5 shadow-xl">
-      <div className="flex items-center gap-3 mb-3 text-cyan-300">
-        <FaRobot />
-        <h3 className="font-extrabold text-base md:text-lg">{title}</h3>
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-3 text-cyan-300">
+          <FaRobot />
+          <h3 className="font-extrabold text-base md:text-lg">{displayTitle}</h3>
+        </div>
+        {price && (
+          <div className="text-cyan-300 font-bold text-sm">
+            💰 {price}
+          </div>
+        )}
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-cyan-300/15">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-[#061016] text-[#B8C6CC]">
-            <tr>
-              <th className="p-3">Component</th>
-              <th className="p-3">Qty</th>
-              <th className="p-3">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map((it, idx) => (
-              <tr key={idx} className="border-t border-cyan-300/10">
-                <td className="p-3 text-[#B8C6CC]">{it[0]}</td>
-                <td className="p-3 text-[#B8C6CC]">{it[1]}</td>
-                <td className="p-3 font-bold text-cyan-300">{it[2]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {components && components.length > 0 ? (
+        <>
+          <div className="overflow-hidden rounded-xl border border-cyan-300/15">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-[#061016] text-[#B8C6CC]">
+                <tr>
+                  <th className="p-3">Component</th>
+                  <th className="p-3">Qty</th>
+                  <th className="p-3">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {components
+                  .sort((a, b) => a.order - b.order)
+                  .map((component) => (
+                    <tr key={component._id} className="border-t border-cyan-300/10">
+                      <td className="p-3 text-[#B8C6CC]">{component.name}</td>
+                      <td className="p-3 text-[#B8C6CC]">{component.quantity}</td>
+                      <td className="p-3 font-bold text-cyan-300">{component.price}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
 
-      <p className="mt-3 text-sm font-extrabold text-cyan-300">{subtitle}</p>
+          {subtitle && (
+            <p className="mt-3 text-sm font-extrabold text-cyan-300">{subtitle}</p>
+          )}
+        </>
+      ) : (
+        <p className="text-sm text-[#B8C6CC]">
+          {subtitle || "No components available yet."}
+        </p>
+      )}
     </div>
   );
 }

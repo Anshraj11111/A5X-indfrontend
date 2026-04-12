@@ -1,9 +1,43 @@
 @import "tailwindcss";
 
 body {
-  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  font-size: 15px; /* base thoda bada */
+  /* TV-compatible font stack - Poppins optional, strong fallbacks */
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", 
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* TV Browser Compatibility Fixes */
+@media (min-width: 1920px) and (min-height: 1080px) {
+  body {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+  
+  /* Ensure text is always visible on TV screens */
+  * {
+    -webkit-text-stroke: 0;
+    text-shadow: none;
+  }
+  
+  /* Larger touch targets for TV remotes */
+  button, a {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* Force hardware acceleration for better TV rendering */
+.hero-title,
+.hero-subtext,
+.hero-btn,
+.hero-stat {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  will-change: auto;
 }
 
 .input-field {

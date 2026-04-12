@@ -32,6 +32,7 @@ import UploadManager from "./pages/Admin/UploadManager";
 import AdminGallery from "./pages/Admin/AdminGallery";
 import AdminFeedback from "./pages/Admin/AdminFeedback";
 import AdminContacts from "./pages/Admin/AdminContacts";
+import AdminLabManager from "./pages/Admin/AdminLabManager";
 
 // Middleware
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -61,6 +62,14 @@ export default function App() {
         {/* ================= AUTH ================= */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/signup" element={<AdminSignup />} />
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } 
+        />
 
         {/* ================= PROTECTED ADMIN ================= */}
         <Route
@@ -131,6 +140,15 @@ export default function App() {
           element={
             <ProtectedRoute>
               <AdminContacts />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/lab"
+          element={
+            <ProtectedRoute>
+              <AdminLabManager />
             </ProtectedRoute>
           }
         />

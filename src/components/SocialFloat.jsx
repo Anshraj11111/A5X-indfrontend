@@ -11,7 +11,7 @@ export default function SocialFloat() {
   const btnBase =
     "w-12 h-12 rounded-full flex items-center justify-center " +
     "text-white shadow-lg backdrop-blur-md " +
-    "bg-cyan-500/10 border border-cyan-400/30 " +
+    "bg-[#0a0f14]/90 border border-cyan-400/40 " +
     "hover:scale-110 transition-all duration-200 " +
     "hover:shadow-cyan-400/30";
 

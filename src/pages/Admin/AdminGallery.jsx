@@ -127,71 +127,72 @@ export default function AdminGallery() {
 
   return (
     <main className="pt-24 px-6 bg-black min-h-screen text-white">
+      <div className="max-w-6xl mx-auto">
+        {/* HEADER */}
+        <div className="flex items-center justify-between mb-10">
+          <h1 className="text-3xl font-bold text-[#0ff]">
+            🖼️ Gallery Manager
+          </h1>
 
-      {/* HEADER */}
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-[#0ff]">
-          🖼️ Gallery Manager
-        </h1>
-
-        <button
-          onClick={() => navigate("/admin/dashboard")}
-          className="px-5 py-2 rounded-xl bg-[#0ff] text-black font-bold hover:opacity-90 transition"
-        >
-          Dashboard
-        </button>
-      </div>
-
-      {/* LOADING */}
-      {loading && (
-        <p className="text-center mt-10 text-gray-400">
-          Loading gallery...
-        </p>
-      )}
-
-      {/* EMPTY */}
-      {!loading && list.length === 0 && (
-        <p className="text-center mt-10 text-gray-400">
-          No images uploaded yet.
-        </p>
-      )}
-
-      {/* GALLERY GRID */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10 max-w-6xl mx-auto">
-        {list.map((item) => (
-          <div
-            key={item._id}
-            className="bg-[#070d12]/80 p-4 rounded-xl border border-[#0ff]/20"
+          <button
+            onClick={() => navigate("/admin/dashboard")}
+            className="px-5 py-2 rounded-xl bg-[#0ff] text-black font-bold hover:opacity-90 transition"
           >
-            {/* IMAGE */}
-            <img
-              src={
-                item.url.startsWith("http")
-                  ? item.url
-                  : `${BACKEND}${item.url}`
-              }
-              alt={item.title || "Gallery Image"}
-              className="w-full h-56 object-cover rounded"
-            />
+            Dashboard
+          </button>
+        </div>
 
-            {/* TEXT */}
-            <p className="mt-3 font-semibold text-[#0ff]">
-              {item.title || "Untitled"}
-            </p>
+        {/* LOADING */}
+        {loading && (
+          <p className="text-center mt-10 text-gray-400">
+            Loading gallery...
+          </p>
+        )}
 
-            <p className="text-gray-400 text-sm">
-              {item.description || "No description"}
-            </p>
+        {/* EMPTY */}
+        {!loading && list.length === 0 && (
+          <p className="text-center mt-10 text-gray-400">
+            No images uploaded yet.
+          </p>
+        )}
 
-            {/* DELETE */}
-            <button
-              onClick={() => deleteItem(item._id)}
-              className="mt-3 w-full bg-red-500 hover:bg-red-600 text-white py-1 rounded"
+        {/* GALLERY GRID */}
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {list.map((item) => (
+            <div
+              key={item._id}
+              className="bg-[#070d12]/80 p-4 rounded-xl border border-[#0ff]/20"
             >
-              Delete
-            </button>
-          </div>
-        ))}
+              {/* IMAGE */}
+              <img
+                src={
+                  item.url.startsWith("http")
+                    ? item.url
+                    : `${BACKEND}${item.url}`
+                }
+                alt={item.title || "Gallery Image"}
+                className="w-full h-56 object-cover rounded"
+              />
+
+              {/* TEXT */}
+              <p className="mt-3 font-semibold text-[#0ff]">
+                {item.title || "Untitled"}
+              </p>
+
+              <p className="text-gray-400 text-sm">
+                {item.description || "No description"}
+              </p>
+
+              {/* DELETE */}
+              <button
+                onClick={() => deleteItem(item._id)}
+                className="mt-3 w-full bg-red-500 hover:bg-red-600 text-white py-1 rounded"
+              >
+                Delete
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );
