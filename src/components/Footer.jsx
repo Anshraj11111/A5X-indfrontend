@@ -45,7 +45,7 @@ export default function Footer() {
               className="hover:text-cyan-400 transition-colors block mb-3"
               aria-label="Email A5X Robotics"
             >
-              📩 a5xrobotics@gmail.com
+              📩 a5x.industries@gmail.com
             </a>
 
             <div className="flex flex-col gap-2">
