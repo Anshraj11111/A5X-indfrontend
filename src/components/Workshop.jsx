@@ -1,6 +1,5 @@
 // frontend/src/pages/Workshop.jsx
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
 import gsap from "gsap";
 import SplitType from "split-type";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -130,13 +129,11 @@ export default function WorkshopPage() {
         ref={heroRef}
         className="relative min-h-[70vh] md:min-h-screen pt-32 md:pt-0 flex items-start md:items-center justify-center overflow-hidden text-center"
       >
-        {/* BG Image Zoom Animation (same as video) */}
-        <motion.img
+        {/* BG Image with CSS Zoom Animation */}
+        <img
           src={workshopImg}
-          initial={{ scale: 1.25 }}
-          animate={{ scale: 1.05 }}
-          transition={{ duration: 12, repeat: Infinity, repeatType: "reverse" }}
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.35]"
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.35] bg-zoom-animation"
+          alt="Workshop background"
         />
 
         {/* overlays */}

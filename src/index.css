@@ -61,7 +61,7 @@ body {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.15);
   }
   100% {
     transform: scale(1);
@@ -69,6 +69,7 @@ body {
 }
 
 .bg-zoom-animation {
-  animation: zoomInOut 20s ease-in-out infinite;
+  animation: zoomInOut 25s ease-in-out infinite;
   transform-origin: center center;
+  will-change: transform;
 }
