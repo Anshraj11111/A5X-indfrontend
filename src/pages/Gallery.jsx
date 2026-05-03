@@ -12,6 +12,16 @@ const CAT_META = {
 const fmt = (d) =>
   new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 
+/* ── Cloudinary URL optimizer ──
+   Injects w_400,q_auto,f_auto for thumbnails (4x smaller files)
+   Full-size URL kept for lightbox */
+function thumbUrl(url, width = 400) {
+  if (!url) return url;
+  // Only transform Cloudinary URLs
+  if (!url.includes("res.cloudinary.com")) return url;
+  return url.replace("/upload/", `/upload/w_${width},q_auto,f_auto/`);
+}
+
 /* ══════════════════════════════════════════════════════════════
    MAIN COMPONENT
 ══════════════════════════════════════════════════════════════ */
@@ -97,19 +107,52 @@ export default function Gallery() {
   const tabEvents = events.filter((e) => e.category === activeTab);
 
   /* ══════════════════════════════════════
-     LOADING
+     LOADING — skeleton cards instead of spinner
   ══════════════════════════════════════ */
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#020609] flex items-center justify-center">
-        <div className="text-center">
-          <div className="relative w-14 h-14 mx-auto mb-5">
-            <div className="absolute inset-0 rounded-full border-2 border-cyan-400/20" />
-            <div className="absolute inset-0 rounded-full border-t-2 border-cyan-400 animate-spin" />
+      <main className="min-h-screen bg-[#020609] text-white overflow-x-hidden">
+        {/* skeleton hero */}
+        <section className="relative min-h-[50vh] flex items-center justify-center pt-20">
+          <div className="absolute inset-0 bg-[#0a0f14] animate-pulse" />
+          <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
+            <div className="h-3 w-24 bg-white/10 rounded-full mx-auto mb-6 animate-pulse" />
+            <div className="h-14 w-72 bg-white/10 rounded-2xl mx-auto mb-4 animate-pulse" />
+            <div className="h-4 w-56 bg-white/8 rounded-full mx-auto animate-pulse" />
+            <div className="mt-8 flex justify-center gap-10">
+              {[1,2,3].map(i => (
+                <div key={i} className="text-center">
+                  <div className="h-8 w-12 bg-white/10 rounded-lg mx-auto mb-2 animate-pulse" />
+                  <div className="h-3 w-16 bg-white/6 rounded-full mx-auto animate-pulse" />
+                </div>
+              ))}
+            </div>
           </div>
-          <p className="text-cyan-400 tracking-widest uppercase text-sm font-semibold">Loading Gallery</p>
+        </section>
+        {/* skeleton tabs */}
+        <div className="bg-[#020609]/95 border-b border-white/8 px-6 py-4">
+          <div className="max-w-7xl mx-auto flex gap-3">
+            {[1,2,3,4].map(i => (
+              <div key={i} className="h-9 w-24 bg-white/8 rounded-full animate-pulse" />
+            ))}
+          </div>
         </div>
-      </div>
+        {/* skeleton cards */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1,2,3,4,5,6].map(i => (
+              <div key={i} className="rounded-2xl overflow-hidden border border-white/8 bg-[#070d12] animate-pulse">
+                <div className="aspect-[4/3] bg-white/8" />
+                <div className="p-5 space-y-3">
+                  <div className="h-5 w-3/4 bg-white/8 rounded-lg" />
+                  <div className="h-3 w-1/2 bg-white/6 rounded-full" />
+                  <div className="h-3 w-1/3 bg-white/6 rounded-full" />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
     );
   }
 
@@ -197,7 +240,7 @@ export default function Gallery() {
                       {eventImgs.slice(0, 2).map((img, idx) => (
                         <div key={img._id} onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx); }}
                           className="relative overflow-hidden cursor-pointer group">
-                          <img src={img.url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <img src={thumbUrl(img.url, 700)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                         </div>
                       ))}
@@ -207,13 +250,13 @@ export default function Gallery() {
                     <div className="grid grid-cols-2 gap-2 rounded-2xl overflow-hidden h-72 sm:h-96">
                       <div onClick={() => { setLightboxSrc(eventImgs); setLightbox(0); }}
                         className="relative overflow-hidden cursor-pointer group row-span-2">
-                        <img src={eventImgs[0].url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img src={thumbUrl(eventImgs[0].url, 900)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                       </div>
                       {eventImgs.slice(1, 3).map((img, idx) => (
                         <div key={img._id} onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx + 1); }}
                           className="relative overflow-hidden cursor-pointer group">
-                          <img src={img.url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <img src={thumbUrl(img.url, 700)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                         </div>
                       ))}
@@ -224,7 +267,7 @@ export default function Gallery() {
                       {/* big left */}
                       <div onClick={() => { setLightboxSrc(eventImgs); setLightbox(0); }}
                         className="col-span-2 relative overflow-hidden cursor-pointer group">
-                        <img src={eventImgs[0].url} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <img src={thumbUrl(eventImgs[0].url, 900)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                         {/* title overlay */}
                         {eventImgs[0].title && (
@@ -239,7 +282,7 @@ export default function Gallery() {
                           <div key={img._id}
                             onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx + 1); }}
                             className="relative overflow-hidden cursor-pointer group rounded-lg">
-                            <img src={img.url} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                            <img src={thumbUrl(img.url, 400)} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                             {/* +N overlay on last */}
                             {idx === 2 && eventImgs.length > 4 && (
@@ -263,7 +306,7 @@ export default function Gallery() {
                       onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx); }}
                       className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-white/10
                                  hover:border-cyan-400 hover:scale-105 transition-all duration-200">
-                      <img src={img.url} alt="" className="w-full h-full object-cover" />
+                      <img src={thumbUrl(img.url, 200)} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                     </button>
                   ))}
                 </div>
@@ -282,8 +325,8 @@ export default function Gallery() {
                     onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx); }}
                     className="break-inside-avoid group relative rounded-xl overflow-hidden border border-white/8 cursor-pointer
                                hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-400/10 transition-all duration-300">
-                    <img src={img.url} alt={img.title || ""}
-                      loading="lazy"
+                    <img src={thumbUrl(img.url, 500)} alt={img.title || ""}
+                      loading="lazy" decoding="async"
                       className="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent
                                     opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
@@ -430,9 +473,10 @@ export default function Gallery() {
                              hover:border-cyan-400/50 hover:shadow-xl hover:shadow-cyan-400/10 transition-all duration-300"
                 >
                   <img
-                    src={img.url}
+                    src={thumbUrl(img.url, 400)}
                     alt={img.title || ""}
                     loading="lazy"
+                    decoding="async"
                     className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent
@@ -537,7 +581,7 @@ function EventCard({ event, catMeta, onClick }) {
       <div className="relative overflow-hidden aspect-[4/3]">
         {event.cover ? (
           <img
-            src={event.cover}
+            src={thumbUrl(event.cover, 600)}
             alt={event.eventName}
             loading="lazy"
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"

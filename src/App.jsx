@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -37,7 +38,13 @@ import AdminLabManager from "./pages/Admin/AdminLabManager";
 // Middleware
 import ProtectedRoute from "./components/ProtectedRoute";
 
+const API = import.meta.env.VITE_API_URL;
+
 export default function App() {
+  // ── Wake up Render backend on app load (prevents cold start delay) ──
+  useEffect(() => {
+    fetch(`${API}/api/ping`, { method: "GET" }).catch(() => {});
+  }, []);
   return (
     <BrowserRouter>
       {/* 👇 Ye line MOST IMPORTANT hai */}
