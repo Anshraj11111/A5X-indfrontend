@@ -1,105 +1,119 @@
 // frontend/src/components/Footer.jsx
-import { FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaInstagram, FaLinkedin, FaYoutube, FaTwitter } from "react-icons/fa";
+import logo from "../assets/A5Xlogo.jpg";
+
+const LINKS = {
+  Solutions: [
+    { label: "Robotics",     to: "/robotics" },
+    { label: "AI Systems",   to: "/services" },
+    { label: "Drones",       to: "/services" },
+    { label: "Automation",   to: "/services" },
+    { label: "Software",     to: "/services" },
+    { label: "Digital Marketing", to: "/services" },
+  ],
+  Company: [
+    { label: "About Us",  to: "/about" },
+    { label: "Our Team",  to: "/team" },
+    { label: "Projects",  to: "/projects" },
+    { label: "Lab",       to: "/lab" },
+    { label: "Contact",   to: "/contact" },
+  ],
+  Resources: [
+    { label: "Workshops", to: "/workshops" },
+    { label: "Projects",  to: "/projects" },
+    { label: "Gallery",   to: "/gallery" },
+    { label: "Blog",      to: "/" },
+  ],
+};
 
 export default function Footer() {
   return (
-    <footer className="bg-[#050608] text-gray-300 pt-20 border-t border-white/10">
+    <footer className="bg-[#020508] text-gray-400 border-t border-white/6">
 
-      {/* Top grid */}
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+      {/* ── MAIN GRID ── */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
 
-        {/* BRAND */}
-        <div>
-          <h3 className="text-2xl font-bold text-white">
-            A5X Robotics
-          </h3>
-          <p className="mt-4 text-base leading-relaxed text-gray-400 max-w-xs">
-            Precision robotics, drones & automation solutions — built for
-            real-world performance.
-          </p>
-        </div>
-
-        {/* LINKS */}
-        <div>
-          <h4 className="text-sm tracking-wider uppercase text-cyan-400 font-bold mb-6">
-            Quick Links
-          </h4>
-          <div className="flex flex-col gap-3 text-base">
-            <a href="/" className="hover:text-cyan-400 transition-colors">Home</a>
-            <a href="/robotics" className="hover:text-cyan-400 transition-colors">Robotics</a>
-            <a href="/services" className="hover:text-cyan-400 transition-colors">Services</a>
-            <a href="/workshops" className="hover:text-cyan-400 transition-colors">Workshops</a>
-            <a href="/team" className="hover:text-cyan-400 transition-colors">Team</a>
-          </div>
-        </div>
-
-        {/* CONTACT */}
-        <div>
-          <h4 className="text-sm tracking-wider uppercase text-cyan-400 font-bold mb-6">
-            Contact
-          </h4>
-
-          <div className="text-base leading-loose">
-            <a
-              href="mailto:a5xrobotics@gmail.com"
-              className="hover:text-cyan-400 transition-colors block mb-3"
-              aria-label="Email A5X Robotics"
-            >
-              📩 a5x.industries@gmail.com
-            </a>
-
-            <div className="flex flex-col gap-2">
-              <a href="tel:+918269858259" className="hover:text-cyan-400 transition-colors" aria-label="Call 8269858259">📞 +91 8269858259</a>
-              <a href="tel:+918839076135" className="hover:text-cyan-400 transition-colors" aria-label="Call 8839076135">📞 +91 8839076135</a>
-              <a href="tel:+919340212224" className="hover:text-cyan-400 transition-colors" aria-label="Call 9340212224">📞 +91 9340212224</a>
-              <a href="tel:+917389391711" className="hover:text-cyan-400 transition-colors" aria-label="Call 7389391711">📞 +91 7389391711</a>
-              <a href="tel:+919302031109" className="hover:text-cyan-400 transition-colors" aria-label="Call 9302031109">📞 +91 9302031109</a>
+        {/* Brand */}
+        <div className="lg:col-span-2">
+          <Link to="/" className="flex items-center gap-3 mb-5">
+            <img src={logo} alt="A5X" className="w-9 h-9 rounded-sm object-cover" />
+            <div>
+              <p className="text-white font-extrabold text-base tracking-wider">A5X INDUSTRIES</p>
+              <p className="text-[10px] text-[#00AEEF] tracking-[0.2em] uppercase">Engineering Intelligence</p>
             </div>
+          </Link>
+          <p className="text-sm leading-relaxed max-w-xs text-gray-500">
+            Engineering Intelligent Systems for Tomorrow.
+          </p>
+
+          {/* Contact */}
+          <div className="mt-6 space-y-2 text-sm">
+            <a href="mailto:a5x.industries@gmail.com"
+              className="block hover:text-[#00AEEF] transition-colors">
+              a5x.industries@gmail.com
+            </a>
+            <a href="tel:+918269858259"
+              className="block hover:text-[#00AEEF] transition-colors">
+              +91-80-2345-6789
+            </a>
+            <p className="text-gray-600 text-xs">Bengaluru, India</p>
           </div>
         </div>
 
-        {/* SOCIAL */}
-        <div>
-          <h4 className="text-sm tracking-wider uppercase text-cyan-400 font-bold mb-6">
-            Socials
-          </h4>
-          <div className="flex gap-6 text-2xl">
-            <a 
-              href="https://www.instagram.com/a5x.in/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-cyan-400 transition-colors" 
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-            <a 
-              href="https://www.linkedin.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-cyan-400 transition-colors" 
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin />
-            </a>
-            <a 
-              href="https://youtube.com/@a5x_ind" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:text-cyan-400 transition-colors" 
-              aria-label="YouTube"
-            >
-              <FaYoutube />
-            </a>
+        {/* Link columns */}
+        {Object.entries(LINKS).map(([section, links]) => (
+          <div key={section}>
+            <h4 className="text-white text-xs font-bold tracking-[0.2em] uppercase mb-5">
+              {section}
+            </h4>
+            <ul className="space-y-2.5">
+              {links.map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to}
+                    className="text-sm hover:text-[#00AEEF] transition-colors">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
+        ))}
       </div>
 
-      {/* Bottom credits */}
-      <div className="mt-16 border-t border-white/10 py-6 text-center text-base text-gray-400">
-        © {new Date().getFullYear()} A5X Robotics • Robotics • Automation • MERN Dev
+      {/* ── BOTTOM BAR ── */}
+      <div className="border-t border-white/6">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-gray-600">
+            © {new Date().getFullYear()} A5X Industries. All rights reserved.
+          </p>
+
+          {/* Social icons */}
+          <div className="flex items-center gap-5 text-lg">
+            <a href="https://www.instagram.com/a5x.in/" target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram" className="hover:text-[#00AEEF] transition-colors">
+              <FaInstagram />
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer"
+              aria-label="LinkedIn" className="hover:text-[#00AEEF] transition-colors">
+              <FaLinkedin />
+            </a>
+            <a href="https://youtube.com/@a5x_ind" target="_blank" rel="noopener noreferrer"
+              aria-label="YouTube" className="hover:text-[#00AEEF] transition-colors">
+              <FaYoutube />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"
+              aria-label="Twitter" className="hover:text-[#00AEEF] transition-colors">
+              <FaTwitter />
+            </a>
+          </div>
+
+          <div className="flex gap-5 text-xs text-gray-600">
+            <a href="/" className="hover:text-gray-400 transition-colors">Privacy Policy</a>
+            <a href="/" className="hover:text-gray-400 transition-colors">Terms & Conditions</a>
+          </div>
+        </div>
       </div>
     </footer>
   );
 }
-

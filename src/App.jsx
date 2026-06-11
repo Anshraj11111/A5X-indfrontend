@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -13,6 +13,7 @@ import WorkshopPage from "./pages/Workshop";
 import TeamPage from "./pages/Team";
 import Contact from "./pages/Contact";
 import Project from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import Gallery from "./pages/Gallery";
 import AgencyPage from "./pages/Agency";
 import LabPage from "./pages/Lab";
@@ -59,9 +60,11 @@ export default function App() {
         <Route path="/services" element={<ServicePage />} />
         <Route path="/robotics" element={<RoboticsPage />} />
         <Route path="/workshops" element={<WorkshopPage />} />
+        <Route path="/workshop" element={<Navigate to="/workshops" replace />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/projects" element={<Project />} />
+        <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/agency" element={<AgencyPage />} />
         <Route path="/lab" element={<LabPage />} />
