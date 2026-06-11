@@ -55,9 +55,9 @@ export default function Footer() {
             </a>
             <a href="tel:+918269858259"
               className="block hover:text-[#00AEEF] transition-colors">
-              +91-80-2345-6789
+              +91-82698-58259
             </a>
-            <p className="text-gray-600 text-xs">Bengaluru, India</p>
+            <p className="text-gray-600 text-xs">Jabalpur, Madhya Pradesh, India</p>
           </div>
         </div>
 
