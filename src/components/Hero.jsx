@@ -13,44 +13,43 @@ const STATS = [
 ];
 
 export default function Hero() {
-  const videoRef   = useRef(null);
-  const sectionRef = useRef(null);
+  const videoRef = useRef(null);
 
-  /* ── Auto audio: on when hero visible, off when scrolled away ── */
+  /* ── Ensure video plays — handles browser autoplay policies ── */
   useEffect(() => {
-    const video   = videoRef.current;
-    const section = sectionRef.current;
-    if (!video || !section) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-    // IntersectionObserver — unmute when hero ≥30% visible, mute otherwise
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        video.muted = !entry.isIntersecting;
-      },
-      { threshold: 0.3 }
-    );
-    observer.observe(section);
+    // Always keep muted (required for autoplay on all browsers including mobile)
+    video.muted = true;
 
-    // Browser autoplay policy: first user interaction unmutes if hero is still visible
-    const onFirstInteract = () => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        video.muted = false;
-      }
+    // Explicitly call play() — some browsers need this even with autoPlay attribute
+    const playVideo = () => {
+      video.play().catch(() => {
+        // Autoplay blocked — retry on first user interaction
+        const retry = () => {
+          video.play().catch(() => {});
+          document.removeEventListener("click", retry);
+          document.removeEventListener("touchstart", retry);
+        };
+        document.addEventListener("click", retry, { once: true });
+        document.addEventListener("touchstart", retry, { once: true });
+      });
     };
-    document.addEventListener("click", onFirstInteract, { once: true });
-    document.addEventListener("keydown", onFirstInteract, { once: true });
+
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener("canplay", playVideo, { once: true });
+    }
 
     return () => {
-      observer.disconnect();
-      document.removeEventListener("click", onFirstInteract);
-      document.removeEventListener("keydown", onFirstInteract);
+      video.removeEventListener("canplay", playVideo);
     };
   }, []);
 
   return (
     <section
-      ref={sectionRef}
       className="relative w-full bg-[#050505]"
       style={{ minHeight: "100vh" }}
     >
