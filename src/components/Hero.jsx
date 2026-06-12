@@ -2,8 +2,8 @@
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// Video hosted on Cloudinary CDN — works on Vercel and all deployments
-const homeBg = "https://res.cloudinary.com/dkugn8sdg/video/upload/v1781242353/a5x_homebg.mp4";
+// Video hosted on Cloudinary CDN — streaming optimized for production
+const homeBg = "https://res.cloudinary.com/dkugn8sdg/video/upload/vc_auto,q_auto,fl_progressive/v1781242353/a5x_homebg.mp4";
 
 const STATS = [
   { value: "50+",  label: "Projects Delivered" },
@@ -22,6 +22,19 @@ export default function Hero() {
     const section = sectionRef.current;
     if (!video || !section) return;
 
+    // Explicitly trigger play — prevents freeze on Vercel/production
+    const playVideo = () => {
+      video.muted = true;
+      video.play().catch(() => {});
+    };
+
+    if (video.readyState >= 2) {
+      playVideo();
+    } else {
+      video.addEventListener("loadeddata", playVideo, { once: true });
+      video.load(); // force reload if stalled
+    }
+
     // IntersectionObserver — unmute when hero ≥30% visible, mute otherwise
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -38,12 +51,13 @@ export default function Hero() {
         video.muted = false;
       }
     };
-    document.addEventListener("click", onFirstInteract, { once: true });
+    document.addEventListener("click",   onFirstInteract, { once: true });
     document.addEventListener("keydown", onFirstInteract, { once: true });
 
     return () => {
       observer.disconnect();
-      document.removeEventListener("click", onFirstInteract);
+      video.removeEventListener("loadeddata", playVideo);
+      document.removeEventListener("click",   onFirstInteract);
       document.removeEventListener("keydown", onFirstInteract);
     };
   }, []);
@@ -59,16 +73,17 @@ export default function Hero() {
         <video
           ref={videoRef}
           autoPlay
-          muted        /* starts muted — IntersectionObserver unmutes on view */
+          muted
           loop
           playsInline
+          preload="auto"
           style={{
             position: "absolute",
             inset: 0,
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "center top",  /* show top portion — drone is visible at top */
+            objectPosition: "center top",
           }}
         >
           <source src={homeBg} type="video/mp4" />
