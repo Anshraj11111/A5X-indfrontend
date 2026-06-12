@@ -12,14 +12,13 @@ const CAT_META = {
 const fmt = (d) =>
   new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
 
-/* ── Cloudinary URL optimizer ──
-   Injects w_400,q_auto,f_auto for thumbnails (4x smaller files)
-   Full-size URL kept for lightbox */
-function thumbUrl(url, width = 400) {
+/* ── Cloudinary URL optimizer ── */
+function thumbUrl(url, width = 800) {
   if (!url) return url;
-  // Only transform Cloudinary URLs
   if (!url.includes("res.cloudinary.com")) return url;
-  return url.replace("/upload/", `/upload/w_${width},q_auto,f_auto/`);
+  // Remove any existing transformations first to avoid double-transform
+  const cleanUrl = url.replace(/\/upload\/[^/]+\//, "/upload/");
+  return cleanUrl.replace("/upload/", `/upload/w_${width},q_auto:best,f_auto/`);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -178,13 +177,13 @@ export default function Gallery() {
       <div className="min-h-screen bg-[#050505] text-white">
 
         {/* ── top bar ── */}
-        <div className="sticky top-0 z-30 bg-[#050505]/95 border-b border-white/8 px-4 sm:px-6 py-4 flex items-center gap-4">
+        <div className="sticky top-16 z-30 bg-[#050505]/95 border-b border-white/8 px-4 sm:px-6 py-3 flex items-center gap-4">
           <button
             onClick={() => { setOpenEvent(null); setLightbox(null); }}
-            className="flex items-center gap-2 text-[#00AEEF] hover:text-white transition text-sm font-semibold"
+            className="flex items-center gap-2 bg-[#00AEEF] text-black px-4 py-2 text-xs font-bold tracking-wider uppercase hover:bg-white transition-colors"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
             </svg>
             Back to Gallery
           </button>
@@ -240,7 +239,7 @@ export default function Gallery() {
                       {eventImgs.slice(0, 2).map((img, idx) => (
                         <div key={img._id} onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx); }}
                           className="relative overflow-hidden cursor-pointer group">
-                          <img src={thumbUrl(img.url, 700)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <img src={thumbUrl(img.url, 1200)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                         </div>
                       ))}
@@ -256,7 +255,7 @@ export default function Gallery() {
                       {eventImgs.slice(1, 3).map((img, idx) => (
                         <div key={img._id} onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx + 1); }}
                           className="relative overflow-hidden cursor-pointer group">
-                          <img src={thumbUrl(img.url, 700)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <img src={thumbUrl(img.url, 1200)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                         </div>
                       ))}
@@ -282,7 +281,7 @@ export default function Gallery() {
                           <div key={img._id}
                             onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx + 1); }}
                             className="relative overflow-hidden cursor-pointer group rounded-sm">
-                            <img src={thumbUrl(img.url, 400)} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                            <img src={thumbUrl(img.url, 900)} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                             {/* +N overlay on last */}
                             {idx === 2 && eventImgs.length > 4 && (
@@ -306,7 +305,7 @@ export default function Gallery() {
                       onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx); }}
                       className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-sm overflow-hidden border-2 border-white/10
                                  hover:border-[#00AEEF] hover:scale-105 transition-all duration-200">
-                      <img src={thumbUrl(img.url, 200)} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                      <img src={thumbUrl(img.url, 400)} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                     </button>
                   ))}
                 </div>
@@ -325,7 +324,7 @@ export default function Gallery() {
                     onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx); }}
                     className="break-inside-avoid group relative rounded-sm overflow-hidden border border-white/8 cursor-pointer
                                hover:border-[#00AEEF]/50 hover:shadow-lg hover:shadow-[#00AEEF]/10 transition-all duration-300">
-                    <img src={thumbUrl(img.url, 500)} alt={img.title || ""}
+                    <img src={thumbUrl(img.url, 1000)} alt={img.title || ""}
                       loading="lazy" decoding="async"
                       className="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent
@@ -473,7 +472,7 @@ export default function Gallery() {
                              hover:border-[#00AEEF]/50 hover:shadow-xl hover:shadow-[#00AEEF]/10 transition-all duration-300"
                 >
                   <img
-                    src={thumbUrl(img.url, 400)}
+                    src={thumbUrl(img.url, 900)}
                     alt={img.title || ""}
                     loading="lazy"
                     decoding="async"
@@ -581,7 +580,7 @@ function EventCard({ event, catMeta, onClick }) {
       <div className="relative overflow-hidden aspect-[4/3]">
         {event.cover ? (
           <img
-            src={thumbUrl(event.cover, 600)}
+            src={thumbUrl(event.cover, 1200)}
             alt={event.eventName}
             loading="lazy"
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
