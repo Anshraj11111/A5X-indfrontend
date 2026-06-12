@@ -13,43 +13,59 @@ const STATS = [
 ];
 
 export default function Hero() {
-  const videoRef = useRef(null);
+  const videoRef   = useRef(null);
+  const sectionRef = useRef(null);
 
-  /* ── Ensure video plays — handles browser autoplay policies ── */
+  /* ── Auto audio: on when hero visible, off when scrolled away ── */
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const video   = videoRef.current;
+    const section = sectionRef.current;
+    if (!video || !section) return;
 
-    // Always keep muted (required for autoplay on all browsers including mobile)
+    // Start muted for autoplay compliance
     video.muted = true;
 
-    // Explicitly call play() — some browsers need this even with autoPlay attribute
+    // Play the video
     const playVideo = () => {
-      video.play().catch(() => {
-        // Autoplay blocked — retry on first user interaction
-        const retry = () => {
-          video.play().catch(() => {});
-          document.removeEventListener("click", retry);
-          document.removeEventListener("touchstart", retry);
-        };
-        document.addEventListener("click", retry, { once: true });
-        document.addEventListener("touchstart", retry, { once: true });
-      });
+      video.play().catch(() => {});
     };
+    if (video.readyState >= 2) playVideo();
+    else video.addEventListener("canplay", playVideo, { once: true });
 
-    if (video.readyState >= 2) {
-      playVideo();
-    } else {
-      video.addEventListener("canplay", playVideo, { once: true });
-    }
+    // IntersectionObserver — unmute when hero ≥30% visible, mute otherwise
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        video.muted = !entry.isIntersecting;
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(section);
+
+    // Browser autoplay policy: first user interaction unmutes if hero is still visible
+    const onFirstInteract = () => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        video.muted = false;
+      }
+    };
+    document.addEventListener("click",      onFirstInteract, { once: true });
+    document.addEventListener("keydown",    onFirstInteract, { once: true });
+    document.addEventListener("scroll",     onFirstInteract, { once: true });
+    document.addEventListener("touchstart", onFirstInteract, { once: true });
 
     return () => {
+      observer.disconnect();
       video.removeEventListener("canplay", playVideo);
+      document.removeEventListener("click",      onFirstInteract);
+      document.removeEventListener("keydown",    onFirstInteract);
+      document.removeEventListener("scroll",     onFirstInteract);
+      document.removeEventListener("touchstart", onFirstInteract);
     };
   }, []);
 
   return (
     <section
+      ref={sectionRef}
       className="relative w-full bg-[#050505]"
       style={{ minHeight: "100vh" }}
     >
@@ -58,7 +74,7 @@ export default function Hero() {
         <video
           ref={videoRef}
           autoPlay
-          muted        /* starts muted — IntersectionObserver unmutes on view */
+          muted
           loop
           playsInline
           style={{
@@ -67,7 +83,7 @@ export default function Hero() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "center top",  /* show top portion — drone is visible at top */
+            objectPosition: "center top",
           }}
         >
           <source src={homeBg} type="video/mp4" />
