@@ -11,9 +11,7 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Permissions-Policy", "value": "autoplay=*, camera=(), microphone=()" },
-        { "key": "Feature-Policy", "value": "autoplay *" }
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
       ]
     }
   ],

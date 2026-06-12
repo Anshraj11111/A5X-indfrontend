@@ -22,16 +22,6 @@ export default function Hero() {
     const section = sectionRef.current;
     if (!video || !section) return;
 
-    // Start muted for autoplay compliance
-    video.muted = true;
-
-    // Play the video
-    const playVideo = () => {
-      video.play().catch(() => {});
-    };
-    if (video.readyState >= 2) playVideo();
-    else video.addEventListener("canplay", playVideo, { once: true });
-
     // IntersectionObserver — unmute when hero ≥30% visible, mute otherwise
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -48,18 +38,13 @@ export default function Hero() {
         video.muted = false;
       }
     };
-    document.addEventListener("click",      onFirstInteract, { once: true });
-    document.addEventListener("keydown",    onFirstInteract, { once: true });
-    document.addEventListener("scroll",     onFirstInteract, { once: true });
-    document.addEventListener("touchstart", onFirstInteract, { once: true });
+    document.addEventListener("click", onFirstInteract, { once: true });
+    document.addEventListener("keydown", onFirstInteract, { once: true });
 
     return () => {
       observer.disconnect();
-      video.removeEventListener("canplay", playVideo);
-      document.removeEventListener("click",      onFirstInteract);
-      document.removeEventListener("keydown",    onFirstInteract);
-      document.removeEventListener("scroll",     onFirstInteract);
-      document.removeEventListener("touchstart", onFirstInteract);
+      document.removeEventListener("click", onFirstInteract);
+      document.removeEventListener("keydown", onFirstInteract);
     };
   }, []);
 
@@ -74,7 +59,7 @@ export default function Hero() {
         <video
           ref={videoRef}
           autoPlay
-          muted
+          muted        /* starts muted — IntersectionObserver unmutes on view */
           loop
           playsInline
           style={{
@@ -83,7 +68,7 @@ export default function Hero() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "center top",
+            objectPosition: "center top",  /* show top portion — drone is visible at top */
           }}
         >
           <source src={homeBg} type="video/mp4" />
