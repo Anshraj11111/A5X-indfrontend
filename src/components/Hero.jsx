@@ -1,7 +1,9 @@
 // frontend/src/components/Hero.jsx
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import homeBg from "../assets/homebg.mp4";
+
+// Video served from /public — not bundled by Vite, works on Vercel
+const homeBg = "/homebg.mp4";
 
 const STATS = [
   { value: "50+",  label: "Projects Delivered" },
