@@ -9,6 +9,8 @@ import WorkshopImg from "../assets/workshop.png";
 import FPVImg from "../assets/fpv.jpeg";
 import RCImg from "../assets/RC.jpeg"
 import DRIMG from "../assets/DRrobo.png";
+import LABIMG from "../assets/lab.png"
+
 
 /* ── Section label ── */
 function SectionLabel({ children }) {
@@ -212,7 +214,7 @@ export default function Home() {
             {/* Right image */}
             <div className="relative min-h-[320px] sm:min-h-[420px]">
               <img
-                src={WorkshopImg}
+                src={LABIMG}
                 alt="A5X Engineering Lab"
                 className="w-full h-full object-cover brightness-75"
               />
