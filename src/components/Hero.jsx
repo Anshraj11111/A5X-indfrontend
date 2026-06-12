@@ -2,8 +2,8 @@
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// Video served from /public — not bundled by Vite, works on Vercel
-const homeBg = "/homebg.mp4";
+// Video hosted on Cloudinary CDN — works on Vercel and all deployments
+const homeBg = "https://res.cloudinary.com/dkugn8sdg/video/upload/v1781242353/a5x_homebg.mp4";
 
 const STATS = [
   { value: "50+",  label: "Projects Delivered" },
