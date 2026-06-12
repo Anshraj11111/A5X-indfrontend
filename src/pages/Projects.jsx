@@ -252,7 +252,7 @@ export default function ProjectsPage() {
         <div className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full pointer-events-none"
           style={{ background: "radial-gradient(circle, rgba(0,168,255,0.07) 0%, transparent 70%)" }} />
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 xl:px-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[calc(100vh-80px)]">
 
             {/* LEFT — text */}
@@ -367,8 +367,8 @@ export default function ProjectsPage() {
       {/* ══════════════════════════════════════════
           2. FEATURED WORK
       ══════════════════════════════════════════ */}
-      <section id="featured" className="py-28 border-t border-white/6">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section id="featured" className="py-16 sm:py-28 border-t border-white/6">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 xl:px-20">
 
           {/* section header */}
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16">
@@ -451,8 +451,8 @@ export default function ProjectsPage() {
       {/* ══════════════════════════════════════════
           3. TECHNOLOGY AREAS
       ══════════════════════════════════════════ */}
-      <section className="py-28 border-t border-white/6 bg-[#071426]/40">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-28 border-t border-white/6 bg-[#071426]/40">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 xl:px-20">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-6 h-[2px] bg-[#00A8FF]" />
@@ -485,8 +485,8 @@ export default function ProjectsPage() {
       {/* ══════════════════════════════════════════
           4. IMPACT — STATS
       ══════════════════════════════════════════ */}
-      <section className="py-28 border-t border-white/6">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-28 border-t border-white/6">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 xl:px-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
             <div>
@@ -522,8 +522,8 @@ export default function ProjectsPage() {
       {/* ══════════════════════════════════════════
           5. DEVELOPMENT PROCESS
       ══════════════════════════════════════════ */}
-      <section className="py-28 border-t border-white/6 bg-[#071426]/30">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-28 border-t border-white/6 bg-[#071426]/30">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 xl:px-20">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-6 h-[2px] bg-[#00A8FF]" />
@@ -564,8 +564,8 @@ export default function ProjectsPage() {
       {/* ══════════════════════════════════════════
           6. COMMUNITY BANNER
       ══════════════════════════════════════════ */}
-      <section className="py-20 border-t border-white/6">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-12 sm:py-20 border-t border-white/6">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 xl:px-20">
           <div className="relative overflow-hidden border border-white/8 bg-[#071426]"
             style={{ padding: "60px 64px" }}>
 
@@ -641,7 +641,7 @@ export default function ProjectsPage() {
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse at 50% 50%, rgba(0,168,255,0.04) 0%, transparent 65%)" }} />
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20 text-center">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 xl:px-20 text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
             <div className="w-6 h-[2px] bg-[#00A8FF]" />
             <span className="text-[10px] tracking-[0.4em] text-[#00A8FF] uppercase font-bold">Let's Build Together</span>

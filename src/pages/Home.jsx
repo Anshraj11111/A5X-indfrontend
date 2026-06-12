@@ -59,8 +59,8 @@ export default function Home() {
       {/* ═══════════════════════════════════
           SECTION 2 — WHAT WE BUILD
       ═══════════════════════════════════ */}
-      <section className="py-24 border-t border-white/6">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
+      <section className="py-16 sm:py-24 border-t border-white/6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div>
@@ -146,8 +146,8 @@ export default function Home() {
       {/* ═══════════════════════════════════
           SECTION 3 — FEATURED PROJECTS
       ═══════════════════════════════════ */}
-      <section className="py-24 border-t border-white/6 bg-[#020508]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
+      <section className="py-16 sm:py-24 border-t border-white/6 bg-[#020508]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
 
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div>
@@ -197,12 +197,12 @@ export default function Home() {
       {/* ═══════════════════════════════════
           SECTION 4 — INSIDE A5X LAB
       ═══════════════════════════════════ */}
-      <section className="py-24 border-t border-white/6">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
+      <section className="py-16 sm:py-24 border-t border-white/6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           <div className="grid lg:grid-cols-2 gap-0 border border-white/6 rounded-sm overflow-hidden">
 
             {/* Left text */}
-            <div className="bg-[#060B10] p-10 sm:p-14 flex flex-col justify-center">
+            <div className="bg-[#060B10] p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
               <SectionLabel>Inside A5X Lab</SectionLabel>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
                 Where ideas<br />turn into reality.
@@ -236,8 +236,8 @@ export default function Home() {
       {/* ═══════════════════════════════════
           SECTION 5 — INDUSTRIES WE SERVE
       ═══════════════════════════════════ */}
-      <section className="py-24 border-t border-white/6">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
+      <section className="py-16 sm:py-24 border-t border-white/6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div>
               <SectionLabel>Industries We Serve</SectionLabel>
@@ -271,8 +271,8 @@ export default function Home() {
       {/* ═══════════════════════════════════
           SECTION 7 — COMMUNITY
       ═══════════════════════════════════ */}
-      <section className="py-24 border-t border-white/6">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
+      <section className="py-16 sm:py-24 border-t border-white/6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
           <div className="border border-white/6 bg-[#060B10] overflow-hidden">
 
             {/* Top accent bar */}
@@ -281,7 +281,7 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-0">
 
               {/* Left — text */}
-              <div className="p-10 sm:p-14 flex flex-col justify-center">
+              <div className="p-8 sm:p-10 lg:p-14 flex flex-col justify-center">
                 <SectionLabel>A5X Community</SectionLabel>
                 <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
                   Join the community
@@ -322,7 +322,7 @@ export default function Home() {
               </div>
 
               {/* Right — feature list */}
-              <div className="border-l border-white/6 p-10 sm:p-14 flex flex-col justify-center gap-7">
+              <div className="border-t lg:border-t-0 lg:border-l border-white/6 p-8 sm:p-10 lg:p-14 flex flex-col justify-center gap-6">
                 {[
                   {
                     icon: (
@@ -384,9 +384,9 @@ export default function Home() {
       {/* ═══════════════════════════════════
           SECTION 8 — CTA
       ═══════════════════════════════════ */}
-      <section className="py-24 border-t border-white/6 bg-[#020508]">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 border border-white/6 bg-[#060B10] rounded-sm p-10 sm:p-14">
+      <section className="py-16 sm:py-24 border-t border-white/6 bg-[#020508]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 border border-white/6 bg-[#060B10] rounded-sm p-8 sm:p-10 lg:p-14">
 
             <div className="max-w-xl">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">

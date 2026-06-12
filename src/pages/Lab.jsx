@@ -42,8 +42,8 @@ export default function Lab() {
     <div className="min-h-screen bg-[#050505] text-white">
       {/* HERO */}
       <section className="border-b border-[#00AEEF]/20 bg-gradient-to-b from-[#050505] via-[#020508] to-[#060B10] py-20">
-        <div className="mx-auto w-full max-w-[1100px] px-5">
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+        <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
             🧪 Robotics, Coding & IoT{" "}
             <span className="text-[#00AEEF]">Foundation Lab</span>
           </h1>
@@ -57,14 +57,14 @@ export default function Lab() {
           <div className="mt-5 flex flex-wrap gap-3">
             <a
               href="/contact"
-              className="rounded-sm bg-gradient-to-r bg-[#00AEEF] px-5 py-3 font-bold text-[#050A0E]"
+              className="rounded-sm bg-gradient-to-r bg-[#00AEEF] px-4 sm:px-6 py-3 font-bold text-[#050A0E]"
             >
               Get Lab Proposal
             </a>
 
             <a
               href="/projects"
-              className="rounded-sm border border-[#00AEEF]/70 bg-transparent px-5 py-3 font-bold text-[#00AEEF]"
+              className="rounded-sm border border-[#00AEEF]/70 bg-transparent px-4 sm:px-6 py-3 font-bold text-[#00AEEF]"
             >
               See Projects
             </a>
@@ -90,8 +90,8 @@ export default function Lab() {
       </section>
 
       {/* LAB OVERVIEW */}
-      <section className="py-14">
-        <div className="mx-auto w-full max-w-[1100px] px-5">
+      <section className="py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
           <h2 className="text-2xl md:text-3xl font-extrabold mb-3">
             1. LAB OVERVIEW
           </h2>
@@ -159,8 +159,8 @@ export default function Lab() {
       </section>
 
       {/* MODULE BREAKUP */}
-      <section className="py-14 bg-[#020508] border-y border-[#00AEEF]/15">
-        <div className="mx-auto w-full max-w-[1100px] px-5">
+      <section className="py-10 sm:py-14 bg-[#020508] border-y border-[#00AEEF]/15">
+        <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
           <h2 className="text-2xl md:text-3xl font-extrabold mb-2">
             2. MODULE-WISE COMPONENT BREAKUP
           </h2>
@@ -175,7 +175,7 @@ export default function Lab() {
               <p className="text-red-400 mb-4">{error}</p>
               <button
                 onClick={() => window.location.reload()}
-                className="rounded-sm bg-gradient-to-r bg-[#00AEEF] px-5 py-3 font-bold text-[#050A0E]"
+                className="rounded-sm bg-gradient-to-r bg-[#00AEEF] px-4 sm:px-6 py-3 font-bold text-[#050A0E]"
               >
                 Retry
               </button>
@@ -206,14 +206,14 @@ export default function Lab() {
       </section>
 
       {/* FINAL SUMMARY */}
-      <section className="py-14">
-        <div className="mx-auto w-full max-w-[1100px] px-5">
+      <section className="py-10 sm:py-14">
+        <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
           <h2 className="text-2xl md:text-3xl font-extrabold mb-3">
             3. FINAL COST SUMMARY
           </h2>
 
-          <div className="overflow-hidden rounded-sm border border-[#00AEEF]/20 bg-[#060B10]/70">
-            <table className="w-full text-left text-sm">
+          <div className="overflow-x-auto rounded-sm border border-[#00AEEF]/20 bg-[#060B10]/70">
+            <table className="w-full text-left text-sm min-w-[400px]">
               <thead className="bg-[#020508] text-gray-400">
                 <tr>
                   <th className="p-4">Category</th>
@@ -314,7 +314,7 @@ export default function Lab() {
 
       {/* CTA */}
       <section className="py-16 text-center">
-        <div className="mx-auto w-full max-w-[1100px] px-5">
+        <div className="mx-auto w-full max-w-[1100px] px-4 sm:px-6">
           <h2 className="text-2xl md:text-3xl font-extrabold">
             Want a Complete Lab Setup for Your School?
           </h2>
@@ -326,14 +326,14 @@ export default function Lab() {
           <div className="mt-5 flex flex-wrap justify-center gap-3">
             <a
               href="/contact"
-              className="rounded-sm bg-gradient-to-r bg-[#00AEEF] px-5 py-3 font-extrabold text-[#050A0E]"
+              className="rounded-sm bg-gradient-to-r bg-[#00AEEF] px-4 sm:px-6 py-3 font-extrabold text-[#050A0E]"
             >
               Talk to A5X Team
             </a>
 
             <a
               href="/projects"
-              className="rounded-sm border border-[#00AEEF]/70 bg-transparent px-5 py-3 font-extrabold text-[#00AEEF]"
+              className="rounded-sm border border-[#00AEEF]/70 bg-transparent px-4 sm:px-6 py-3 font-extrabold text-[#00AEEF]"
             >
               See Projects
             </a>
@@ -367,8 +367,8 @@ function ModuleCard({ module }) {
 
       {components && components.length > 0 ? (
         <>
-          <div className="overflow-hidden rounded-sm border border-[#00AEEF]/15">
-            <table className="w-full text-left text-sm">
+          <div className="overflow-x-auto rounded-sm border border-[#00AEEF]/15">
+            <table className="w-full text-left text-sm min-w-[320px]">
               <thead className="bg-[#020508] text-gray-400">
                 <tr>
                   <th className="p-3">Component</th>

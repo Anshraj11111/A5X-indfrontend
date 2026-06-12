@@ -73,7 +73,7 @@ export default function WorkshopPage() {
     <main className="bg-[#050505] text-white">
 
       {/* ── HERO ── */}
-      <section className="relative w-full overflow-hidden" style={{ minHeight: "90vh" }}>
+      <section className="relative w-full overflow-hidden" style={{ minHeight: "clamp(500px, 90vh, 900px)" }}>
         <img src={workshop1Img} alt=""
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "70% center" }} />
@@ -83,8 +83,8 @@ export default function WorkshopPage() {
         <div className="absolute inset-0" style={{ background: "linear-gradient(to right,rgba(5,5,5,.92) 0%,rgba(5,5,5,.75) 30%,rgba(5,5,5,.2) 55%,rgba(5,5,5,0) 100%)" }} />
         <div className="absolute inset-x-0 bottom-0 h-24" style={{ background: "linear-gradient(to top,rgba(5,5,5,.7),transparent)" }} />
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20 flex flex-col justify-center"
-          style={{ minHeight: "90vh", paddingTop: "120px", paddingBottom: "80px" }}>
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 xl:px-20 flex flex-col justify-center"
+          style={{ minHeight: "clamp(500px, 90vh, 900px)", paddingTop: "120px", paddingBottom: "80px" }}>
           <div style={{ maxWidth: "600px" }}>
             <Label>Workshops by A5X</Label>
             <h1 className="font-black text-white" style={{ fontSize: "clamp(2.8rem,6vw,5.5rem)", lineHeight: "0.95", letterSpacing: "-0.02em" }}>
@@ -113,7 +113,7 @@ export default function WorkshopPage() {
 
       {/* ── STATS ── */}
       <section className="border-t border-white/6 bg-[#0A0A0A]">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-white/6">
             {[
               { value: "20+",  label: "Workshops Conducted" },
@@ -133,8 +133,8 @@ export default function WorkshopPage() {
       <Divider />
 
       {/* ── WORKSHOPS ── */}
-      <section id="workshops" className="py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section id="workshops" className="py-14 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
             <div>
               <Label>Our Workshops</Label>
@@ -171,8 +171,8 @@ export default function WorkshopPage() {
       <Divider />
 
       {/* ── GALLERY + FORM ── */}
-      <section className="py-24 bg-[#020508]">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section className="py-14 sm:py-24 bg-[#020508]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="grid lg:grid-cols-2 gap-14">
 
             {/* Gallery */}
@@ -183,17 +183,17 @@ export default function WorkshopPage() {
                 <div className="flex flex-col gap-2">
                   {[RobotImg ,RCImg, Project2Img].map((img, i) => (
                     <div key={i} className="overflow-hidden" style={{ aspectRatio: "4/3" }}>
-                      <img src={img} alt="" className="w-full h-full object-cover brightness-75 hover:brightness-90 hover:scale-105 transition-all duration-500" />
+                      <img src={img} alt="" loading="lazy" className="w-full h-full object-cover brightness-75 hover:brightness-90 hover:scale-105 transition-all duration-500" />
                     </div>
                   ))}
                 </div>
                 <div className="flex flex-col gap-2">
                   <div className="overflow-hidden" style={{ aspectRatio: "4/5" }}>
-                    <img src={worksImg} alt="" className="w-full h-full object-cover brightness-75 hover:brightness-90 hover:scale-105 transition-all duration-500" />
+                    <img src={worksImg} alt="" loading="lazy" className="w-full h-full object-cover brightness-75 hover:brightness-90 hover:scale-105 transition-all duration-500" />
                   </div>
                   {[workImg, FPVImg].map((img, i) => (
                     <div key={i} className="overflow-hidden" style={{ aspectRatio: "4/3" }}>
-                      <img src={img} alt="" className="w-full h-full object-cover brightness-75 hover:brightness-90 hover:scale-105 transition-all duration-500" />
+                      <img src={img} alt="" loading="lazy" className="w-full h-full object-cover brightness-75 hover:brightness-90 hover:scale-105 transition-all duration-500" />
                     </div>
                   ))}
                 </div>
@@ -222,7 +222,7 @@ export default function WorkshopPage() {
                     <label className="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold block mb-1.5">Your Name *</label>
                     <input required placeholder="Enter your name" value={form.name} onChange={(e) => setField("name", e.target.value)} className={inp} />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
                       <label className="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold block mb-1.5">Email *</label>
                       <input required type="email" placeholder="Email address" value={form.email} onChange={(e) => setField("email", e.target.value)} className={inp} />
@@ -236,7 +236,7 @@ export default function WorkshopPage() {
                     <label className="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold block mb-1.5">Institution *</label>
                     <input required placeholder="School / College / Organization" value={form.institution} onChange={(e) => setField("institution", e.target.value)} className={inp} />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
                       <label className="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold block mb-1.5">Workshop Type</label>
                       <select value={form.workshopType} onChange={(e) => setField("workshopType", e.target.value)} className={inp + " cursor-pointer"}>
@@ -276,8 +276,8 @@ export default function WorkshopPage() {
       <Divider />
 
       {/* ── WHY CHOOSE A5X ── */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section className="py-14 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="text-center mb-14">
             <Label>Why Choose A5X Workshops?</Label>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">The A5X Difference</h2>
@@ -305,8 +305,8 @@ export default function WorkshopPage() {
       <Divider />
 
       {/* ── WHO CAN JOIN ── */}
-      <section className="py-20 bg-[#020508]">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section className="py-12 sm:py-20 bg-[#020508]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="text-center mb-12">
             <Label>Who Can Join</Label>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Workshops for Everyone</h2>
@@ -334,8 +334,8 @@ export default function WorkshopPage() {
       <Divider />
 
       {/* ── TESTIMONIALS ── */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section className="py-14 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="text-center mb-14">
             <Label>What Our Participants Say</Label>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Real Feedback. Real Impact.</h2>
@@ -368,7 +368,7 @@ export default function WorkshopPage() {
       <section className="relative py-28 overflow-hidden">
         <img src={workshop1Img} alt="" className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.35]" />
         <div className="absolute inset-0 bg-[#050505]/50" />
-        <div className="relative z-10 max-w-5xl mx-auto px-8 sm:px-14">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
             <div>
               <p className="text-[10px] tracking-[0.35em] text-[#00AEEF] uppercase font-bold mb-4">Get Started Today</p>

@@ -37,8 +37,8 @@ export default function AboutPage() {
       ══════════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* office photo — right side */}
-        {/* RIGHT — photo pinned to right half only */}
-        <div className="absolute right-0 top-0 h-full" style={{ width: "50%", zIndex: 1 }}>
+        {/* RIGHT — photo pinned to right half, hidden on mobile */}
+        <div className="hidden md:block absolute right-0 top-0 h-full" style={{ width: "50%", zIndex: 1 }}>
           <img src={OfficeImg} alt="A5X Team"
             className="w-full h-full object-cover"
             style={{ objectPosition: "center center" }} />
@@ -62,7 +62,7 @@ export default function AboutPage() {
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] pointer-events-none"
           style={{ background: "radial-gradient(circle, rgba(0,168,255,0.06) 0%, transparent 70%)" }} />
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20 pt-32 pb-24">
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 sm:px-14 xl:px-20 pt-28 sm:pt-32 pb-16 sm:pb-24">
           <div style={{ maxWidth: "480px" }}>
             <Label>About A5X Industries</Label>
             <h1 className="font-black text-white leading-[1.05]"
@@ -112,8 +112,8 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           2. OUR STORY
       ══════════════════════════════════════════ */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-24">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <Label>Our Story</Label>
@@ -145,7 +145,7 @@ export default function AboutPage() {
               <div className="overflow-hidden border border-white/8"
                 style={{ boxShadow: "0 32px 80px rgba(0,0,0,0.6)" }}>
                 <img src={AboutCrausel} alt="A5X Story"
-                  className="w-full object-cover" style={{ height: "500px", objectPosition: "center" }} />
+                  className="w-full object-cover" style={{ height: "clamp(280px, 50vw, 500px)", objectPosition: "center" }} />
                 <div className="absolute inset-0"
                   style={{ background: "linear-gradient(to top,rgba(5,5,5,.35) 0%,transparent 50%)" }} />
               </div>
@@ -165,8 +165,8 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           3. WHAT WE DO
       ══════════════════════════════════════════ */}
-      <section className="py-28 bg-[#071426]/30">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-24 bg-[#071426]/30">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20">
           <div className="text-center mb-16">
             <Label center>What We Do</Label>
             <h2 className="font-extrabold text-white"
@@ -231,8 +231,8 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           4. IMPACT STATS
       ══════════════════════════════════════════ */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-24">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20">
           <div className="text-center mb-16">
             <Label center>Our Impact</Label>
             <h2 className="font-extrabold text-white"
@@ -266,8 +266,8 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           5. MISSION & VISION
       ══════════════════════════════════════════ */}
-      <section className="py-28 bg-[#071426]/25">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-24 bg-[#071426]/25">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20">
           <div className="grid lg:grid-cols-2 gap-px bg-white/6 border border-white/6">
             <div className="bg-[#050505] p-12 lg:p-16 flex flex-col gap-5">
               <Label>Our Mission</Label>
@@ -298,8 +298,8 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           6. WHY CHOOSE A5X
       ══════════════════════════════════════════ */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-24">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20">
           <div className="text-center mb-16">
             <Label center>Why Choose A5X</Label>
             <h2 className="font-extrabold text-white"
@@ -332,8 +332,8 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           7. TEAM
       ══════════════════════════════════════════ */}
-      <section className="py-28 bg-[#071426]/20">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-24 bg-[#071426]/20">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20">
           <div className="text-center mb-16">
             <Label center>Our Team</Label>
             <h2 className="font-extrabold text-white"
@@ -385,8 +385,8 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           8. WORKSHOPS & TRAINING
       ══════════════════════════════════════════ */}
-      <section className="py-28">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-16 sm:py-24">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <Label>Workshops & Training</Label>
@@ -424,7 +424,7 @@ export default function AboutPage() {
               <div className="overflow-hidden border border-white/8"
                 style={{ boxShadow: "0 32px 80px rgba(0,0,0,0.6)" }}>
                 <img src={WorkshopImg} alt="A5X Workshops"
-                  className="w-full object-cover" style={{ height: "500px", objectPosition: "center 60%" }} />
+                  className="w-full object-cover" style={{ height: "clamp(280px, 50vw, 500px)", objectPosition: "center 60%" }} />
                 <div className="absolute inset-0"
                   style={{ background: "linear-gradient(to top,rgba(5,5,5,.4) 0%,transparent 55%)" }} />
                 <div className="absolute bottom-5 left-6">
@@ -442,8 +442,8 @@ export default function AboutPage() {
       {/* ══════════════════════════════════════════
           9. COMMUNITY
       ══════════════════════════════════════════ */}
-      <section className="py-20 bg-[#071426]/30">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-14 sm:py-20 bg-[#071426]/30">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20">
           <div className="relative overflow-hidden border border-white/8 bg-[#071426]"
             style={{ padding: "56px 64px" }}>
             <div className="absolute inset-0 pointer-events-none"
@@ -511,7 +511,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse at 50% 50%,rgba(0,168,255,0.04) 0%,transparent 65%)" }} />
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20 text-center">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20 text-center">
           <Label center>Let's Build Together</Label>
           <h2 className="font-black text-white mx-auto"
             style={{ fontSize: "clamp(2.8rem,7vw,6rem)", letterSpacing: "-0.03em", lineHeight: "0.95", maxWidth: "860px" }}>

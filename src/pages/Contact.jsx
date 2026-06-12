@@ -66,7 +66,7 @@ export default function Contact() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] pointer-events-none"
           style={{ background: "radial-gradient(ellipse at center, rgba(0,168,255,0.06) 0%, transparent 70%)" }} />
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20 text-center">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-8 xl:px-16 text-center">
           <Label center>Get In Touch</Label>
           <h1 className="font-black text-white"
             style={{ fontSize: "clamp(2.4rem,5vw,4.8rem)", letterSpacing: "-0.03em", lineHeight: "1.0" }}>
@@ -81,12 +81,12 @@ export default function Contact() {
       </section>
 
       {/* ══════════ CONTACT INFO + FORM ══════════ */}
-      <section className="pb-28 border-t border-white/6">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="pb-14 sm:pb-28 border-t border-white/6">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 xl:px-16">
           <div className="grid lg:grid-cols-5 gap-px bg-white/6 border border-white/6 mt-0">
 
             {/* LEFT — contact details */}
-            <div className="lg:col-span-2 bg-[#071426]/60 p-10 flex flex-col gap-10">
+            <div className="lg:col-span-2 bg-[#071426]/60 p-6 sm:p-10 flex flex-col gap-10">
               <div>
                 <Label>Contact Information</Label>
                 <h2 className="font-extrabold text-white text-xl mb-6" style={{ letterSpacing: "-0.01em" }}>
@@ -197,7 +197,7 @@ export default function Contact() {
             </div>
 
             {/* RIGHT — form */}
-            <div className="lg:col-span-3 bg-[#050505] p-10">
+            <div className="lg:col-span-3 bg-[#050505] p-6 sm:p-10">
               <Label>Send A Message</Label>
               <h2 className="font-extrabold text-white text-xl mb-8" style={{ letterSpacing: "-0.01em" }}>
                 Tell Us About Your Project
@@ -282,7 +282,7 @@ export default function Contact() {
 
       {/* ══════════ MAP — Jabalpur ══════════ */}
       <section className="border-t border-white/6">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20 py-16">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 xl:px-16 py-16">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div>
               <Label>Our Location</Label>
@@ -315,8 +315,8 @@ export default function Contact() {
       </section>
 
       {/* ══════════ BOTTOM CTA ══════════ */}
-      <section className="py-20 border-t border-white/6 bg-[#071426]/20">
-        <div className="max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20">
+      <section className="py-12 sm:py-20 border-t border-white/6 bg-[#071426]/20">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 xl:px-16">
           <div className="grid sm:grid-cols-3 gap-px bg-white/6 border border-white/6">
             {[
               {

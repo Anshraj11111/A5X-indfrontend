@@ -21,7 +21,7 @@ export default function ServicePage() {
     <main className="bg-[#050505] text-white">
 
       {/* ── HERO ── */}
-      <section className="relative w-full overflow-hidden" style={{ minHeight: "88vh" }}>
+      <section className="relative w-full overflow-hidden" style={{ minHeight: "clamp(500px, 88vh, 900px)" }}>
         <img src={solutionBg} alt="Solutions"
           className="absolute inset-0 w-full h-full object-cover"
           style={{ objectPosition: "65% center", opacity: 0.7 }} />
@@ -31,8 +31,8 @@ export default function ServicePage() {
         <div className="absolute inset-x-0 top-0 h-24" style={{ background: "linear-gradient(to bottom, rgba(5,5,5,0.85), transparent)" }} />
         <div className="absolute inset-x-0 bottom-0 h-36" style={{ background: "linear-gradient(to top, rgba(5,5,5,1), transparent)" }} />
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-8 sm:px-14 xl:px-20 flex flex-col justify-center"
-          style={{ minHeight: "88vh", paddingTop: "120px", paddingBottom: "70px" }}>
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-14 xl:px-20 flex flex-col justify-center"
+          style={{ minHeight: "clamp(500px, 88vh, 900px)", paddingTop: "120px", paddingBottom: "70px" }}>
           <div style={{ maxWidth: "560px" }}>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-5 h-[2px] bg-[#00AEEF]" />
@@ -76,8 +76,8 @@ export default function ServicePage() {
       <div className="border-t border-white/6" />
 
       {/* ── WHAT WE BUILD ── */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section className="py-14 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="text-center mb-14">
             <Label>What We Build</Label>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
@@ -106,8 +106,8 @@ export default function ServicePage() {
       <div className="border-t border-white/6" />
 
       {/* ── OUR PROJECTS ── */}
-      <section className="py-24 bg-[#020508]">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section className="py-14 sm:py-24 bg-[#020508]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="text-center mb-14">
             <Label>Our Projects</Label>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Real Projects. Real Impact.</h2>
@@ -120,7 +120,7 @@ export default function ServicePage() {
             ].map((p) => (
               <div key={p.title} className="group relative overflow-hidden cursor-pointer border border-white/6">
                 <div className="overflow-hidden" style={{ aspectRatio: "4/3" }}>
-                  <img src={p.img} alt={p.title}
+                  <img src={p.img} alt={p.title} loading="lazy"
                     className="w-full h-full object-cover brightness-75 group-hover:brightness-90 group-hover:scale-105 transition-all duration-500" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -139,7 +139,7 @@ export default function ServicePage() {
             ].map((p) => (
               <div key={p.title} className="group relative overflow-hidden cursor-pointer border border-white/6">
                 <div className="overflow-hidden" style={{ aspectRatio: "4/3" }}>
-                  <img src={p.img} alt={p.title}
+                  <img src={p.img} alt={p.title} loading="lazy"
                     className="w-full h-full object-cover brightness-75 group-hover:brightness-90 group-hover:scale-105 transition-all duration-500" />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
@@ -165,8 +165,8 @@ export default function ServicePage() {
       <div className="border-t border-white/6" />
 
       {/* ── HOW WE WORK ── */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section className="py-14 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="text-center mb-14">
             <Label>How We Work</Label>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">A Simple Process. Powerful Results.</h2>
@@ -195,8 +195,8 @@ export default function ServicePage() {
       <div className="border-t border-white/6" />
 
       {/* ── TECHNOLOGIES ── */}
-      <section className="py-20 bg-[#020508]">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section className="py-12 sm:py-20 bg-[#020508]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="text-center mb-12">
             <Label>Technologies We Use</Label>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Modern Tools. Better Solutions.</h2>
@@ -225,8 +225,8 @@ export default function ServicePage() {
       <div className="border-t border-white/6" />
 
       {/* ── INDUSTRIES ── */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+      <section className="py-14 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="text-center mb-14">
             <Label>Industries We Serve</Label>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Empowering Innovation Across Industries</h2>
@@ -251,7 +251,7 @@ export default function ServicePage() {
 
       {/* ── STATS ── */}
       <section className="py-0 bg-[#050505]">
-        <div className="max-w-7xl mx-auto px-8 sm:px-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="border border-white/6 bg-[#0A0A0A] grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-white/6">
             {[
               { icon: <svg className="w-6 h-6" fill="none" stroke="#00AEEF" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>, value: "50+",  label: "Projects Completed" },
@@ -275,10 +275,10 @@ export default function ServicePage() {
 
       {/* ── CTA ── */}
       <section className="relative py-28 overflow-hidden">
-        <img src={solutionBg} alt="" className="absolute inset-0 w-full h-full object-cover brightness-[0.12]"
+        <img src={solutionBg} alt="" className="absolute inset-0 loading="lazy" w-full h-full object-cover brightness-[0.12]"
           style={{ objectPosition: "center bottom" }} />
         <div className="absolute inset-0 bg-[#050505]/70" />
-        <div className="relative z-10 max-w-5xl mx-auto px-8 sm:px-14">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 lg:px-14">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
             <div>
               <p className="text-[10px] tracking-[0.35em] text-[#00AEEF] uppercase font-bold mb-4">

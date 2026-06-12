@@ -398,7 +398,7 @@ export default function Gallery() {
       </section>
 
       {/* ── CATEGORY TABS ── */}
-      <div className="sticky top-0 z-20 bg-[#050505]/95 border-b border-white/8 px-4 sm:px-6 py-4">
+      <div className="sticky top-16 z-20 bg-[#050505]/95 border-b border-white/8 px-4 sm:px-6 py-4">
         <div className="max-w-7xl mx-auto flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide">
 
           {/* ALL tab */}
@@ -675,7 +675,7 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
         <img
           src={img.url}
           alt={img.title || ""}
-          className="max-h-[75vh] w-auto max-w-full rounded-sm object-contain shadow-2xl border border-white/10"
+          className="max-h-[65vh] sm:max-h-[80vh] w-auto max-w-full rounded-sm object-contain shadow-2xl border border-white/10"
         />
         {(img.title || img.description) && (
           <div className="mt-4 text-center max-w-2xl px-4">
