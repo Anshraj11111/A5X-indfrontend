@@ -275,7 +275,7 @@ export default function ServicePage() {
 
       {/* ── CTA ── */}
       <section className="relative py-28 overflow-hidden">
-        <img src={solutionBg} alt="" className="absolute inset-0 loading="lazy" w-full h-full object-cover brightness-[0.12]"
+        <img src={solutionBg} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover brightness-[0.12]"
           style={{ objectPosition: "center bottom" }} />
         <div className="absolute inset-0 bg-[#050505]/70" />
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 lg:px-14">
