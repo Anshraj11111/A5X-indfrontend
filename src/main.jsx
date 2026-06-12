@@ -12,11 +12,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </AuthProvider>
   </React.StrictMode>
 );
+
+// Unregister any existing service workers — they were causing video and caching issues
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/service-worker.js")
-      .then(() => console.log("✅ Service Worker registered"))
-      .catch((err) => console.log("❌ SW error", err));
+  navigator.serviceWorker.getRegistrations().then((registrations) => {
+    registrations.forEach((reg) => {
+      reg.unregister();
+      console.log("🗑 Service Worker unregistered:", reg.scope);
+    });
   });
 }
