@@ -4,14 +4,14 @@ import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import logo from "../assets/A5Xlogo.jpg";
 
 const navItems = [
-  { to: "/",          label: "Home" },
-  { to: "/services",  label: "Solutions" },
-  { to: "/projects",  label: "Projects" },
-  { to: "/workshops", label: "Workshop" },
-  { to: "/gallery",   label: "Gallery" },
-  { to: "/store",     label: "Store" },
-  { to: "/about",     label: "About" },
-  { to: "/contact",   label: "Contact" },
+  { to: "/",          label: "Home",      external: false },
+  { to: "/services",  label: "Solutions", external: false },
+  { to: "/projects",  label: "Projects",  external: false },
+  { to: "/workshops", label: "Workshop",  external: false },
+  { to: "/gallery",   label: "Gallery",   external: false },
+  { to: "https://shop.a5x.in/", label: "Store", external: true },
+  { to: "/about",     label: "About",     external: false },
+  { to: "/contact",   label: "Contact",   external: false },
 ];
 
 export default function Navbar() {
@@ -45,20 +45,30 @@ export default function Navbar() {
 
         {/* DESKTOP NAV */}
         <div className="hidden lg:flex items-center gap-1">
-          {navItems.map((n) => (
-            <NavLink
-              key={n.to}
-              to={n.to}
-              className={({ isActive }) =>
-                `px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-colors
-                ${isActive
-                  ? "text-[#00AEEF]"
-                  : "text-gray-400 hover:text-white"}`
-              }
-            >
-              {n.label}
-            </NavLink>
-          ))}
+          {navItems.map((n) =>
+            n.external ? (
+              <a
+                key={n.to}
+                href={n.to}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-colors text-gray-400 hover:text-white"
+              >
+                {n.label}
+              </a>
+            ) : (
+              <NavLink
+                key={n.to}
+                to={n.to}
+                className={({ isActive }) =>
+                  `px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-colors
+                  ${isActive ? "text-[#00AEEF]" : "text-gray-400 hover:text-white"}`
+                }
+              >
+                {n.label}
+              </NavLink>
+            )
+          )}
         </div>
 
         {/* GET IN TOUCH — desktop */}
@@ -90,18 +100,30 @@ export default function Navbar() {
           <div className="fixed inset-0 bg-black/80 z-40 lg:hidden" onClick={() => setOpen(false)} />
           <div className="fixed top-0 right-0 w-72 h-full bg-[#060B10] border-l border-white/8 z-40 lg:hidden pt-20 px-8 overflow-y-auto">
             <div className="flex flex-col gap-1 pb-10">
-              {navItems.map(({ to, label }) => (
-                <NavLink
-                  key={to}
-                  to={to}
-                  className={({ isActive }) =>
-                    `py-3 text-sm font-semibold tracking-wider uppercase border-b border-white/6 transition-colors
-                    ${isActive ? "text-[#00AEEF]" : "text-gray-400 hover:text-white"}`
-                  }
-                >
-                  {label}
-                </NavLink>
-              ))}
+              {navItems.map(({ to, label, external }) =>
+                external ? (
+                  <a
+                    key={to}
+                    href={to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="py-3 text-sm font-semibold tracking-wider uppercase border-b border-white/6 transition-colors text-gray-400 hover:text-white"
+                  >
+                    {label}
+                  </a>
+                ) : (
+                  <NavLink
+                    key={to}
+                    to={to}
+                    className={({ isActive }) =>
+                      `py-3 text-sm font-semibold tracking-wider uppercase border-b border-white/6 transition-colors
+                      ${isActive ? "text-[#00AEEF]" : "text-gray-400 hover:text-white"}`
+                    }
+                  >
+                    {label}
+                  </NavLink>
+                )
+              )}
 
               <Link to="/contact"
                 className="mt-6 py-3 bg-[#00AEEF] text-black text-center font-bold text-sm tracking-wider rounded-sm hover:bg-[#00c4ff] transition-colors">
