@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
+import { HelmetProvider } from "react-helmet-async";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -47,6 +48,7 @@ export default function App() {
     fetch(`${API}/api/ping`, { method: "GET" }).catch(() => {});
   }, []);
   return (
+    <HelmetProvider>
     <BrowserRouter>
       {/* 👇 Ye line MOST IMPORTANT hai */}
       <ScrollToTop />
@@ -169,5 +171,6 @@ export default function App() {
 
       <Footer />
     </BrowserRouter>
+    </HelmetProvider>
   );
 }

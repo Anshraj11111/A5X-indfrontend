@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Hero from "../components/Hero";
 import usePWAInstall from "../hooks/usePWAInstall";
 
@@ -41,6 +42,14 @@ export default function Home() {
 
   return (
     <main className="bg-[#03060A] text-white">
+
+      <Helmet>
+        <title>A5X Industries Pvt Ltd | Robotics, AI, Drones &amp; Automation Solutions</title>
+        <meta name="description" content="A5X Industries Pvt Ltd - India's leading robotics, AI systems, drone and automation company based in Jabalpur, MP. Robotics workshops, FPV drones, intelligent solutions. 500+ students trained, 50+ projects." />
+        <link rel="canonical" href="https://a5x.in/" />
+        <meta property="og:url" content="https://a5x.in/" />
+        <meta property="og:title" content="A5X Industries Pvt Ltd | Robotics, AI, Drones & Automation Solutions" />
+      </Helmet>
 
       {/* ═══════════════════════════════════
           SECTION 1 — HERO
@@ -223,7 +232,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
++++++
       {/* ═══════════════════════════════════
           SECTION 5 — INDUSTRIES WE SERVE
       ═══════════════════════════════════ */}

@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Block admin pages from indexing
+Disallow: /admin/
+Disallow: /admin/login
+Disallow: /admin/signup
+Disallow: /admin/dashboard
+Disallow: /admin/team
+Disallow: /admin/gallery
+Disallow: /admin/contacts
+Disallow: /admin/feedback
+Disallow: /admin/uploads
+Disallow: /admin/lab
+
+# Sitemap location
+Sitemap: https://a5x.in/sitemap.xml
