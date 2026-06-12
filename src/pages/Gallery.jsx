@@ -4,7 +4,7 @@ import client from "../utils/axiosClient";
 const CATEGORIES = ["Workshop", "Competition", "Office"];
 
 const CAT_META = {
-  Workshop:    { emoji: "🛠️", color: "from-cyan-500 to-blue-600",     desc: "Hands-on robotics & tech workshops at schools and colleges" },
+  Workshop:    { emoji: "🛠️", color: "from-[#00AEEF] to-[#0077bb]",     desc: "Hands-on robotics & tech workshops at schools and colleges" },
   Competition: { emoji: "🏆", color: "from-yellow-500 to-orange-500", desc: "Competition builds, events and award-winning moments" },
   Office:      { emoji: "🏢", color: "from-purple-500 to-pink-500",   desc: "Office visits, client meetings and behind-the-scenes moments" },
 };
@@ -111,29 +111,29 @@ export default function Gallery() {
   ══════════════════════════════════════ */
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#020609] text-white overflow-x-hidden">
+      <main className="min-h-screen bg-[#050505] text-white overflow-x-hidden">
         {/* skeleton hero */}
         <section className="relative min-h-[50vh] flex items-center justify-center pt-20">
           <div className="absolute inset-0 bg-[#0a0f14] animate-pulse" />
           <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-            <div className="h-3 w-24 bg-white/10 rounded-full mx-auto mb-6 animate-pulse" />
-            <div className="h-14 w-72 bg-white/10 rounded-2xl mx-auto mb-4 animate-pulse" />
-            <div className="h-4 w-56 bg-white/8 rounded-full mx-auto animate-pulse" />
+            <div className="h-3 w-24 bg-white/10 rounded-sm mx-auto mb-6 animate-pulse" />
+            <div className="h-14 w-72 bg-white/10 rounded-sm mx-auto mb-4 animate-pulse" />
+            <div className="h-4 w-56 bg-white/8 rounded-sm mx-auto animate-pulse" />
             <div className="mt-8 flex justify-center gap-10">
               {[1,2,3].map(i => (
                 <div key={i} className="text-center">
-                  <div className="h-8 w-12 bg-white/10 rounded-lg mx-auto mb-2 animate-pulse" />
-                  <div className="h-3 w-16 bg-white/6 rounded-full mx-auto animate-pulse" />
+                  <div className="h-8 w-12 bg-white/10 rounded-sm mx-auto mb-2 animate-pulse" />
+                  <div className="h-3 w-16 bg-white/6 rounded-sm mx-auto animate-pulse" />
                 </div>
               ))}
             </div>
           </div>
         </section>
         {/* skeleton tabs */}
-        <div className="bg-[#020609]/95 border-b border-white/8 px-6 py-4">
+        <div className="bg-[#050505]/95 border-b border-white/8 px-6 py-4">
           <div className="max-w-7xl mx-auto flex gap-3">
             {[1,2,3,4].map(i => (
-              <div key={i} className="h-9 w-24 bg-white/8 rounded-full animate-pulse" />
+              <div key={i} className="h-9 w-24 bg-white/8 rounded-sm animate-pulse" />
             ))}
           </div>
         </div>
@@ -141,12 +141,12 @@ export default function Gallery() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-24">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1,2,3,4,5,6].map(i => (
-              <div key={i} className="rounded-2xl overflow-hidden border border-white/8 bg-[#070d12] animate-pulse">
+              <div key={i} className="rounded-sm overflow-hidden border border-white/8 bg-[#060B10] animate-pulse">
                 <div className="aspect-[4/3] bg-white/8" />
                 <div className="p-5 space-y-3">
-                  <div className="h-5 w-3/4 bg-white/8 rounded-lg" />
-                  <div className="h-3 w-1/2 bg-white/6 rounded-full" />
-                  <div className="h-3 w-1/3 bg-white/6 rounded-full" />
+                  <div className="h-5 w-3/4 bg-white/8 rounded-sm" />
+                  <div className="h-3 w-1/2 bg-white/6 rounded-sm" />
+                  <div className="h-3 w-1/3 bg-white/6 rounded-sm" />
                 </div>
               </div>
             ))}
@@ -158,11 +158,11 @@ export default function Gallery() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#020609] flex items-center justify-center px-6">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center px-6">
         <div className="text-center">
           <p className="text-red-400 text-lg mb-6">{error}</p>
           <button onClick={() => window.location.reload()}
-            className="px-8 py-3 bg-cyan-400 text-black rounded-full font-bold hover:bg-cyan-300 transition">
+            className="px-8 py-3 bg-[#00AEEF] text-black rounded-sm font-bold hover:bg-cyan-300 transition">
             Retry
           </button>
         </div>
@@ -175,13 +175,13 @@ export default function Gallery() {
   ══════════════════════════════════════ */
   if (openEvent) {
     return (
-      <div className="min-h-screen bg-[#020609] text-white">
+      <div className="min-h-screen bg-[#050505] text-white">
 
         {/* ── top bar ── */}
-        <div className="sticky top-0 z-30 bg-[#020609]/95 border-b border-white/8 px-4 sm:px-6 py-4 flex items-center gap-4">
+        <div className="sticky top-0 z-30 bg-[#050505]/95 border-b border-white/8 px-4 sm:px-6 py-4 flex items-center gap-4">
           <button
             onClick={() => { setOpenEvent(null); setLightbox(null); }}
-            className="flex items-center gap-2 text-cyan-400 hover:text-white transition text-sm font-semibold"
+            className="flex items-center gap-2 text-[#00AEEF] hover:text-white transition text-sm font-semibold"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -204,7 +204,7 @@ export default function Gallery() {
           )}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#020609]" />
           <div className="relative z-10 px-6 py-16 sm:py-20 max-w-4xl mx-auto text-center">
-            <span className={`inline-block px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4
+            <span className={`inline-block px-4 py-1 rounded-sm text-xs font-bold uppercase tracking-wider mb-4
               bg-gradient-to-r ${CAT_META[openEvent.category]?.color} text-white`}>
               {CAT_META[openEvent.category]?.emoji} {openEvent.category}
             </span>
@@ -219,7 +219,7 @@ export default function Gallery() {
                 {openEvent.location}
               </p>
             )}
-            <p className="mt-2 text-cyan-400 font-semibold">{eventImgs.length} Photos</p>
+            <p className="mt-2 text-[#00AEEF] font-semibold">{eventImgs.length} Photos</p>
           </div>
         </div>
 
@@ -236,7 +236,7 @@ export default function Gallery() {
                 <div className="mb-6">
                   {eventImgs.length === 2 ? (
                     /* 2 images: side by side */
-                    <div className="grid grid-cols-2 gap-2 rounded-2xl overflow-hidden h-72 sm:h-96">
+                    <div className="grid grid-cols-2 gap-2 rounded-sm overflow-hidden h-72 sm:h-96">
                       {eventImgs.slice(0, 2).map((img, idx) => (
                         <div key={img._id} onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx); }}
                           className="relative overflow-hidden cursor-pointer group">
@@ -247,7 +247,7 @@ export default function Gallery() {
                     </div>
                   ) : eventImgs.length === 3 ? (
                     /* 3 images: 1 big left + 2 stacked right */
-                    <div className="grid grid-cols-2 gap-2 rounded-2xl overflow-hidden h-72 sm:h-96">
+                    <div className="grid grid-cols-2 gap-2 rounded-sm overflow-hidden h-72 sm:h-96">
                       <div onClick={() => { setLightboxSrc(eventImgs); setLightbox(0); }}
                         className="relative overflow-hidden cursor-pointer group row-span-2">
                         <img src={thumbUrl(eventImgs[0].url, 900)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -263,7 +263,7 @@ export default function Gallery() {
                     </div>
                   ) : (
                     /* 4+ images: 1 big left + 3 grid right (last shows +N) */
-                    <div className="grid grid-cols-3 gap-2 rounded-2xl overflow-hidden h-72 sm:h-[420px]">
+                    <div className="grid grid-cols-3 gap-2 rounded-sm overflow-hidden h-72 sm:h-[420px]">
                       {/* big left */}
                       <div onClick={() => { setLightboxSrc(eventImgs); setLightbox(0); }}
                         className="col-span-2 relative overflow-hidden cursor-pointer group">
@@ -281,7 +281,7 @@ export default function Gallery() {
                         {eventImgs.slice(1, 4).map((img, idx) => (
                           <div key={img._id}
                             onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx + 1); }}
-                            className="relative overflow-hidden cursor-pointer group rounded-lg">
+                            className="relative overflow-hidden cursor-pointer group rounded-sm">
                             <img src={thumbUrl(img.url, 400)} alt="" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
                             {/* +N overlay on last */}
@@ -304,8 +304,8 @@ export default function Gallery() {
                   {eventImgs.map((img, idx) => (
                     <button key={img._id}
                       onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx); }}
-                      className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 border-white/10
-                                 hover:border-cyan-400 hover:scale-105 transition-all duration-200">
+                      className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-sm overflow-hidden border-2 border-white/10
+                                 hover:border-[#00AEEF] hover:scale-105 transition-all duration-200">
                       <img src={thumbUrl(img.url, 200)} alt="" className="w-full h-full object-cover" loading="lazy" decoding="async" />
                     </button>
                   ))}
@@ -314,7 +314,7 @@ export default function Gallery() {
 
               {/* ── FULL MASONRY GRID ── */}
               <div className="flex items-center gap-3 mb-5">
-                <div className="w-1 h-5 bg-cyan-400 rounded-full" />
+                <div className="w-1 h-5 bg-[#00AEEF] rounded-sm" />
                 <h2 className="text-base font-bold uppercase tracking-wider text-gray-400">
                   All Photos <span className="text-gray-600 font-normal normal-case">({eventImgs.length})</span>
                 </h2>
@@ -323,15 +323,15 @@ export default function Gallery() {
                 {eventImgs.map((img, idx) => (
                   <div key={img._id}
                     onClick={() => { setLightboxSrc(eventImgs); setLightbox(idx); }}
-                    className="break-inside-avoid group relative rounded-xl overflow-hidden border border-white/8 cursor-pointer
-                               hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-400/10 transition-all duration-300">
+                    className="break-inside-avoid group relative rounded-sm overflow-hidden border border-white/8 cursor-pointer
+                               hover:border-[#00AEEF]/50 hover:shadow-lg hover:shadow-[#00AEEF]/10 transition-all duration-300">
                     <img src={thumbUrl(img.url, 500)} alt={img.title || ""}
                       loading="lazy" decoding="async"
                       className="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent
                                     opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3">
                       {img.title && <p className="text-white font-semibold text-xs line-clamp-1">{img.title}</p>}
-                      <p className="text-cyan-400 text-xs mt-0.5">{fmt(img.createdAt)}</p>
+                      <p className="text-[#00AEEF] text-xs mt-0.5">{fmt(img.createdAt)}</p>
                     </div>
                   </div>
                 ))}
@@ -358,7 +358,7 @@ export default function Gallery() {
      MAIN GALLERY PAGE
   ══════════════════════════════════════ */
   return (
-    <main className="min-h-screen bg-[#020609] text-white overflow-x-hidden">
+    <main className="min-h-screen bg-[#050505] text-white overflow-x-hidden">
 
       {/* ── HERO ── */}
       <section className="relative min-h-[50vh] flex items-center justify-center overflow-hidden pt-20">
@@ -368,10 +368,10 @@ export default function Gallery() {
         )}
         <div className="absolute inset-0 bg-gradient-to-b from-[#020609]/40 via-transparent to-[#020609]" />
         <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
-          <p className="text-xs tracking-[0.35em] text-cyan-400 uppercase font-semibold mb-4">A5X Robotics</p>
+          <p className="text-xs tracking-[0.35em] text-[#00AEEF] uppercase font-semibold mb-4">A5X Robotics</p>
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight">
             Our{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00AEEF] to-[#0088cc]">
               Gallery
             </span>
           </h1>
@@ -381,17 +381,17 @@ export default function Gallery() {
           {/* stats */}
           <div className="mt-8 flex justify-center gap-10">
             <div className="text-center">
-              <div className="text-2xl font-bold text-cyan-400">{events.length}</div>
+              <div className="text-2xl font-bold text-[#00AEEF]">{events.length}</div>
               <div className="text-xs text-gray-500 mt-1 uppercase tracking-wider">Events</div>
             </div>
             <div className="w-px bg-white/10" />
             <div className="text-center">
-              <div className="text-2xl font-bold text-cyan-400">{allImages.length}</div>
+              <div className="text-2xl font-bold text-[#00AEEF]">{allImages.length}</div>
               <div className="text-xs text-gray-500 mt-1 uppercase tracking-wider">Photos</div>
             </div>
             <div className="w-px bg-white/10" />
             <div className="text-center">
-              <div className="text-2xl font-bold text-cyan-400">3</div>
+              <div className="text-2xl font-bold text-[#00AEEF]">3</div>
               <div className="text-xs text-gray-500 mt-1 uppercase tracking-wider">Categories</div>
             </div>
           </div>
@@ -399,20 +399,20 @@ export default function Gallery() {
       </section>
 
       {/* ── CATEGORY TABS ── */}
-      <div className="sticky top-0 z-20 bg-[#020609]/95 border-b border-white/8 px-4 sm:px-6 py-4">
+      <div className="sticky top-0 z-20 bg-[#050505]/95 border-b border-white/8 px-4 sm:px-6 py-4">
         <div className="max-w-7xl mx-auto flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide">
 
           {/* ALL tab */}
           <button
             onClick={() => setActiveTab("All")}
-            className={`flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold border transition-all duration-200
+            className={`flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-sm text-sm font-bold border transition-all duration-200
               ${activeTab === "All"
                 ? "bg-gradient-to-r from-gray-600 to-gray-500 text-white border-transparent shadow-lg"
                 : "border-white/15 text-gray-400 hover:border-white/30 hover:text-white"}`}
           >
             <span>🌐</span>
             <span>All</span>
-            <span className={`text-xs px-2 py-0.5 rounded-full font-semibold ${activeTab === "All" ? "bg-white/20" : "bg-white/10"}`}>
+            <span className={`text-xs px-2 py-0.5 rounded-sm font-semibold ${activeTab === "All" ? "bg-white/20" : "bg-white/10"}`}>
               {allImages.length}
             </span>
           </button>
@@ -425,7 +425,7 @@ export default function Gallery() {
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
-                className={`flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold border transition-all duration-200
+                className={`flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-sm text-sm font-bold border transition-all duration-200
                   ${activeTab === cat
                     ? `bg-gradient-to-r ${m.color} text-white border-transparent shadow-lg`
                     : "border-white/15 text-gray-400 hover:border-white/30 hover:text-white"}`}
@@ -433,7 +433,7 @@ export default function Gallery() {
                 <span>{m.emoji}</span>
                 <span>{cat}</span>
                 {count > 0 && (
-                  <span className={`text-xs px-2 py-0.5 rounded-full font-semibold
+                  <span className={`text-xs px-2 py-0.5 rounded-sm font-semibold
                     ${activeTab === cat ? "bg-white/20" : "bg-white/10"}`}>
                     {count}
                   </span>
@@ -448,7 +448,7 @@ export default function Gallery() {
       {activeTab === "All" && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-8 pb-24">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-1 h-6 bg-white/40 rounded-full" />
+            <div className="w-1 h-6 bg-white/40 rounded-sm" />
             <h2 className="text-xl font-bold tracking-wide uppercase text-gray-300">
               All Photos
               <span className="ml-3 text-sm text-gray-500 normal-case font-normal">
@@ -469,8 +469,8 @@ export default function Gallery() {
                 <div
                   key={img._id}
                   onClick={() => { setLightboxSrc(allImages); setLightbox(idx); }}
-                  className="break-inside-avoid group relative rounded-2xl overflow-hidden border border-white/8 cursor-pointer
-                             hover:border-cyan-400/50 hover:shadow-xl hover:shadow-cyan-400/10 transition-all duration-300"
+                  className="break-inside-avoid group relative rounded-sm overflow-hidden border border-white/8 cursor-pointer
+                             hover:border-[#00AEEF]/50 hover:shadow-xl hover:shadow-[#00AEEF]/10 transition-all duration-300"
                 >
                   <img
                     src={thumbUrl(img.url, 400)}
@@ -484,21 +484,21 @@ export default function Gallery() {
                     {/* category + event badge */}
                     <div className="flex gap-2 mb-2 flex-wrap">
                       {img.category && (
-                        <span className={`text-xs px-2 py-0.5 rounded-full font-bold bg-gradient-to-r
+                        <span className={`text-xs px-2 py-0.5 rounded-sm font-bold bg-gradient-to-r
                           ${CAT_META[img.category]?.color || "from-gray-600 to-gray-500"} text-white`}>
                           {CAT_META[img.category]?.emoji} {img.category}
                         </span>
                       )}
                       {img.eventName && (
-                        <span className="text-xs px-2 py-0.5 rounded-full bg-black/60 border border-white/20 text-gray-300">
+                        <span className="text-xs px-2 py-0.5 rounded-sm bg-black/60 border border-white/20 text-gray-300">
                           {img.eventName}
                         </span>
                       )}
                     </div>
                     {img.title && <p className="text-white font-semibold text-sm line-clamp-1">{img.title}</p>}
-                    <p className="text-cyan-400 text-xs mt-1">{fmt(img.createdAt)}</p>
+                    <p className="text-[#00AEEF] text-xs mt-1">{fmt(img.createdAt)}</p>
                   </div>
-                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 border border-white/20
+                  <div className="absolute top-3 right-3 w-8 h-8 rounded-sm bg-black/60 border border-white/20
                                   flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -573,9 +573,9 @@ function EventCard({ event, catMeta, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="group text-left w-full rounded-2xl overflow-hidden border border-white/8 bg-[#070d12]
-                 hover:border-cyan-400/40 hover:shadow-xl hover:shadow-cyan-400/10
-                 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
+      className="group text-left w-full rounded-sm overflow-hidden border border-white/8 bg-[#060B10]
+                 hover:border-[#00AEEF]/40 hover:shadow-xl hover:shadow-[#00AEEF]/10
+                 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#00AEEF]/50"
     >
       {/* cover image */}
       <div className="relative overflow-hidden aspect-[4/3]">
@@ -587,7 +587,7 @@ function EventCard({ event, catMeta, onClick }) {
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
           />
         ) : (
-          <div className="w-full h-full bg-[#0a1118] flex items-center justify-center text-4xl">
+          <div className="w-full h-full bg-[#0A1520] flex items-center justify-center text-4xl">
             {catMeta?.emoji}
           </div>
         )}
@@ -595,13 +595,13 @@ function EventCard({ event, catMeta, onClick }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
         {/* category badge */}
-        <div className={`absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold
+        <div className={`absolute top-3 left-3 px-3 py-1 rounded-sm text-xs font-bold
           bg-gradient-to-r ${catMeta?.color} text-white`}>
           {catMeta?.emoji} {event.category}
         </div>
 
         {/* photo count */}
-        <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold
+        <div className="absolute top-3 right-3 px-3 py-1 rounded-sm text-xs font-bold
           bg-black/60 border border-white/20 text-white">
           {event.count} 📷
         </div>
@@ -609,7 +609,7 @@ function EventCard({ event, catMeta, onClick }) {
 
       {/* info */}
       <div className="p-5">
-        <h3 className="text-white font-bold text-lg leading-snug group-hover:text-cyan-400 transition-colors">
+        <h3 className="text-white font-bold text-lg leading-snug group-hover:text-[#00AEEF] transition-colors">
           {event.eventName}
         </h3>
         {event.location && (
@@ -624,7 +624,7 @@ function EventCard({ event, catMeta, onClick }) {
         )}
         <div className="mt-4 flex items-center justify-between">
           <span className="text-xs text-gray-600">{fmt(event.createdAt)}</span>
-          <span className="text-cyan-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
+          <span className="text-[#00AEEF] text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
             View Photos
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -649,7 +649,7 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
       {/* close */}
       <button
         onClick={onClose}
-        className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 border border-white/20
+        className="absolute top-5 right-5 w-10 h-10 rounded-sm bg-white/10 border border-white/20
                    flex items-center justify-center text-white hover:bg-red-500 transition z-10"
         aria-label="Close"
       >
@@ -661,9 +661,9 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
       {/* prev */}
       <button
         onClick={(e) => { e.stopPropagation(); onPrev(); }}
-        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full
+        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-sm
                    bg-white/10 border border-white/20 flex items-center justify-center text-white
-                   hover:bg-cyan-400 hover:text-black transition z-10"
+                   hover:bg-[#00AEEF] hover:text-black transition z-10"
         aria-label="Previous"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -676,13 +676,13 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
         <img
           src={img.url}
           alt={img.title || ""}
-          className="max-h-[75vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl border border-white/10"
+          className="max-h-[75vh] w-auto max-w-full rounded-sm object-contain shadow-2xl border border-white/10"
         />
         {(img.title || img.description) && (
           <div className="mt-4 text-center max-w-2xl px-4">
             {img.title && <h3 className="text-white font-bold text-lg">{img.title}</h3>}
             {img.description && <p className="text-gray-400 text-sm mt-1">{img.description}</p>}
-            <p className="text-cyan-400 text-xs mt-2">{fmt(img.createdAt)}</p>
+            <p className="text-[#00AEEF] text-xs mt-2">{fmt(img.createdAt)}</p>
           </div>
         )}
         <div className="mt-3 text-gray-600 text-xs">{index + 1} / {images.length}</div>
@@ -691,9 +691,9 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
       {/* next */}
       <button
         onClick={(e) => { e.stopPropagation(); onNext(); }}
-        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full
+        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-sm
                    bg-white/10 border border-white/20 flex items-center justify-center text-white
-                   hover:bg-cyan-400 hover:text-black transition z-10"
+                   hover:bg-[#00AEEF] hover:text-black transition z-10"
         aria-label="Next"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

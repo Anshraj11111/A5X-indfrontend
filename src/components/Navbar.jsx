@@ -8,6 +8,7 @@ const navItems = [
   { to: "/services",  label: "Solutions" },
   { to: "/projects",  label: "Projects" },
   { to: "/workshops", label: "Workshop" },
+  { to: "/gallery",   label: "Gallery" },
   { to: "/store",     label: "Store" },
   { to: "/about",     label: "About" },
   { to: "/contact",   label: "Contact" },
