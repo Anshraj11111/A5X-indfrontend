@@ -1,92 +1,49 @@
-// const CACHE_NAME = "a5x-cache-v1";
+const CACHE_NAME = "a5x-cache-v5";
 
-// // Static files (React build)
-// const STATIC_ASSETS = [
-//   "/",
-//   "/index.html",
-//   "/manifest.json",
-//   "/A5Xlogo.jpg"
-// ];
-
-// self.addEventListener("install", (event) => {
-//   event.waitUntil(
-//     caches.open(CACHE_NAME).then((cache) => {
-//       return cache.addAll(STATIC_ASSETS);
-//     })
-//   );
-//   self.skipWaiting();
-// });
-
-// self.addEventListener("activate", (event) => {
-//   event.waitUntil(
-//     caches.keys().then((keys) =>
-//       Promise.all(
-//         keys.map((key) => {
-//           if (key !== CACHE_NAME) {
-//             return caches.delete(key);
-//           }
-//         })
-//       )
-//     )
-//   );
-//   clients.claim();
-// });
-
-// self.addEventListener("fetch", (event) => {
-//   // ❌ backend API ko cache mat karo
-//   if (event.request.url.includes("onrender.com")) {
-//     return;
-//   }
-
-//   // ✅ Cache-first strategy
-//   event.respondWith(
-//     caches.match(event.request).then((cached) => {
-//       return cached || fetch(event.request);
-//     })
-//   );
-// });
-const CACHE_NAME = "a5x-cache-v3";
-
-// Files that must be available offline
+// Core files to pre-cache
 const OFFLINE_ASSETS = [
   "/",
   "/index.html",
   "/manifest.json",
-  "/A5Xlogo.jpg"
+  "/A5Xlogo.jpg",
 ];
 
-// Install: cache core files
+// Install: pre-cache core files
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(OFFLINE_ASSETS);
-    })
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(OFFLINE_ASSETS))
   );
   self.skipWaiting();
 });
 
-// Activate: clean old cache
+// Activate: delete ALL old caches (including stale video caches)
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
-      Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) return caches.delete(key);
-        })
-      )
-    )
+      Promise.all(keys.map((key) => caches.delete(key)))
+    ).then(() => self.clients.claim())
   );
-  clients.claim();
 });
 
-// Fetch: offline-first for frontend
+// Fetch handler
 self.addEventListener("fetch", (event) => {
   const { request } = event;
+  const url = new URL(request.url);
 
-  // ❌ backend API skip
-  if (request.url.includes("onrender.com")) return;
+  // 1. Skip non-GET requests entirely — POST, PUT, DELETE etc. cannot be cached
+  if (request.method !== "GET") return;
 
-  // ✅ navigation (React routing)
+  // 2. Skip backend API calls
+  if (url.hostname.includes("onrender.com")) return;
+
+  // 3. Skip video files — serve directly from network, never cache
+  if (url.pathname.endsWith(".mp4") || url.pathname.endsWith(".webm")) return;
+
+  // 4. Skip external scripts (analytics, clarity, google etc.)
+  if (!url.hostname.includes(self.location.hostname) &&
+      !url.hostname.includes("localhost")) return;
+
+  // 5. Navigation requests — network first, fallback to index.html
   if (request.mode === "navigate") {
     event.respondWith(
       fetch(request).catch(() => caches.match("/index.html"))
@@ -94,19 +51,22 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // ✅ cache-first for assets
+  // 6. Static assets — cache first, update in background
   event.respondWith(
     caches.match(request).then((cached) => {
-      return (
-        cached ||
-        fetch(request).then((response) => {
-          const resClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, resClone);
-          });
-          return response;
-        })
-      );
+      const networkFetch = fetch(request).then((response) => {
+        // Only cache valid same-origin GET responses
+        if (
+          response.ok &&
+          response.status === 200 &&
+          response.type !== "opaque"
+        ) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+        }
+        return response;
+      });
+      return cached || networkFetch;
     })
   );
 });
