@@ -416,23 +416,33 @@ export default function Home() {
       ═══════════════════════════════════ */}
       {showInstallPopup && (
         <div className="fixed bottom-4 left-4 right-4 z-[9999]">
-          <div className="bg-[#060B10] border border-white/10 rounded-sm p-4 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div>
-              <h4 className="text-white font-semibold text-sm">Install A5X App</h4>
-              <p className="text-gray-400 text-xs mt-0.5">Get faster access & app-like experience</p>
+          <div className="bg-[#060B10] border border-white/15 shadow-2xl p-4 flex items-center justify-between gap-4">
+            {/* Left — info */}
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <img src="/favicon-32.png" alt="A5X" className="w-8 h-8 flex-shrink-0" />
+              <div className="min-w-0">
+                <h4 className="text-white font-bold text-sm leading-tight">Install A5X App</h4>
+                <p className="text-gray-500 text-xs mt-0.5 truncate">Faster access & app-like experience</p>
+              </div>
             </div>
-            <div className="flex gap-3">
+
+            {/* Right — buttons */}
+            <div className="flex items-center gap-2 flex-shrink-0">
               {!isIOS && isInstallable && (
-                <button onClick={installApp}
-                  className="bg-[#00AEEF] text-black px-4 py-2 rounded-sm font-bold text-xs hover:bg-[#00c4ff] transition">
+                <button
+                  onClick={installApp}
+                  className="bg-[#00AEEF] text-black px-4 py-2 font-bold text-xs tracking-wider uppercase hover:bg-white transition-colors"
+                >
                   Install
                 </button>
               )}
               {isIOS && (
-                <span className="text-gray-300 text-xs">Tap <b>Share</b> → <b>Add to Home Screen</b></span>
+                <span className="text-gray-400 text-xs hidden sm:block">Tap Share → Add to Home</span>
               )}
-              <button onClick={() => setShowInstallPopup(false)}
-                className="text-gray-500 hover:text-white transition text-xs">
+              <button
+                onClick={() => setShowInstallPopup(false)}
+                className="text-gray-400 hover:text-white transition-colors text-xs border border-white/15 px-4 py-2 hover:border-white/40 font-semibold"
+              >
                 Later
               </button>
             </div>

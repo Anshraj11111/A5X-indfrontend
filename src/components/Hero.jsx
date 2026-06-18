@@ -24,71 +24,52 @@ export default function Hero() {
 
     video.muted = true;
 
-    // Play helper — always call this instead of video.play() directly
+    // Play helper
     const safePlay = () => {
-      if (video.paused) {
-        video.play().catch(() => {});
-      }
+      video.play().catch(() => {});
     };
 
-    // Initial play
-    if (video.readyState >= 2) {
-      safePlay();
-    } else {
-      video.addEventListener("canplay", safePlay, { once: true });
-    }
+    // Try to play immediately, then on multiple events as fallback
+    safePlay();
+    video.addEventListener("canplay",    safePlay, { once: true });
+    video.addEventListener("loadeddata", safePlay, { once: true });
 
-    // IntersectionObserver — when hero scrolls back into view, resume play
+    // Periodic check — every 2s, if paused and visible, resume
+    const interval = setInterval(() => {
+      if (!video.paused) return;
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        safePlay();
+      }
+    }, 2000);
+
+    // IntersectionObserver — resume when hero scrolls back into view
     const observer = new IntersectionObserver(
       ([entry]) => {
         video.muted = !entry.isIntersecting;
-        if (entry.isIntersecting) {
-          // Critical fix: resume play when scrolling back to hero
-          safePlay();
-        }
+        if (entry.isIntersecting) safePlay();
       },
       { threshold: 0.05 }
     );
     observer.observe(section);
 
-    // First user interaction — try unmute if hero visible
+    // First user interaction — try unmute
     const onFirstInteract = () => {
       const rect = section.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
         video.muted = false;
+        safePlay();
       }
     };
     document.addEventListener("click",      onFirstInteract, { once: true });
-    document.addEventListener("keydown",    onFirstInteract, { once: true });
     document.addEventListener("touchstart", onFirstInteract, { once: true });
-
-    // Stall recovery — only reload if truly stuck, not just buffering
-    let stallTimer = null;
-    const onStall = () => {
-      stallTimer = setTimeout(() => {
-        const currentTime = video.currentTime;
-        video.load();
-        video.currentTime = currentTime;
-        safePlay();
-      }, 3000); // wait 3s before declaring stall
-    };
-    const onProgress = () => {
-      if (stallTimer) { clearTimeout(stallTimer); stallTimer = null; }
-    };
-
-    video.addEventListener("stalled", onStall);
-    video.addEventListener("progress", onProgress);
-    video.addEventListener("playing",  onProgress);
 
     return () => {
       observer.disconnect();
-      if (stallTimer) clearTimeout(stallTimer);
-      video.removeEventListener("canplay",   safePlay);
-      video.removeEventListener("stalled",   onStall);
-      video.removeEventListener("progress",  onProgress);
-      video.removeEventListener("playing",   onProgress);
+      clearInterval(interval);
+      video.removeEventListener("canplay",    safePlay);
+      video.removeEventListener("loadeddata", safePlay);
       document.removeEventListener("click",      onFirstInteract);
-      document.removeEventListener("keydown",    onFirstInteract);
       document.removeEventListener("touchstart", onFirstInteract);
     };
   }, []);
