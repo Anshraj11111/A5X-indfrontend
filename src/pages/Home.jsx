@@ -232,7 +232,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-+++++
+
       {/* ═══════════════════════════════════
           SECTION 5 — INDUSTRIES WE SERVE
       ═══════════════════════════════════ */}
