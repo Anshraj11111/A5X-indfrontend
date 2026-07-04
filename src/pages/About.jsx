@@ -351,9 +351,9 @@ export default function AboutPage() {
             {[
               { name: "Ansh Raj Baghel", domain: "Full Stack Dev", img: AnshImg },
               { name: "Anupam Mishra",   domain: "AI & ML",        img: AnupamImg },
-              { name: "Chris",           domain: "Operations",     img: ChrisImg },
-              { name: "Aditya Singh",    domain: "Robotics",       img: AdityaImg },
-              { name: "Amit Kumar",      domain: "Hardware",       img: AmitImg },
+              { name: "Chris Alex Francis",           domain: "Operations",     img: ChrisImg },
+              { name: "Aditya Kumar Mishra",    domain: "Robotics",       img: AdityaImg },
+              { name: "Amit Payasi",      domain: "Hardware",       img: AmitImg },
             ].map((m) => (
               <div key={m.name}
                 className="group bg-[#050505] hover:bg-[#071426] transition-colors duration-300 flex flex-col">
