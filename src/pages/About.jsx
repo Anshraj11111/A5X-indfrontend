@@ -349,11 +349,11 @@ export default function AboutPage() {
           {/* 5 co-founder cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px bg-white/6 border border-white/6">
             {[
-              { name: "Ansh Raj Baghel", domain: "Full Stack Dev", img: AnshImg },
-              { name: "Anupam Mishra",   domain: "AI & ML",        img: AnupamImg },
-              { name: "Chris Alex Francis",           domain: "Operations",     img: ChrisImg },
-              { name: "Aditya Kumar Mishra",    domain: "Robotics",       img: AdityaImg },
-              { name: "Amit Payasi",      domain: "Hardware",       img: AmitImg },
+              { name: "Anupam Mishra",        domain: "CEO",         role: "CEO",          img: AnupamImg },
+              { name: "Ansh Raj Baghel",     domain: "CTO & CHRO",  role: "CTO & CHRO",  img: AnshImg   },
+              { name: "Chris Alex Francis",   domain: "CPRO & CMO",  role: "CPRO & CMO",  img: ChrisImg  },
+              { name: "Aditya Kumar Mishra",  domain: "CFO & COO",   role: "CFO & COO",   img: AdityaImg },
+              { name: "Amit Payasi",          domain: "CLO & CIO",   role: "CHO & CIO",   img: AmitImg   },
             ].map((m) => (
               <div key={m.name}
                 className="group bg-[#050505] hover:bg-[#071426] transition-colors duration-300 flex flex-col">
@@ -372,7 +372,7 @@ export default function AboutPage() {
                 {/* info */}
                 <div className="px-5 py-4 flex flex-col gap-1">
                   <h4 className="text-white font-extrabold text-sm leading-snug">{m.name}</h4>
-                  <p className="text-[#00A8FF] text-[10px] font-bold tracking-[0.22em] uppercase">Co-Founder</p>
+                  <p className="text-[#00A8FF] text-[10px] font-bold tracking-[0.22em] uppercase">{m.role}</p>
                 </div>
               </div>
             ))}
