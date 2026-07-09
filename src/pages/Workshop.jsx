@@ -43,35 +43,17 @@ function FeedbackFormSection() {
   useEffect(() => {
     const fetchApprovedFeedbacks = async () => {
       try {
-        console.log('Fetching approved feedbacks from Workshop page...');
-        console.log('API URL:', `${API}/api/feedback/approved`);
-        
         const response = await axios.get(`${API}/api/feedback/approved`);
-        console.log('API Response:', response);
-        console.log('Approved feedbacks data:', response.data);
-        
-        // Also log each feedback individually
-        response.data.forEach((fb, index) => {
-          console.log(`Feedback ${index + 1}:`, {
-            id: fb._id,
-            name: fb.name,
-            status: fb.status,
-            isApproved: fb.isApproved,
-            message: fb.message.substring(0, 50) + '...'
-          });
-        });
-        
         setApprovedFeedbacks(response.data);
       } catch (error) {
         console.error('Error fetching approved feedbacks:', error);
-        console.error('Error details:', error.response);
       }
     };
 
     fetchApprovedFeedbacks();
     
-    // Also fetch every 5 seconds to check for new approvals
-    const interval = setInterval(fetchApprovedFeedbacks, 5000);
+    // Refresh every 30 seconds to check for new approvals
+    const interval = setInterval(fetchApprovedFeedbacks, 30000);
     
     return () => clearInterval(interval);
   }, []);
@@ -210,35 +192,8 @@ function FeedbackFormSection() {
 
       {/* Approved Feedbacks Display */}
       <div className="mt-12">
-        <h3 className="text-2xl font-bold text-white mb-4 text-center">What Our Participants Say</h3>
+        <h3 className="text-2xl font-bold text-white mb-8 text-center">What Our Participants Say</h3>
         
-        {/* Debug Info */}
-        <div className="text-center mb-6">
-          <p className="text-gray-400 text-sm">
-            Found {approvedFeedbacks.length} approved feedbacks
-          </p>
-          <button 
-            onClick={() => {
-              console.log('Manual refresh clicked');
-              const fetchApprovedFeedbacks = async () => {
-                try {
-                  console.log('Manual fetching approved feedbacks...');
-                  const response = await axios.get(`${API}/api/feedback/approved`);
-                  console.log('Manual fetch response:', response.data);
-                  setApprovedFeedbacks(response.data);
-                } catch (error) {
-                  console.error('Manual fetch error:', error);
-                }
-              };
-              fetchApprovedFeedbacks();
-            }}
-            className="ml-4 px-4 py-2 bg-[#00AEEF] text-black text-xs font-bold rounded hover:bg-[#00AEEF]/80 transition-colors"
-          >
-            REFRESH FEEDBACKS
-          </button>
-          {console.log('Current approved feedbacks state:', approvedFeedbacks)}
-        </div>
-
         {approvedFeedbacks.length === 0 ? (
           <div className="text-center py-8">
             <p className="text-gray-400">No approved feedbacks yet. Be the first to share your experience!</p>

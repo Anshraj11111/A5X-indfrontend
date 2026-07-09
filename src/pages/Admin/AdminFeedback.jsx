@@ -230,8 +230,7 @@ export default function AdminFeedback() {
                   fb.status === 'rejected' ? 'bg-red-400/20 text-red-400' :
                   'bg-yellow-400/20 text-yellow-400'
                 }`}>
-                  {fb.status ? fb.status.toUpperCase() : 'PENDING'} 
-                  {console.log('Individual feedback status:', fb.name, fb.status)}
+                  {fb.status ? fb.status.toUpperCase() : 'PENDING'}
                 </span>
               </div>
 
