@@ -1,5 +1,5 @@
 // frontend/src/pages/Workshop.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -12,9 +12,6 @@ import CozmoImg     from "../assets/cozmo.jpg";
 import Project2Img  from "../assets/Project2.png";
 import Project3Img  from "../assets/Project3.png";
 import TrainerImg   from "../assets/trainerabout.png";
-import AdityaImg    from "../assets/Aditya.jpg";
-import AmitImg      from "../assets/Amit.jpg";
-import AnupamImg    from "../assets/Anupam.jpg";
 import RobotImg     from "../assets/robotworkshop.jpeg";
 import workImg      from "../assets/workshop2.jpeg";
 import worksImg     from "../assets/Work3.jpeg"
@@ -30,6 +27,275 @@ function Label({ children }) {
     <div className="flex items-center gap-3 mb-4">
       <div className="w-5 h-[2px] bg-[#00AEEF]" />
       <span className="text-[10px] tracking-[0.4em] text-[#00AEEF] uppercase font-bold">{children}</span>
+    </div>
+  );
+}
+
+// Feedback Form Component
+function FeedbackFormSection() {
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({ name: "", message: "", rating: 5 });
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [approvedFeedbacks, setApprovedFeedbacks] = useState([]);
+
+  // Fetch approved feedbacks
+  useEffect(() => {
+    const fetchApprovedFeedbacks = async () => {
+      try {
+        console.log('Fetching approved feedbacks from Workshop page...');
+        console.log('API URL:', `${API}/api/feedback/approved`);
+        
+        const response = await axios.get(`${API}/api/feedback/approved`);
+        console.log('API Response:', response);
+        console.log('Approved feedbacks data:', response.data);
+        
+        // Also log each feedback individually
+        response.data.forEach((fb, index) => {
+          console.log(`Feedback ${index + 1}:`, {
+            id: fb._id,
+            name: fb.name,
+            status: fb.status,
+            isApproved: fb.isApproved,
+            message: fb.message.substring(0, 50) + '...'
+          });
+        });
+        
+        setApprovedFeedbacks(response.data);
+      } catch (error) {
+        console.error('Error fetching approved feedbacks:', error);
+        console.error('Error details:', error.response);
+      }
+    };
+
+    fetchApprovedFeedbacks();
+    
+    // Also fetch every 5 seconds to check for new approvals
+    const interval = setInterval(fetchApprovedFeedbacks, 5000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.name.trim() || !formData.message.trim()) return;
+
+    setSubmitting(true);
+    try {
+      await axios.post(`${API}/api/feedback`, formData);
+      setSubmitted(true);
+      setFormData({ name: "", message: "", rating: 5 });
+      setTimeout(() => {
+        setSubmitted(false);
+        setShowForm(false);
+      }, 2000);
+    } catch (error) {
+      alert("Failed to submit feedback. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <div>
+      {/* Feedback Form Section */}
+      {!showForm ? (
+        <div className="text-center">
+          <button
+            onClick={() => setShowForm(true)}
+            className="inline-flex items-center gap-2.5 font-bold uppercase hover:bg-white transition-colors"
+            style={{ background: "#00AEEF", color: "#050505", padding: "13px 26px", fontSize: "11px", letterSpacing: "0.14em" }}
+          >
+            SHARE YOUR FEEDBACK
+          </button>
+        </div>
+      ) : (
+        <div className="bg-[#0A0A0A] border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-xl font-semibold text-white">Write Your Feedback</h3>
+            <button
+              onClick={() => setShowForm(false)}
+              className="text-gray-400 hover:text-white text-xl"
+            >
+              ×
+            </button>
+          </div>
+
+          {submitted ? (
+            <div className="text-center py-8">
+              <div className="text-[#00AEEF] text-5xl mb-4">✓</div>
+              <h4 className="text-lg font-semibold mb-2 text-white">Thank You!</h4>
+              <p className="text-gray-400 text-sm">
+                Your feedback has been submitted and is pending review.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold block mb-1.5">
+                  Your Name *
+                </label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  className="w-full bg-[#050505] border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00AEEF] transition-colors px-4 py-3"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold block mb-1.5">
+                  Rating *
+                </label>
+                <div className="flex gap-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => handleInputChange("rating", star)}
+                      className={`text-2xl transition-colors ${
+                        star <= formData.rating ? "text-[#00AEEF]" : "text-gray-600"
+                      }`}
+                    >
+                      ★
+                    </button>
+                  ))}
+                  <span className="ml-3 text-sm text-gray-400 self-center">
+                    ({formData.rating} star{formData.rating !== 1 ? 's' : ''})
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <label className="text-[10px] tracking-[0.2em] text-gray-500 uppercase font-semibold block mb-1.5">
+                  Your Feedback *
+                </label>
+                <textarea
+                  value={formData.message}
+                  onChange={(e) => handleInputChange("message", e.target.value)}
+                  rows={4}
+                  className="w-full bg-[#050505] border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00AEEF] transition-colors resize-none px-4 py-3"
+                  placeholder="Share your workshop experience..."
+                  required
+                />
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="flex-1 py-3 font-bold uppercase tracking-widest hover:bg-white transition-colors disabled:opacity-50"
+                  style={{ background: "#00AEEF", color: "#050505", fontSize: "11px", letterSpacing: "0.15em" }}
+                >
+                  {submitting ? "SUBMITTING..." : "SUBMIT FEEDBACK"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowForm(false)}
+                  className="px-6 py-3 border border-white/20 text-gray-300 rounded-lg hover:border-white/40 hover:text-white transition-colors text-xs uppercase tracking-wider"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+      )}
+
+      {/* Approved Feedbacks Display */}
+      <div className="mt-12">
+        <h3 className="text-2xl font-bold text-white mb-4 text-center">What Our Participants Say</h3>
+        
+        {/* Debug Info */}
+        <div className="text-center mb-6">
+          <p className="text-gray-400 text-sm">
+            Found {approvedFeedbacks.length} approved feedbacks
+          </p>
+          <button 
+            onClick={() => {
+              console.log('Manual refresh clicked');
+              const fetchApprovedFeedbacks = async () => {
+                try {
+                  console.log('Manual fetching approved feedbacks...');
+                  const response = await axios.get(`${API}/api/feedback/approved`);
+                  console.log('Manual fetch response:', response.data);
+                  setApprovedFeedbacks(response.data);
+                } catch (error) {
+                  console.error('Manual fetch error:', error);
+                }
+              };
+              fetchApprovedFeedbacks();
+            }}
+            className="ml-4 px-4 py-2 bg-[#00AEEF] text-black text-xs font-bold rounded hover:bg-[#00AEEF]/80 transition-colors"
+          >
+            REFRESH FEEDBACKS
+          </button>
+          {console.log('Current approved feedbacks state:', approvedFeedbacks)}
+        </div>
+
+        {approvedFeedbacks.length === 0 ? (
+          <div className="text-center py-8">
+            <p className="text-gray-400">No approved feedbacks yet. Be the first to share your experience!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {approvedFeedbacks.slice(0, 6).map((feedback) => (
+              <div key={feedback._id} className="bg-[#0A0A0A] hover:bg-[#111] transition-colors p-6 rounded-xl border border-white/10">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h4 className="font-semibold text-white text-lg">{feedback.name}</h4>
+                    <span className="text-gray-500 text-xs">
+                      {new Date(feedback.createdAt).toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                      })}
+                    </span>
+                  </div>
+                  <div className="flex text-[#00AEEF]">
+                    {"★".repeat(feedback.rating)}
+                    <span className="text-gray-600 ml-1">
+                      {"★".repeat(5 - feedback.rating)}
+                    </span>
+                  </div>
+                </div>
+
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  "{feedback.message}"
+                </p>
+                
+                <div className="mt-4 pt-4 border-t border-white/5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#00AEEF]/20 to-[#00AEEF]/5 border border-[#00AEEF]/20 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[#00AEEF]/60" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                      </svg>
+                    </div>
+                    <span className="text-gray-400 text-xs">Workshop Participant</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {approvedFeedbacks.length > 6 && (
+          <div className="text-center mt-8">
+            <Link
+              to="/feedback"
+              className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase border border-[#00AEEF]/30 px-6 py-3 hover:bg-[#00AEEF]/10 transition-colors"
+            >
+              VIEW ALL FEEDBACK →
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -342,15 +608,20 @@ export default function WorkshopPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/6 border border-white/6 overflow-hidden">
             {[
-              { img: AdityaImg, name: "Rahul Sharma",  role: "Workshop Participant", text: "The robotics workshop by A5X was amazing! Very well structured and practical. I built my first robot and learned so much." },
-              { img: AmitImg,   name: "Ananya Verma",  role: "Workshop Participant", text: "The drone workshop was super fun and informative. I learned about drone design, electronics and flying. Highly recommended!" },
-              { img: AnupamImg, name: "Aman Singhal",  role: "Workshop Participant", text: "Great hands-on experience with IoT and embedded systems. The mentors explain everything so well!" },
-            ].map((t) => (
+              { name: "Rahul Sharma",  role: "Workshop Participant", text: "The robotics workshop by A5X was amazing! Very well structured and practical. I built my first robot and learned so much." },
+              { name: "Ananya Verma",  role: "Workshop Participant", text: "The drone workshop was super fun and informative. I learned about drone design, electronics and flying. Highly recommended!" },
+              { name: "Aman Singhal",  role: "Workshop Participant", text: "Great hands-on experience with IoT and embedded systems. The mentors explain everything so well!" },
+            ].map((t, index) => (
               <div key={t.name} className="bg-[#0A0A0A] hover:bg-[#111] transition-colors p-8 flex flex-col gap-5">
                 <div className="text-[#00AEEF] text-4xl font-bold leading-none">"</div>
                 <p className="text-gray-300 text-sm leading-relaxed flex-1">{t.text}</p>
                 <div className="flex items-center gap-3 pt-4 border-t border-white/6">
-                  <img src={t.img} alt={t.name} className="w-10 h-10 rounded-full object-cover border border-white/10" />
+                  {/* Generic avatar placeholder instead of founder photos */}
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#00AEEF]/20 to-[#00AEEF]/5 border border-[#00AEEF]/20 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[#00AEEF]/60" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                    </svg>
+                  </div>
                   <div>
                     <div className="text-white font-bold text-xs">{t.name}</div>
                     <div className="text-gray-600 text-[10px] tracking-wider uppercase mt-0.5">{t.role}</div>
@@ -359,6 +630,24 @@ export default function WorkshopPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ── FEEDBACK FORM ── */}
+      <section className="py-14 sm:py-24 bg-[#020508]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-8 lg:px-14">
+          <div className="text-center mb-10">
+            <Label>Share Your Experience</Label>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white">Workshop Feedback</h2>
+            <div className="mt-4 w-20 h-[2px] bg-[#00AEEF] rounded-full mx-auto" />
+            <p className="mt-4 text-gray-400 max-w-lg mx-auto">
+              Help us improve by sharing your workshop experience. All reviews are moderated before being displayed.
+            </p>
+          </div>
+
+          <FeedbackFormSection />
         </div>
       </section>
 
