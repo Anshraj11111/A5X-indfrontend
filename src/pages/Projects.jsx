@@ -12,12 +12,12 @@ const featured = [
   {
     id: "dr-robot",
     category: "Robotics",
-    title: "DEX Bot",
+    title: "DR Robot",
     desc: "A fully custom-engineered robotics platform built from the ground up — custom PCB, 3D-printed chassis and real-time embedded firmware for autonomous operation.",
     img: DRImg,
     tags: ["Embedded C", "Custom PCB", "3D Printing"],
     details: {
-      overview: "DEX Bot is A5X's flagship robotics build. Every component — from the PCB traces to the body panels — was engineered in-house. The bot features sensor-based navigation, modular attachment points and a real-time control system capable of responding in milliseconds.",
+      overview: "DR Robot is A5X's flagship robotics build. Every component — from the PCB traces to the body panels — was engineered in-house. The bot features sensor-based navigation, modular attachment points and a real-time control system capable of responding in milliseconds.",
       highlights: [
         "Custom PCB designed and fabricated in-house",
         "3D-printed modular chassis for easy hardware upgrades",
@@ -308,13 +308,14 @@ export default function ProjectsPage() {
                 {/* main large card */}
                 <div className="absolute"
                   style={{ top: 0, left: "10%", width: "75%", height: "62%", zIndex: 3 }}>
-                  <div className="w-full h-full overflow-hidden border border-white/10"
+                  <div className="w-full h-full overflow-hidden border border-white/10 bg-black flex items-center justify-center"
                     style={{ boxShadow: "0 32px 80px rgba(0,0,0,0.7)" }}>
-                    <img src={DRImg} alt="DEX Bot" className="w-full h-full object-cover object-center brightness-90" />
+                    <img src={DRImg} alt="DR Robot" 
+                         className="max-w-full max-h-full object-contain brightness-90" />
                     <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,5,5,.6) 0%, transparent 50%)" }} />
                     <div className="absolute bottom-4 left-5">
                       <span className="text-[9px] tracking-[0.35em] text-[#00A8FF] uppercase font-bold">Robotics</span>
-                      <p className="text-white font-bold text-sm mt-0.5">DEX Bot</p>
+                      <p className="text-white font-bold text-sm mt-0.5">DR Robot</p>
                     </div>
                   </div>
                 </div>
@@ -338,11 +339,11 @@ export default function ProjectsPage() {
                   style={{ bottom: 0, right: 0, width: "48%", height: "42%", zIndex: 4 }}>
                   <div className="w-full h-full overflow-hidden border border-white/10"
                     style={{ boxShadow: "0 20px 60px rgba(0,0,0,0.6)" }}>
-                    <img src={Proj2Img} alt="Aura AI" className="w-full h-full object-cover brightness-90" />
+                    <img src={Proj2Img} alt="Robo Soccer" className="w-full h-full object-cover brightness-90" />
                     <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(5,5,5,.65) 0%, transparent 55%)" }} />
                     <div className="absolute bottom-3 left-4">
-                      <span className="text-[9px] tracking-[0.35em] text-[#00A8FF] uppercase font-bold">AI Systems</span>
-                      <p className="text-white font-bold text-xs mt-0.5">Aura AI</p>
+                      <span className="text-[9px] tracking-[0.35em] text-[#00A8FF] uppercase font-bold">Robotics</span>
+                      <p className="text-white font-bold text-xs mt-0.5">Robo Soccer</p>
                     </div>
                   </div>
                 </div>
