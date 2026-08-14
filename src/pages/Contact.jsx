@@ -184,7 +184,7 @@ export default function Contact() {
                 <div className="flex gap-3">
                   {[
                     { label: "Instagram", href: "https://instagram.com/a5xindustries" },
-                    { label: "YouTube",   href: "https://youtube.com/@a5xindustries" },
+                    { label: "YouTube",   href: "https://www.youtube.com/@A5x_in" },
                     { label: "LinkedIn",  href: "https://linkedin.com/company/a5xindustries" },
                   ].map((s) => (
                     <a key={s.label} href={s.href} target="_blank" rel="noreferrer"

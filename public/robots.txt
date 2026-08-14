@@ -1,17 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
-# Block admin pages from indexing
+# Block admin pages from search engines
 Disallow: /admin/
-Disallow: /admin/login
-Disallow: /admin/signup
-Disallow: /admin/dashboard
-Disallow: /admin/team
-Disallow: /admin/gallery
-Disallow: /admin/contacts
-Disallow: /admin/feedback
-Disallow: /admin/uploads
-Disallow: /admin/lab
+Disallow: /admin/*
 
 # Sitemap location
 Sitemap: https://a5x.in/sitemap.xml

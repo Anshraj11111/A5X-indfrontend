@@ -1,0 +1,5 @@
+# Redirect old workshop route to new one
+/workshop /workshops 301
+
+# SPA fallback - all other routes go to index.html
+/*    /index.html   200

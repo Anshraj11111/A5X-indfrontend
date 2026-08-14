@@ -98,7 +98,7 @@ export default function Footer() {
               aria-label="LinkedIn" className="hover:text-[#00AEEF] transition-colors">
               <FaLinkedin />
             </a>
-            <a href="https://youtube.com/@a5x_ind" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.youtube.com/@A5x_in" target="_blank" rel="noopener noreferrer"
               aria-label="YouTube" className="hover:text-[#00AEEF] transition-colors">
               <FaYoutube />
             </a>

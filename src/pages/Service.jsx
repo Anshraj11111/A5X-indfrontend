@@ -114,7 +114,7 @@ export default function ServicePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
             {[
-              { img: DRImg,       tag: "Robotics",  title: "DEX BOT" },
+              { img: DRImg,       tag: "Robotics",  title: "DR Robot" },
               { img: FPVImg,      tag: "Drones",    title: "FPV Drone" },
               { img: Project2Img, tag: "Robotics",  title: "Robo Soccer" },
             ].map((p) => (
@@ -134,7 +134,7 @@ export default function ServicePage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               { img: RCImg,       tag: "Robotics",  title: "Obstacle Avoiding Robot" },
-              { img: CozmoImg,    tag: "AI Systems", title: "AURA AI" },
+              { img: CozmoImg,    tag: "Robotics", title: "Cosmo Bot" },
               { img: WorkshopImg, tag: "Software",   title: "A5X Community" },
             ].map((p) => (
               <div key={p.title} className="group relative overflow-hidden cursor-pointer border border-white/6">

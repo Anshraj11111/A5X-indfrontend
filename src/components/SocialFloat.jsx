@@ -3,7 +3,7 @@ import { FaYoutube, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
 export default function SocialFloat() {
   const LINKS = {
-    youtube: "https://youtube.com/@a5x_ind?si=aHYApTrooJuZJNhj", // change
+    youtube: "https://www.youtube.com/@A5x_in",
     instagram: "https://www.instagram.com/a5x.in/", // change
     whatsapp: "https://chat.whatsapp.com/HtO8wM0l6OW3pUbCgQuwep", // change
   };

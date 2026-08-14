@@ -191,14 +191,10 @@ function FeedbackFormSection() {
       )}
 
       {/* Approved Feedbacks Display */}
-      <div className="mt-12">
-        <h3 className="text-2xl font-bold text-white mb-8 text-center">What Our Participants Say</h3>
-        
-        {approvedFeedbacks.length === 0 ? (
-          <div className="text-center py-8">
-            <p className="text-gray-400">No approved feedbacks yet. Be the first to share your experience!</p>
-          </div>
-        ) : (
+      {approvedFeedbacks.length > 0 && (
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">What Our Participants Say</h3>
+          
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {approvedFeedbacks.slice(0, 6).map((feedback) => (
               <div key={feedback._id} className="bg-[#0A0A0A] hover:bg-[#111] transition-colors p-6 rounded-xl border border-white/10">
@@ -238,19 +234,19 @@ function FeedbackFormSection() {
               </div>
             ))}
           </div>
-        )}
 
-        {approvedFeedbacks.length > 6 && (
-          <div className="text-center mt-8">
-            <Link
-              to="/feedback"
-              className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase border border-[#00AEEF]/30 px-6 py-3 hover:bg-[#00AEEF]/10 transition-colors"
-            >
-              VIEW ALL FEEDBACK →
-            </Link>
-          </div>
-        )}
-      </div>
+          {approvedFeedbacks.length > 6 && (
+            <div className="text-center mt-8">
+              <Link
+                to="/feedback"
+                className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-[#00AEEF] uppercase border border-[#00AEEF]/30 px-6 py-3 hover:bg-[#00AEEF]/10 transition-colors"
+              >
+                VIEW ALL FEEDBACK →
+              </Link>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
