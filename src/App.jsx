@@ -19,6 +19,8 @@ import Gallery from "./pages/Gallery";
 import AgencyPage from "./pages/Agency";
 import LabPage from "./pages/Lab";
 import SeeMoreFeedback from "./pages/SeeMoreFeedback";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
 import SocialFloat from "./components/SocialFloat";
 
 
@@ -71,6 +73,8 @@ export default function App() {
         <Route path="/agency" element={<AgencyPage />} />
         <Route path="/lab" element={<LabPage />} />
         <Route path="/feedback" element={<SeeMoreFeedback />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-conditions" element={<TermsConditions />} />
         {/* ================= AUTH ================= */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/signup" element={<AdminSignup />} />
