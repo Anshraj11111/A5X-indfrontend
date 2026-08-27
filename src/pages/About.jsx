@@ -353,7 +353,7 @@ export default function AboutPage() {
               { name: "Ansh Raj Baghel",     domain: "CTO & CHRO",  role: "CTO & CHRO",  img: AnshImg   },
               { name: "Chris Alex Francis",   domain: "CPRO & CMO",  role: "CPRO & CMO",  img: ChrisImg  },
               { name: "Aditya Kumar Mishra",  domain: "CFO & COO",   role: "CFO & COO",   img: AdityaImg },
-              { name: "Amit Payasi",          domain: "CLO & CAO",   role: "CHO & CAO",   img: AmitImg   },
+              { name: "Amit Payasi",          domain: "CIO & CAO",   role: "CIO & CAO",   img: AmitImg   },
             ].map((m) => (
               <div key={m.name}
                 className="group bg-[#050505] hover:bg-[#071426] transition-colors duration-300 flex flex-col">
