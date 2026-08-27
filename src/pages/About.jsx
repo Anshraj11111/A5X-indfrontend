@@ -476,7 +476,7 @@ export default function AboutPage() {
                 </Link>
               </div>
 
-              <div className="grid grid-cols-2 gap-px bg-white/6 border border-white/6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/6 border border-white/6">
                 {[
                   "Showcase Your Projects",
                   "Connect With Builders",
@@ -486,9 +486,9 @@ export default function AboutPage() {
                   "Access Exclusive Resources",
                 ].map((b) => (
                   <div key={b}
-                    className="bg-[#050505]/80 hover:bg-[#071426] transition-colors px-5 py-4 flex items-center gap-3">
+                    className="bg-[#050505]/80 hover:bg-[#071426] transition-colors px-5 py-5 flex items-center gap-3">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#00A8FF] flex-shrink-0" />
-                    <span className="text-gray-300 text-xs leading-snug">{b}</span>
+                    <span className="text-gray-300 text-xs leading-relaxed">{b}</span>
                   </div>
                 ))}
               </div>
