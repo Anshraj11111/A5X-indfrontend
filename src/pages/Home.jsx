@@ -44,11 +44,11 @@ export default function Home() {
     <main className="bg-[#03060A] text-white">
 
       <Helmet>
-        <title>A5X Industries Pvt Ltd | Robotics, AI, Drones &amp; Automation Solutions</title>
-        <meta name="description" content="A5X Industries Pvt Ltd - India's leading robotics, AI systems, drone and automation company based in Jabalpur, MP. Robotics workshops, FPV drones, intelligent solutions. 500+ students trained, 50+ projects." />
+        <title>A5X Industries Pvt Ltd | Robotics, AI, Drones, 3D Services &amp; Automation Solutions</title>
+        <meta name="description" content="A5X Industries Pvt Ltd - India's leading robotics, AI systems, drone, 3D printing & automation company based in Jabalpur, MP. Robotics workshops, FPV drones, 3D services, intelligent solutions. 500+ students trained, 50+ projects." />
         <link rel="canonical" href="https://a5x.in/" />
         <meta property="og:url" content="https://a5x.in/" />
-        <meta property="og:title" content="A5X Industries Pvt Ltd | Robotics, AI, Drones & Automation Solutions" />
+        <meta property="og:title" content="A5X Industries Pvt Ltd | Robotics, AI, Drones, 3D Services & Automation Solutions" />
       </Helmet>
 
       {/* ═══════════════════════════════════

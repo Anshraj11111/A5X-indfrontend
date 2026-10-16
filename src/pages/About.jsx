@@ -1,5 +1,6 @@
 // frontend/src/pages/About.jsx
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 import OfficeImg      from "../assets/office.jpeg";
 import AboutCrausel from "../assets/Aboutcrausel.png";
@@ -31,6 +32,15 @@ function Divider() {
 export default function AboutPage() {
   return (
     <main className="bg-[#050505] text-white overflow-x-hidden">
+
+      <Helmet>
+        <title>About A5X Industries | Robotics, AI, Drones, 3D Services &amp; Automation</title>
+        <meta name="description" content="Learn about A5X Industries Pvt Ltd — India's robotics, AI, drone, 3D printing & automation company in Jabalpur, MP. 500+ students trained, 50+ projects delivered. Services, FAQs and more." />
+        <link rel="canonical" href="https://a5x.in/about" />
+        <meta property="og:title" content="About A5X Industries | Robotics, AI, Drones, 3D Services & Automation" />
+        <meta property="og:description" content="A5X Industries Pvt Ltd — India's robotics, AI, drone, 3D printing & automation company in Jabalpur, MP. 500+ students trained, 50+ projects delivered." />
+        <meta property="og:url" content="https://a5x.in/about" />
+      </Helmet>
 
       {/* ══════════════════════════════════════════
           1. HERO
@@ -500,7 +510,99 @@ export default function AboutPage() {
       <Divider />
 
       {/* ══════════════════════════════════════════
-          10. FINAL CTA
+          10. FAQ (AEO — visible Q&A content)
+      ══════════════════════════════════════════ */}
+      <section className="py-16 sm:py-24 bg-[#071426]/25" id="faq">
+        <div className="max-w-[1400px] mx-auto px-5 sm:px-10 xl:px-20">
+          <div className="text-center mb-14">
+            <Label center>Frequently Asked Questions</Label>
+            <h2 className="font-extrabold text-white"
+              style={{ fontSize: "clamp(2rem,4vw,3rem)", letterSpacing: "-0.02em" }}>
+              Questions? We've Got Answers
+            </h2>
+            <p className="mt-4 text-gray-500 text-sm max-w-xl mx-auto leading-relaxed">
+              Everything you need to know about A5X Industries — our services, training and how to work with us.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto flex flex-col gap-3">
+            {[
+              {
+                q: "What is A5X Industries?",
+                a: "A5X Industries Pvt Ltd is an Indian robotics, AI, drone, 3D printing and automation company based in Jabalpur, Madhya Pradesh. Founded in 2023, we build intelligent solutions for education, defense, agriculture and industry, and have trained 500+ students and delivered 50+ projects.",
+              },
+              {
+                q: "Where is A5X Industries located?",
+                a: "A5X Industries is based in Jabalpur, Madhya Pradesh, India, and serves clients across the country.",
+              },
+              {
+                q: "What services does A5X Industries offer?",
+                a: "We offer robotics development, AI systems, drone solutions, industrial automation, robotics workshops and training, and 3D printing & modeling services.",
+              },
+              {
+                q: "Does A5X Industries offer 3D printing services?",
+                a: "Yes. We provide 3D printing and 3D modeling services, including 3D design, from our facility in Jabalpur, India.",
+              },
+              {
+                q: "Does A5X Industries provide robotics training or workshops?",
+                a: "Yes. We run hands-on robotics, AI, drone and automation workshops and have trained over 500 students.",
+              },
+              {
+                q: "When was A5X Industries founded?",
+                a: "A5X Industries Pvt Ltd was founded in 2023.",
+              },
+              {
+                q: "How many projects has A5X Industries delivered?",
+                a: "A5X Industries has delivered over 50 projects across robotics, AI, drones and automation.",
+              },
+              {
+                q: "Which industries does A5X Industries serve?",
+                a: "We serve the education, defense, agriculture and industrial sectors with intelligent automation and robotics solutions.",
+              },
+              {
+                q: "Does A5X Industries build drones?",
+                a: "Yes, we build drones including FPV drones and provide drone solutions for various applications.",
+              },
+              {
+                q: "How can I contact A5X Industries?",
+                a: "You can reach us through our contact page or via our community at community.a5x.in. We are based in Jabalpur, Madhya Pradesh, India.",
+              },
+            ].map((item, i) => (
+              <details key={i}
+                className="group bg-[#050505] border border-white/6 hover:border-[#00A8FF]/30 transition-colors">
+                <summary
+                  className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 [&::-webkit-details-marker]:hidden">
+                  <span className="text-white font-bold text-sm tracking-wide">{item.q}</span>
+                  <svg className="w-4 h-4 text-[#00A8FF] flex-shrink-0 transition-transform duration-300 group-open:rotate-45"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                  </svg>
+                </summary>
+                <div className="px-6 pb-6 -mt-1">
+                  <p className="text-gray-400 text-sm leading-[1.9]">{item.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-gray-500 text-sm">Still have questions?</p>
+            <Link to="/contact"
+              className="mt-4 inline-flex items-center gap-2 font-bold uppercase hover:bg-[#0090e0] transition-colors"
+              style={{ background: "#00A8FF", color: "#050505", padding: "12px 26px", fontSize: "11px", letterSpacing: "0.16em" }}>
+              Contact Us
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ══════════════════════════════════════════
+          11. FINAL CTA
       ══════════════════════════════════════════ */}
       <section className="relative py-36 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none"
