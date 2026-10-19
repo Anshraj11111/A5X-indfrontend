@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
         <title>Privacy Policy | A5X Industries Pvt Ltd</title>
         <meta
           name="description"
-          content="Privacy Policy for A5X Industries Pvt Ltd — how we collect, use, and protect your personal information across our website and Google Home integration."
+          content="Privacy Policy for A5X Industries Pvt Ltd — how we collect, use, and protect your personal information on a5x.in."
         />
         <link rel="canonical" href="https://a5x.in/privacy-policy" />
       </Helmet>
@@ -30,24 +30,26 @@ export default function PrivacyPolicy() {
             <section>
               <h2 className="text-2xl font-semibold text-white mb-4">1. Introduction</h2>
               <p>
-                A5X Industries Pvt Ltd (&quot;A5X&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), a company incorporated
-                under the laws of India and headquartered at Jabalpur, Madhya Pradesh, India,
-                operates the website at{" "}
+                A5X Industries Pvt Ltd (&quot;A5X&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) is a company
+                incorporated under the laws of India, headquartered at Jabalpur, Madhya Pradesh,
+                India. We operate the website at{" "}
                 <a href="https://a5x.in" className="text-cyan-400 hover:underline">
                   https://a5x.in
                 </a>{" "}
-                and related services including the A5X Smart Home integration with Google Home
-                (&quot;Services&quot;).
+                and its related services (&quot;Services&quot;).
               </p>
               <p className="mt-3">
-                This Privacy Policy explains what information we collect, why we collect it, how
-                we use and protect it, and your rights regarding your data. It applies to all
-                visitors, users, and anyone who interacts with our website or integrates our
-                Services with Google Home.
+                This Privacy Policy explains what personal data we collect, why we collect it,
+                how we use and protect it, and your rights under the Digital Personal Data
+                Protection (DPDP) Act, 2023. It applies to all visitors, users, workshop
+                registrants, and anyone who interacts with our website.
               </p>
               <p className="mt-3">
-                By using our website or Services, you acknowledge that you have read and
-                understood this Privacy Policy.
+                This page is publicly accessible at{" "}
+                <a href="https://a5x.in/privacy-policy" className="text-cyan-400 hover:underline">
+                  https://a5x.in/privacy-policy
+                </a>{" "}
+                without requiring login or registration.
               </p>
             </section>
 
@@ -57,62 +59,42 @@ export default function PrivacyPolicy() {
                 2. Information We Collect
               </h2>
 
-              <h3 className="text-lg font-semibold text-white mt-5 mb-2">
-                2.1 Website Visitors
+              <h3 className="text-lg font-semibold text-white mt-4 mb-2">
+                2.1 Information You Provide
               </h3>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>
                   <strong>Contact &amp; inquiry data:</strong> Name, email address, phone number,
-                  organisation name, message content, workshop requirements — submitted through
-                  contact or registration forms.
+                  organisation name, and message content — submitted through our contact form.
+                </li>
+                <li>
+                  <strong>Workshop registration:</strong> Institution name, number of
+                  participants, and preferred dates.
                 </li>
                 <li>
                   <strong>Feedback &amp; testimonials:</strong> Reviews, ratings, and written
-                  testimonials you choose to submit.
+                  testimonials you choose to submit through the feedback form.
                 </li>
                 <li>
-                  <strong>Technical &amp; analytics data:</strong> IP address, browser type, device
-                  type, operating system, pages visited, referrer URL, and session duration —
-                  collected automatically via cookies and analytics tools (Google Analytics 4,
-                  Microsoft Clarity).
+                  <strong>Admin account data:</strong> Email address and password (stored as a
+                  bcrypt hash — never in plain text) for admin users who manage site content.
                 </li>
               </ul>
 
               <h3 className="text-lg font-semibold text-white mt-6 mb-2">
-                2.2 Google Home Integration (Smart Home Users)
+                2.2 Information Collected Automatically
               </h3>
-              <p className="mb-3">
-                If you link your A5X account with Google Home through OAuth 2.0 account linking,
-                we additionally collect or process:
-              </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>
-                  <strong>Account identifiers:</strong> Your name, email address, and unique user
-                  ID obtained at login (via Google Sign-In or A5X account).
+                  <strong>Analytics data:</strong> Pages visited, time on site, referrer URL,
+                  browser type, device type, and approximate location — collected via Google
+                  Analytics 4 and Microsoft Clarity.
                 </li>
                 <li>
-                  <strong>OAuth tokens:</strong> Access tokens and refresh tokens issued during
-                  account linking, used solely to authenticate your Google Home requests.
-                </li>
-                <li>
-                  <strong>Device data:</strong> Device names, room assignments, on/off state,
-                  online status, last-seen timestamps, and — where applicable — runtime
-                  duration, energy analytics, and Wi-Fi signal strength.
+                  <strong>Server logs:</strong> IP address, request method, and response status
+                  — collected automatically by our backend server for security and debugging.
                 </li>
               </ul>
-              <p className="mt-3">
-                We do <strong>not</strong> collect voice commands. Voice commands are processed
-                entirely by Google and are governed by{" "}
-                <a
-                  href="https://policies.google.com/privacy"
-                  className="text-cyan-400 hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Google&apos;s Privacy Policy
-                </a>
-                .
-              </p>
             </section>
 
             {/* 3 */}
@@ -123,138 +105,163 @@ export default function PrivacyPolicy() {
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>Responding to contact form submissions and workshop enquiries.</li>
                 <li>Processing and confirming workshop registrations.</li>
-                <li>Displaying approved testimonials on our website (with your consent).</li>
                 <li>
-                  Sending service-related communications (e.g., booking confirmations). Marketing
-                  communications are sent only with your explicit consent and you may opt out at
-                  any time.
+                  Displaying approved feedback and testimonials on our website (only with your
+                  knowledge when you submit the form).
                 </li>
-                <li>Improving our website performance and user experience via analytics.</li>
                 <li>
-                  <strong>Google Home only:</strong> Authenticating your account, syncing device
-                  state (SYNC), responding to device queries (QUERY), and executing device commands
-                  (EXECUTE) on your behalf through the Google Smart Home Actions API.
+                  Sending service-related emails (e.g., booking confirmations). Marketing
+                  emails are sent only with your explicit consent and you may opt out at any
+                  time.
+                </li>
+                <li>
+                  Improving our website performance and user experience through analytics.
+                </li>
+                <li>
+                  Maintaining server security, debugging issues, and protecting against
+                  unauthorised access.
                 </li>
                 <li>Complying with applicable legal obligations under Indian law.</li>
               </ul>
               <p className="mt-4">
                 We do <strong>not</strong> sell, rent, or trade your personal information to
-                third parties for advertising or any other commercial purpose.
+                any third party for advertising or any other commercial purpose.
               </p>
             </section>
 
             {/* 4 */}
             <section>
               <h2 className="text-2xl font-semibold text-white mb-4">
-                4. What Is Shared with Google Home
+                4. Third-Party Services We Use (Sub-Processors)
               </h2>
-              <p className="mb-3">
-                When you link A5X with Google Home, the following data is shared with Google
-                through the Smart Home Actions API so that Google Assistant can control your
-                A5X-connected devices:
+              <p className="mb-4">
+                We use the following third-party services to operate our website. Each
+                processes only the data necessary for their specific function:
               </p>
-              <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Device names and types</li>
-                <li>Room assignments</li>
-                <li>Current on/off state and online status</li>
-                <li>Other device attributes required by the relevant Google Home device trait</li>
-              </ul>
-              <p className="mt-3">
-                This sharing is limited strictly to what is necessary for device control. Google
-                processes this data under its own Privacy Policy. You can revoke A5X&apos;s access
-                at any time from the Google Home app under Settings → Works with Google → A5X →
-                Unlink.
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm border border-white/10 text-left">
+                  <thead>
+                    <tr className="border-b border-white/10 text-white">
+                      <th className="py-3 px-4 font-semibold">Service</th>
+                      <th className="py-3 px-4 font-semibold">Purpose</th>
+                      <th className="py-3 px-4 font-semibold">Data Involved</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-white/5">
+                    <tr>
+                      <td className="py-3 px-4">MongoDB Atlas</td>
+                      <td className="py-3 px-4">Database — stores contact, feedback, team, gallery and lab data</td>
+                      <td className="py-3 px-4">Names, emails, messages, uploaded content</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4">Cloudinary</td>
+                      <td className="py-3 px-4">Image and media hosting (team photos, gallery, uploads)</td>
+                      <td className="py-3 px-4">Uploaded images only</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4">SendGrid</td>
+                      <td className="py-3 px-4">Transactional email delivery (contact form notifications)</td>
+                      <td className="py-3 px-4">Sender name, email, message</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4">Nodemailer (SMTP)</td>
+                      <td className="py-3 px-4">Fallback email delivery via Gmail SMTP</td>
+                      <td className="py-3 px-4">Sender name, email, message</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4">Vercel</td>
+                      <td className="py-3 px-4">Frontend hosting &amp; CDN</td>
+                      <td className="py-3 px-4">IP address, request logs</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4">Render</td>
+                      <td className="py-3 px-4">Backend API server hosting</td>
+                      <td className="py-3 px-4">IP address, API request logs</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4">Google Analytics 4</td>
+                      <td className="py-3 px-4">Website usage analytics</td>
+                      <td className="py-3 px-4">Anonymised browsing behaviour</td>
+                    </tr>
+                    <tr>
+                      <td className="py-3 px-4">Microsoft Clarity</td>
+                      <td className="py-3 px-4">Heatmaps &amp; session recordings for UX improvement</td>
+                      <td className="py-3 px-4">Anonymised session behaviour</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-3 text-sm text-gray-500">
+                Each sub-processor operates under its own privacy policy and applicable data
+                protection agreements.
               </p>
             </section>
 
             {/* 5 */}
             <section>
               <h2 className="text-2xl font-semibold text-white mb-4">
-                5. Sub-Processors &amp; Third-Party Services
+                5. Cookies &amp; Tracking Technologies
               </h2>
-              <p className="mb-3">
-                We use the following third-party service providers (&quot;sub-processors&quot;) to
-                operate our Services:
-              </p>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm border border-white/10 text-left">
-                  <thead>
-                    <tr className="border-b border-white/10 text-white">
-                      <th className="py-3 px-4 font-semibold">Provider</th>
-                      <th className="py-3 px-4 font-semibold">Purpose</th>
-                      <th className="py-3 px-4 font-semibold">Data Location</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-white/5">
-                    <tr>
-                      <td className="py-3 px-4">Firebase / Google Cloud</td>
-                      <td className="py-3 px-4">Authentication, real-time device data, hosting</td>
-                      <td className="py-3 px-4">Google data centres (global)</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4">Vercel</td>
-                      <td className="py-3 px-4">Web application hosting &amp; deployment</td>
-                      <td className="py-3 px-4">Global edge network</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4">Google Analytics 4</td>
-                      <td className="py-3 px-4">Website analytics</td>
-                      <td className="py-3 px-4">Google data centres (global)</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4">Microsoft Clarity</td>
-                      <td className="py-3 px-4">Heatmaps &amp; session analytics</td>
-                      <td className="py-3 px-4">Microsoft Azure (global)</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4">Cloudinary</td>
-                      <td className="py-3 px-4">Image and media hosting</td>
-                      <td className="py-3 px-4">Global CDN</td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 px-4">EmailJS / Nodemailer</td>
-                      <td className="py-3 px-4">Contact form email delivery</td>
-                      <td className="py-3 px-4">Respective provider servers</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p className="mt-3 text-sm text-gray-500">
-                Each sub-processor is bound by its own privacy policy and applicable data
-                protection agreements. We select sub-processors that provide adequate safeguards
-                for personal data.
-              </p>
-            </section>
-
-            {/* 6 */}
-            <section>
-              <h2 className="text-2xl font-semibold text-white mb-4">
-                6. Cookies &amp; Tracking Technologies
-              </h2>
-              <p className="mb-3">We use the following types of cookies and trackers:</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>
-                  <strong>Essential cookies:</strong> Required for the website to function
-                  (e.g., session management). Cannot be disabled.
+                  <strong>Essential:</strong> Required for the site to function (e.g., admin
+                  session JWT stored in memory). Cannot be disabled.
                 </li>
                 <li>
-                  <strong>Analytics cookies:</strong> Google Analytics 4 and Microsoft Clarity
-                  — help us understand how visitors interact with the site. You may opt out via
-                  your browser settings or by using the{" "}
+                  <strong>Analytics (Google Analytics 4):</strong> Tracks page views and user
+                  behaviour anonymously. Opt out via the{" "}
                   <a
                     href="https://tools.google.com/dlpage/gaoptout"
                     className="text-cyan-400 hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Google Analytics Opt-out Browser Add-on
+                    Google Analytics Opt-out Add-on
+                  </a>
+                  .
+                </li>
+                <li>
+                  <strong>Analytics (Microsoft Clarity):</strong> Records anonymised session
+                  heatmaps. Opt out at{" "}
+                  <a
+                    href="https://privacy.microsoft.com"
+                    className="text-cyan-400 hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    privacy.microsoft.com
                   </a>
                   .
                 </li>
               </ul>
               <p className="mt-3">
-                You can manage or delete cookies through your browser settings at any time.
-                Disabling cookies may affect some website features.
+                You can delete or block cookies through your browser settings at any time.
+              </p>
+            </section>
+
+            {/* 6 */}
+            <section>
+              <h2 className="text-2xl font-semibold text-white mb-4">
+                6. Data Security
+              </h2>
+              <ul className="list-disc list-inside space-y-2 ml-4">
+                <li>All data is transmitted over HTTPS (TLS encryption).</li>
+                <li>
+                  Admin passwords are hashed using bcrypt before storage — plain-text
+                  passwords are never stored.
+                </li>
+                <li>
+                  API routes are protected by JWT authentication and role-based access
+                  control.
+                </li>
+                <li>
+                  HTTP security headers (via Helmet.js) are applied on every response.
+                </li>
+              </ul>
+              <p className="mt-3">
+                No method of internet transmission is 100% secure. In the unlikely event of a
+                data breach that affects your rights, we will notify you and the relevant
+                authorities as required by law.
               </p>
             </section>
 
@@ -265,94 +272,106 @@ export default function PrivacyPolicy() {
               </h2>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>
-                  <strong>Contact &amp; inquiry data:</strong> Retained for up to 2 years from
-                  the date of last interaction, then securely deleted.
+                  <strong>Contact &amp; inquiry data:</strong> Retained for up to 2 years
+                  from the date of submission, then deleted.
                 </li>
                 <li>
-                  <strong>Feedback &amp; testimonials:</strong> Retained as long as they are
-                  displayed on the site or until you request removal.
+                  <strong>Feedback &amp; testimonials:</strong> Retained as long as displayed
+                  on site, or until you request removal.
                 </li>
                 <li>
-                  <strong>Analytics data:</strong> Retained as per the respective provider&apos;s
-                  default retention settings (Google Analytics: 14 months; Clarity: 30 days).
+                  <strong>Uploaded images:</strong> Retained on Cloudinary until deleted by
+                  an admin or upon your request.
                 </li>
                 <li>
-                  <strong>Google Home OAuth tokens:</strong> Revoked and deleted immediately
-                  upon account unlinking from Google Home. Device state data is deleted within
-                  30 days of unlinking.
+                  <strong>Server logs:</strong> Retained for up to 90 days for security
+                  purposes, then automatically purged.
                 </li>
                 <li>
-                  <strong>Account data:</strong> Deleted within 30 days of an account deletion
-                  request.
+                  <strong>Analytics data:</strong> Retained per provider defaults — Google
+                  Analytics 4: 14 months; Microsoft Clarity: 30 days.
+                </li>
+                <li>
+                  <strong>Admin accounts:</strong> Deleted within 30 days of an account
+                  deletion request.
                 </li>
               </ul>
               <p className="mt-4">
-                To request deletion of your data, email us at{" "}
+                To request deletion of your personal data, email{" "}
                 <a
                   href="mailto:a5x.industries@gmail.com"
                   className="text-cyan-400 hover:underline"
                 >
                   a5x.industries@gmail.com
                 </a>{" "}
-                with the subject line &quot;Data Deletion Request&quot;. We will process your request
-                within 30 days.
+                with the subject line <strong>&quot;Data Deletion Request&quot;</strong>. We will
+                process your request within 30 days.
               </p>
             </section>
 
             {/* 8 */}
             <section>
-              <h2 className="text-2xl font-semibold text-white mb-4">8. Data Security</h2>
-              <p>
-                We implement appropriate technical and organisational security measures to protect
-                your personal information, including HTTPS encryption in transit, access controls,
-                and secure credential storage. OAuth tokens used for Google Home integration are
-                stored securely and are never exposed in plain text.
+              <h2 className="text-2xl font-semibold text-white mb-4">
+                8. Information Sharing
+              </h2>
+              <p className="mb-3">
+                We do not sell or share your personal data except in the following limited
+                situations:
               </p>
-              <p className="mt-3">
-                No method of transmission over the internet is 100% secure. In the event of a
-                data breach that affects your rights and freedoms, we will notify you and the
-                relevant authorities as required by applicable law.
-              </p>
+              <ul className="list-disc list-inside space-y-2 ml-4">
+                <li>
+                  <strong>Sub-processors:</strong> As listed in Section 4, solely to operate
+                  our Services.
+                </li>
+                <li>
+                  <strong>Legal requirement:</strong> If required by Indian law, court order,
+                  or government authority.
+                </li>
+                <li>
+                  <strong>Business transfer:</strong> In the event of a merger, acquisition,
+                  or asset sale, with prior notice to affected users.
+                </li>
+              </ul>
             </section>
 
             {/* 9 */}
             <section>
               <h2 className="text-2xl font-semibold text-white mb-4">
-                9. Your Rights
+                9. Your Rights (DPDP Act, 2023)
               </h2>
               <p className="mb-3">
-                Under the Indian Digital Personal Data Protection (DPDP) Act, 2023 and other
-                applicable laws, you have the following rights:
+                Under the Digital Personal Data Protection Act, 2023 and other applicable
+                Indian laws, you have the right to:
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
                 <li>
-                  <strong>Right to access:</strong> Obtain a summary of your personal data we
-                  process.
+                  <strong>Access:</strong> Obtain a summary of the personal data we hold about
+                  you.
                 </li>
                 <li>
-                  <strong>Right to correction:</strong> Request correction of inaccurate or
-                  incomplete personal data.
+                  <strong>Correction:</strong> Request correction of inaccurate or incomplete
+                  data.
                 </li>
                 <li>
-                  <strong>Right to erasure:</strong> Request deletion of your personal data
-                  (subject to legal retention obligations).
+                  <strong>Erasure:</strong> Request deletion of your personal data (subject to
+                  legal retention obligations).
                 </li>
                 <li>
-                  <strong>Right to withdraw consent:</strong> Withdraw your consent at any time
-                  without affecting the lawfulness of prior processing.
+                  <strong>Withdraw consent:</strong> Withdraw your consent at any time without
+                  affecting prior processing.
                 </li>
                 <li>
-                  <strong>Right to nominate:</strong> Under DPDP Act 2023, nominate another
-                  individual to exercise your rights in the event of your death or incapacity.
+                  <strong>Grievance redressal:</strong> Lodge a complaint with our Grievance
+                  Officer (Section 11) or with the Data Protection Board of India once
+                  constituted.
                 </li>
                 <li>
-                  <strong>Right to grievance redressal:</strong> Lodge a complaint with our
-                  Grievance Officer (see Section 12) or with the Data Protection Board of India
-                  once it is constituted.
+                  <strong>Nomination:</strong> Nominate another individual to exercise your
+                  rights in the event of your death or incapacity (DPDP Act, 2023).
                 </li>
               </ul>
               <p className="mt-4">
-                To exercise any of these rights, contact us at{" "}
+                To exercise any of these rights, email{" "}
                 <a
                   href="mailto:a5x.industries@gmail.com"
                   className="text-cyan-400 hover:underline"
@@ -369,8 +388,8 @@ export default function PrivacyPolicy() {
                 10. Children&apos;s Privacy
               </h2>
               <p>
-                Our website and Services are not directed to children under the age of 18. We do
-                not knowingly collect personal data from minors. If you believe we have
+                Our website is not directed to children under 18 years of age. We do not
+                knowingly collect personal data from minors. If you believe we have
                 inadvertently collected such data, please contact us immediately and we will
                 delete it promptly.
               </p>
@@ -379,36 +398,17 @@ export default function PrivacyPolicy() {
             {/* 11 */}
             <section>
               <h2 className="text-2xl font-semibold text-white mb-4">
-                11. Third-Party Links
-              </h2>
-              <p>
-                Our website may contain links to external websites. We are not responsible for
-                the privacy practices of those sites. We encourage you to review the privacy
-                policy of every website you visit.
-              </p>
-            </section>
-
-            {/* 12 */}
-            <section>
-              <h2 className="text-2xl font-semibold text-white mb-4">
-                12. Grievance Officer (DPDP Act 2023)
+                11. Grievance Officer (DPDP Act, 2023)
               </h2>
               <p className="mb-4">
-                In accordance with the Information Technology Act, 2000 and the Digital Personal
-                Data Protection Act, 2023, the details of the Grievance Officer are:
+                In accordance with the Digital Personal Data Protection Act, 2023 and the
+                Information Technology Act, 2000, the details of our Grievance Officer are:
               </p>
               <div className="bg-[#0A0A0A] border border-white/10 rounded-lg p-6 space-y-2">
+                <p><strong>Name:</strong> Anupam Mishra (CEO, A5X Industries Pvt Ltd)</p>
+                <p><strong>Address:</strong> Jabalpur, Madhya Pradesh, India</p>
                 <p>
-                  <strong>Name:</strong> Anupam Mishra (CEO)
-                </p>
-                <p>
-                  <strong>Organisation:</strong> A5X Industries Pvt Ltd
-                </p>
-                <p>
-                  <strong>Address:</strong> Jabalpur, Madhya Pradesh, India
-                </p>
-                <p>
-                  <strong>Email:{" "}</strong>
+                  <strong>Email:</strong>{" "}
                   <a
                     href="mailto:a5x.industries@gmail.com"
                     className="text-cyan-400 hover:underline"
@@ -416,10 +416,20 @@ export default function PrivacyPolicy() {
                     a5x.industries@gmail.com
                   </a>
                 </p>
-                <p>
-                  <strong>Response time:</strong> Within 30 days of receiving your grievance.
-                </p>
+                <p><strong>Response time:</strong> Within 30 days of receiving your grievance.</p>
               </div>
+            </section>
+
+            {/* 12 */}
+            <section>
+              <h2 className="text-2xl font-semibold text-white mb-4">
+                12. Third-Party Links
+              </h2>
+              <p>
+                Our website may contain links to external websites. We are not responsible for
+                the privacy practices of those sites and encourage you to review their
+                respective privacy policies.
+              </p>
             </section>
 
             {/* 13 */}
@@ -428,12 +438,11 @@ export default function PrivacyPolicy() {
                 13. Changes to This Policy
               </h2>
               <p>
-                We may update this Privacy Policy from time to time to reflect changes in our
-                practices, technology, or legal requirements. The &quot;Last updated&quot; date at the
-                top of this page will always reflect the most recent revision. We encourage you
-                to review this policy periodically. For significant changes, we will notify you
-                via email (if we hold your email address) or through a prominent notice on our
-                website.
+                We may update this Privacy Policy periodically. The &quot;Last updated&quot; date at
+                the top reflects the most recent revision. For significant changes, we will
+                notify you via email (if we hold your address) or through a notice on our
+                website. Continued use of the website after changes constitutes acceptance of
+                the updated policy.
               </p>
             </section>
 
@@ -441,13 +450,10 @@ export default function PrivacyPolicy() {
             <section>
               <h2 className="text-2xl font-semibold text-white mb-4">14. Contact Us</h2>
               <p className="mb-4">
-                For any questions, requests, or concerns about this Privacy Policy or our data
-                practices, please contact us:
+                For any questions or requests regarding this Privacy Policy:
               </p>
               <div className="bg-[#0A0A0A] border border-white/10 rounded-lg p-6 space-y-2">
-                <p>
-                  <strong>A5X Industries Pvt Ltd</strong>
-                </p>
+                <p><strong>A5X Industries Pvt Ltd</strong></p>
                 <p>Jabalpur, Madhya Pradesh, India</p>
                 <p>
                   Email:{" "}
@@ -470,12 +476,8 @@ export default function PrivacyPolicy() {
             {/* Footer note */}
             <section className="pt-8 border-t border-white/10">
               <p className="text-sm text-gray-500">
-                This policy is publicly accessible at{" "}
-                <a href="https://a5x.in/privacy-policy" className="text-cyan-400 hover:underline">
-                  https://a5x.in/privacy-policy
-                </a>{" "}
-                without requiring login. By using our website or Services, you confirm that you
-                have read and understood this Privacy Policy.
+                By using our website and Services, you confirm that you have read and
+                understood this Privacy Policy.
               </p>
             </section>
 
